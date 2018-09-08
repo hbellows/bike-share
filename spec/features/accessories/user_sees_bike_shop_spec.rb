@@ -15,5 +15,16 @@ describe "user visits bike shop page" do
       expect(page).to have_content(accessory_2.description)
       expect(page).to have_content("Price: #{accessory_2.price}")
     end
+    it "shows button to add to cart" do
+      accessory_1 = Accessory.create(title: 'Gold Pedal', description: 'for added performance and beautiful bling bling', price: 900.00)
+
+      visit bike_shop_path
+
+      expect(page).to have_button("Add to Cart")
+
+      click_button "Add to Cart"
+
+      expect(page).to have_content("You have added #{accessory_1.title} to your cart.")
+    end
   end
 end
