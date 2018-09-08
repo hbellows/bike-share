@@ -21,9 +21,9 @@ describe "user visits index page" do
     expect(page).to have_content(station_2.city)
     expect(page).to have_content(station_3.city)
     expect(page).to have_content(station_4.city)
-    expect(page).to have_content(station_1."#{station_1.installation_date.strftime('%m/%d/%Y')}")
-    expect(page).to have_content(station_2."#{station_1.installation_date.strftime('%m/%d/%Y')}")
-    expect(page).to have_content(station_3."#{station_1.installation_date.strftime('%m/%d/%Y')}")
-    expect(page).to have_content(station_4."#{station_1.installation_date.strftime('%m/%d/%Y')}")
+    expect(page).to have_content(station_1.installation_date.strftime('%m/%d/%Y'))
+    expect(page).to have_content(station_2.installation_date.strftime('%m/%d/%Y'))
+    expect(page).to have_content(station_3.installation_date.strftime('%m/%d/%Y'))
+    expect(page).to have_content(station_4.installation_date.strftime('%m/%d/%Y'))
   end
 end
