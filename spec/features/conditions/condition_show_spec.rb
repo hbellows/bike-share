@@ -1,16 +1,3 @@
-=begin
-As a visitor,
-When I visit a condition show,
-I see all attributes for that condition.
-(Date, Max Temperature, Mean Temperature, Min Temperature, Mean Humidity,
-Mean Visibility (in Miles), Mean Wind Speed (mph), Precipitation (inches))
-** All Attributes must be present **
-
-Each row represents the weather for a specific day and zip code in the bay area
-=end
-
-
-
 require 'rails_helper'
 
 feature 'Condition show page' do
