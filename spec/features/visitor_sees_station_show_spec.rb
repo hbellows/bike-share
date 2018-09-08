@@ -1,5 +1,5 @@
 require 'rails_helper'
-id,name,lat,long,dock_count,city,installation_date
+
 feature 'When a visitor visits the station show page' do
   scenario 'they see all attributes of that station' do
    station = Station.create(name: 'San Jose Diridon Caltrain Station', lattitude: 37.329732, longitude: -121.90178200000001, dock_count: 27, city: 'San Jose', installation_date: '8/6/2013' )
