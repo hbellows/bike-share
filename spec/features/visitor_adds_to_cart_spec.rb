@@ -1,17 +1,19 @@
 require 'rails_helper'
 
 feature 'visitor adds accessories to cart' do
-  accessory_1 = Accessory.create(title: 'Gold Pedal', description: 'for added performance and beautiful bling bling', price: 900.00)
-  accessory_2 = Accessory.create(title: "Kid's bell", description: 'In case they didnt see you already, ring this cute bell', price: 11.00)
+  before(:each) do
+    @accessory_1 = create(:accessory)
+    @accessory_2 = create(:accessory, price: 11.00)
+  end
 
   visit bike_shop_path
 
-  within("#accessory-#{accessory_1.id}") do
+  within("#accessory-#{@accessory_1.id}") do
     click_button 'Add to cart'
   end
 
   2.times do
-    within("#accessory-#{accessory_2.id}") do
+    within("#accessory-#{@accessory_2.id}") do
       click_button 'Add to cart'
     end
   end
@@ -21,13 +23,13 @@ feature 'visitor adds accessories to cart' do
 
       visit '/cart'
 
-      expect(page).to have_content(accessory_1.title)
-      expect(page).to have_content(accessory_1.price)
-      expect(page).to have_content(accessory_2.title)
-      expect(page).to have_content(accessory_2.price)
+      expect(page).to have_content(@accessory_1.title)
+      expect(page).to have_content(@accessory_1.price)
+      expect(page).to have_content(@accessory_2.title)
+      expect(page).to have_content(@accessory_2.price)
       expect(page).to have_content("quantity: 1")
       expect(page).to have_content("quantity: 2")
-      expect(page).to have_content("Total: #{accessory_1.price + accessory_2.price}")
+      expect(page).to have_content("Total: #{@accessory_1.price + @accessory_2.price}")
     end
   end
 
@@ -49,10 +51,10 @@ feature 'visitor adds accessories to cart' do
 
       visit '/cart'
 
-      expect(page).to have_content(accessory_1.title)
-      expect(page).to have_content(accessory_1.price)
-      expect(page).to have_content(accessory_2.title)
-      expect(page).to have_content(accessory_2.price)
+      expect(page).to have_content(@accessory_1.title)
+      expect(page).to have_content(@accessory_1.price)
+      expect(page).to have_content(@accessory_2.title)
+      expect(page).to have_content(@accessory_2.price)
       expect(page).to have_content("quantity: 1")
       expect(page).to have_content("quantity: 2")
       expect(page).to have_content("Total: 922.00")
@@ -63,17 +65,17 @@ feature 'visitor adds accessories to cart' do
 
     visit '/cart'
 
-    expect(page).to have_content(accessory_1.title)
-    expect(page).to have_content(accessory_1.price)
-    expect(page).to have_content(accessory_2.title)
-    expect(page).to have_content(accessory_2.price)
+    expect(page).to have_content(@accessory_1.title)
+    expect(page).to have_content(@accessory_1.price)
+    expect(page).to have_content(@accessory_2.title)
+    expect(page).to have_content(@accessory_2.price)
     expect(page).to have_content("quantity: 1")
     expect(page).to have_content("quantity: 2")
     expect(page).to have_content("Total: 922.00")
 
     visit bike_shop_path
 
-    within("#accessory-#{accessory_2.id}") do
+    within("#accessory-#{@accessory_2.id}") do
       click_button 'Add to cart'
     end
 

@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :accessory do
-    name "MyString"
-    price 1
-    description "MyText"
-    image "MyString"
+    name {Faker::Commerce.product_name}
+    price {Faker::Commerce.price}
+    description {Faker::Commerce.material}
+    image {"image.jpg"}
   end
 end
