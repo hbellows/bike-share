@@ -21,6 +21,5 @@ describe 'user visits accessory show page' do
     expect(page).to have_content("Price: #{accessory_1.price}")
     expect(page).to_not have_button("Add to Cart")
     expect(page).to have_button("Retired")
-
   end
 end
