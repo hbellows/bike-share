@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "user visits their cart page" do
   before(:each) do
     @user = User.create(username: 'theperson', password: '1234')
-    @accessory1 = Accessory.create(title: 'title_1', description: 'desc1', price: 11.00)
+    @accessory1 = Accessory.create(title: 'title_1', description: 'desc1', price: 8.00)
     accessory_2 = Accessory.create(title: 'title_2', description: 'desc1', price: 34.41)
     accessory_3 = Accessory.create(title: 'title_3', description: 'desc1', price: 17.88)
     accessory_4 = Accessory.create(title: 'title_4', description: 'desc1', price: 45.21)
@@ -14,7 +14,7 @@ describe "user visits their cart page" do
     accessory_9 = Accessory.create(title: 'title_9', description: 'desc1', price: 34.41)
     accessory_10 = Accessory.create(title: 'title_10', description: 'desc1', price: 42.45)
     accessory_11 = Accessory.create(title: 'title_11', description: 'desc1', price: 34.41)
-    @accessory_12 = Accessory.create(title: 'title_12', description: 'desc1', price: 10.00)
+    @accessory_12 = Accessory.create(title: 'title_12', description: 'desc1', price: 15.00)
 
     visit bike_shop_path
 
@@ -45,5 +45,15 @@ describe "user visits their cart page" do
     expect(page).to have_content("Subtotal: #{subtotal_1}")
     expect(page).to have_content("Grand Total: #{grand_total}")
     expect(page).to have_button("Checkout")
+  end
+  it "clicks on checkout and button and recieves message" do
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+
+    visit cart_path
+
+    click_button "Checkout"
+
+    expect(current_path).to eq(dashboard_path)
+    expect(page).to have_content("Successfully submitted your order totalling 38.00")
   end
 end
