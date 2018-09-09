@@ -2,18 +2,28 @@ require 'rails_helper'
 
 feature 'When a visitor visits the trip show page' do
   scenario 'they see all attributes of that trip' do
-   station_1 = Station.create(name: 'San Jose Diridon Caltrain Station', dock_count: 27, city: 'San Jose', installation_date: '8/6/2013')
-   station_2 = Station.create(name: 'San Jose Civic Center', dock_count: 15	, city: 'San Jose', installation_date: '8/5/2013')
-   trip = Trip.create(duration: 63, start_date: '8/29/2013 14:13', start_station_name: station_1.name, end_date: "8/29/2013 14:14", end_station_name: station_2.name, bike_id: 520, subscription_type: 'premium')
+    station_1 = Station.create(name: 'San Jose Diridon Caltrain Station', dock_count: 27, city: 'San Jose', installation_date: Date.new(2014, 10, 17))
+    station_2 = Station.create(name: 'Redwood City Muni', dock_count: 37, city: 'Redwood City', installation_date: Date.new(2016, 11, 26))
 
-   visit "/#{trip.id}"
+    trip_1 = Trip.create!(duration: 63, start_date: Date.new(2013, 8, 29), end_date: Date.new(2013, 8, 29), start_station_id: station_1.id, end_station_id: station_2.id, bike_id: 520, subscription_type: 0, zip_code: 98712)
 
-   expect(page).to have_content(trip.name)
-   expect(page).to have_content(trip.start_date)
-   expect(page).to have_content(trip.start_station_name)
-   expect(page).to have_content("Station ID: #{trip.start_station_id}")
-   expect(page).to have_content(trip.end_date)
-   expect(page).to have_content(trip.end_station_name)
-   expect(page).to have_content(trip.bike_id)
+    visit trip_path(trip_1)
+
+    expect(page).to have_content("Duration: #{trip_1.duration / 60} minutes")
+    expect(page).to have_content("Start Date: #{trip_1.start_date.strftime('%m/%d/%Y')}")
+    expect(page).to have_content("End Date: #{trip_1.end_date.strftime('%m/%d/%Y')}")
+    expect(page).to have_content("Start Station: #{trip_1.start_station.name}")
+    expect(page).to have_content("End Station: #{trip_1.end_station.name}")
+    expect(page).to have_content("Bike ID: #{trip_1.bike_id}")
+    expect(page).to have_content("Subscription Type: #{trip_1.subscription_type}")
+    expect(page).to have_content("Zip Code: #{trip_1.zip_code}")
+
+    # expect(page).to have_content(trip_1.name)
+    # expect(page).to have_content(trip_1.start_date)
+    # expect(page).to have_content(trip_1.start_station_name)
+    # expect(page).to have_content("Station ID: #{trip_1.start_station_id}")
+    # expect(page).to have_content(trip_1.end_date)
+    # expect(page).to have_content(trip_1.end_station_name)
+    # expect(page).to have_content(trip_1.bike_id)
   end
 end

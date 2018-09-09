@@ -1,0 +1,12 @@
+<h1>Trip #<%= @trip.id %></h1>
+
+<ul>
+  <li>Duration: <%= @trip.duration / 60 %> minutes</li>
+  <li>Start Station: <%= @trip.start_station.name %></li>
+  <li>End Station: <%= @trip.end_station.name %></li>
+  <li>Start Date: <%= @trip.start_date.strftime("%m/%d/%Y") %></li>
+  <li>End Date: <%= @trip.end_date.strftime("%m/%d/%Y") %></li>
+  <li>Bike ID: <%= @trip.bike_id %></li>
+  <li>Subscription Type: <%= @trip.subscription_type %></li>
+  <li>Zip Code: <%= @trip.zip_code %></li>
+</ul>
