@@ -1,0 +1,8 @@
+<h1><%= @station.name %></h1>
+
+<ul>
+    <li><%=@station.name%></li>
+    <li>Dock count: <%=@station.dock_count%></li>
+    <li><%=@station.city%></li>
+    <li><%= @station.installation_date.strftime('%m/%d/%Y') %></li>
+</ul>
