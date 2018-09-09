@@ -17,7 +17,7 @@ describe "user visits their cart page" do
     @accessory_12 = Accessory.create(name: 'name_12', description: 'desc1', price: 15.00)
 
     visit bike_shop_path
-    save_and_open_page
+
     within(".accessory-#{@accessory_1.id}") do
       click_button "Add to Cart"
     end
