@@ -14,4 +14,5 @@
     <li>Subscription type: <%= trip.subscription_type %></li>
     <li>Zip code: <%= trip.zip_code %></li>
   <% end %>
+  <%= will_paginate @trips %>
 </ul>
