@@ -3,21 +3,21 @@ require 'rails_helper'
 describe "user visits their cart page" do
   before(:each) do
     @user = User.create(username: 'theperson', password: '1234')
-    @accessory1 = Accessory.create(title: 'title_1', description: 'desc1', price: 8.00)
-    accessory_2 = Accessory.create(title: 'title_2', description: 'desc1', price: 34.41)
-    accessory_3 = Accessory.create(title: 'title_3', description: 'desc1', price: 17.88)
-    accessory_4 = Accessory.create(title: 'title_4', description: 'desc1', price: 45.21)
-    accessory_5 = Accessory.create(title: 'title_5', description: 'desc1', price: 34.41)
-    accessory_6 = Accessory.create(title: 'title_6', description: 'desc1', price: 27.41)
-    accessory_7 = Accessory.create(title: 'title_7', description: 'desc1', price: 34.41)
-    accessory_8 = Accessory.create(title: 'title_8', description: 'desc1', price: 36.32)
-    accessory_9 = Accessory.create(title: 'title_9', description: 'desc1', price: 34.41)
-    accessory_10 = Accessory.create(title: 'title_10', description: 'desc1', price: 42.45)
-    accessory_11 = Accessory.create(title: 'title_11', description: 'desc1', price: 34.41)
-    @accessory_12 = Accessory.create(title: 'title_12', description: 'desc1', price: 15.00)
+    @accessory_1 = Accessory.create(name: 'name_1', description: 'desc1', price: 8.00)
+    accessory_2 = Accessory.create(name: 'name_2', description: 'desc1', price: 34.41)
+    accessory_3 = Accessory.create(name: 'name_3', description: 'desc1', price: 17.88)
+    accessory_4 = Accessory.create(name: 'name_4', description: 'desc1', price: 45.21)
+    accessory_5 = Accessory.create(name: 'name_5', description: 'desc1', price: 34.41)
+    accessory_6 = Accessory.create(name: 'name_6', description: 'desc1', price: 27.41)
+    accessory_7 = Accessory.create(name: 'name_7', description: 'desc1', price: 34.41)
+    accessory_8 = Accessory.create(name: 'name_8', description: 'desc1', price: 36.32)
+    accessory_9 = Accessory.create(name: 'name_9', description: 'desc1', price: 34.41)
+    accessory_10 = Accessory.create(name: 'name_10', description: 'desc1', price: 42.45)
+    accessory_11 = Accessory.create(name: 'name_11', description: 'desc1', price: 34.41)
+    @accessory_12 = Accessory.create(name: 'name_12', description: 'desc1', price: 15.00)
 
     visit bike_shop_path
-
+    save_and_open_page
     within(".accessory-#{@accessory_1.id}") do
       click_button "Add to Cart"
     end
