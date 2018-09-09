@@ -3,4 +3,8 @@ class Station < ApplicationRecord
   validates_presence_of :dock_count
   validates_presence_of :city
   validates_presence_of :installation_date
+
+  extend FriendlyId
+  friendly_id :name, :use => :slugged
+  
 end
