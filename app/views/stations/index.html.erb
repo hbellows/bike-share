@@ -1,0 +1,12 @@
+<h1>All Stations</h1>
+
+<ul>
+  <% @stations.each do |station| %>
+  <section id="station-#{station.id}">
+    <li><%=station.name%></li>
+    <li>Dock count: <%=station.dock_count%></li>
+    <li><%=station.city%></li>
+    <li><%= station.installation_date.strftime('%m/%d/%Y') %></li>
+  </section>
+  <% end %>
+</ul>

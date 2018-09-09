@@ -9,10 +9,10 @@ describe "user visits index page" do
 
     visit stations_path
 
-    expect(page).to have_link(station_1.name)
-    expect(page).to have_link(station_2.name)
-    expect(page).to have_link(station_3.name)
-    expect(page).to have_link(station_4.name)
+    expect(page).to have_content(station_1.name)
+    expect(page).to have_content(station_2.name)
+    expect(page).to have_content(station_3.name)
+    expect(page).to have_content(station_4.name)
     expect(page).to have_content("Dock count: #{station_1.dock_count}")
     expect(page).to have_content("Dock count: #{station_2.dock_count}")
     expect(page).to have_content("Dock count: #{station_3.dock_count}")
