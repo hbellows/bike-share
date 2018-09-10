@@ -5,8 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
-
 require 'csv'
 
 station_csv = Rails.root.join('lib', 'seeds', 'station.csv')
@@ -56,4 +54,34 @@ CSV.foreach(trip_csv, headers: true, header_converters: :symbol) do |row|
   )
   row_count += 1
   break if row_count >= 5000
+end
+
+# Load accessories in
+puts "Seeding Accessories Table"
+accessories = [
+  'Tire',
+  'Rim',
+  'Bike Seat',
+  'Pedals',
+  'Chain',
+  'Air Pump',
+  'Bike Tool Set',
+  'Headlamp',
+  'Helmet',
+  'Chain Grease',
+  'Patch Kit',
+  'Water Bottle Holder',
+  'Grips',
+  'Taillight',
+  'Rack'
+]
+
+accessories.each do |accessory|
+  Accessory.create!(
+    name: accessory,
+    price: rand(10..200),
+    description: "#{accessory} is what you need for your biking adventures.",
+    image: 'bike_image.jpg',
+    retired?: false
+  )
 end
