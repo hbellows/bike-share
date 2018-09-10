@@ -129,6 +129,34 @@ describe 'visitor/user can view accessories in cart' do
 
         expect(page).to have_content("You now have 1 item of #{@accessory_2.name} in your cart")
       end
+      it 'a message correctly increments for multiple accessories' do
+
+        visit bike_shop_path
+
+        within("#accessory-#{@accessory_2.id}") do
+          click_button 'Add to cart'
+        end
+
+        expect(page).to have_content("You now have 1 item of #{@accessory_2.name} in your cart")
+
+        within("#accessory-#{@accessory_2.id}") do
+          click_button 'Add to cart'
+        end
+
+        expect(page).to have_content("You now have 2 items of #{@accessory_2.name} in your cart")
+      end
+      it 'total number of accessories in cart increments' do
+
+        visit bike_shop_path
+
+        expect(page).to have_content("Cart: 0")
+
+        within("#accessory-#{@accessory_2.id}") do
+          click_button 'Add to cart'
+        end
+
+        expect(page).to have_content("Cart: 1")
+      end
     end
   end
 end
