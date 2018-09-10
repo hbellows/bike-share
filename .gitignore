@@ -19,7 +19,3 @@
 .byebug_history
 
 coverage/
-
-/db/csv
-
-/data
