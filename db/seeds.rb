@@ -5,3 +5,55 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+require 'csv'
+
+station_csv = Rails.root.join('lib', 'seeds', 'station.csv')
+trip_csv = Rails.root.join('lib', 'seeds', 'trip.csv')
+weather_csv = Rails.root.join('lib', 'seeds', 'weather.csv')
+
+# Load stations in
+puts "Seeding Stations table"
+CSV.foreach(station_csv, headers: true, header_converters: :symbol) do |row|
+  Station.create!(
+    id:                row[:id],
+    dock_count:        row[:dock_count],
+    name:              row[:name],
+    city:              row[:city],
+    installation_date: Date.strptime(row[:installation_date], '%m/%d/%Y')
+  )
+end
+
+# Load conditions in
+puts "Seeding conditions table"
+CSV.foreach(weather_csv, headers: true, header_converters: :symbol) do |row|
+  Condition.create(
+    date:             Date.strptime(row[:date], '%m/%d/%Y'),
+    max_temperature:  row[:max_temperature],
+    mean_temperature: row[:mean_temperature],
+    min_temperature:  row[:min_temperature],
+    mean_humidity:    row[:mean_humidity],
+    mean_visibility:  row[:mean_visibility],
+    mean_wind_speed:  row[:mean_wind_speed],
+    precipitation:    row[:precipitation_inches]
+  )
+end
+
+# Load trips in with counter
+row_count = 0
+puts "Seeding Trips table"
+CSV.foreach(trip_csv, headers: true, header_converters: :symbol) do |row|
+  Trip.create(
+    duration:          row[:duration],
+    start_date:        Date.strptime(row[:start_date], '%m/%d/%Y'),
+    start_station_id:  row[:start_station_id],
+    end_date:          Date.strptime(row[:end_date], '%m/%d/%Y'),
+    end_station_id:    row[:end_station_id],
+    bike_id:           row[:bike_id],
+    subscription_type: row[:subscription_type],
+    zip_code:          row[:zip_code]
+  )
+  row_count += 1
+  break if row_count >= 5000
+end
