@@ -15,6 +15,10 @@
       <p>Logged in as <%= link_to current_user.username, user_path(current_user) %>!</p>
       <p><%= link_to 'Logout', logout_path %></p>
     <% end %>
+    <p>Cart: <%= @cart.total_count %></p>
+    <% flash.each do |type, message| %>
+      <%= content_tag :div, message, class: type %>
+    <% end %>
     <%= yield %>
   </body>
 </html>
