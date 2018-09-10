@@ -28,15 +28,15 @@ end
 # Load conditions in
 puts "Seeding conditions table"
 CSV.foreach(weather_csv, headers: true, header_converters: :symbol) do |row|
-  Condition.create(
+  Condition.create!(
     date:             Date.strptime(row[:date], '%m/%d/%Y'),
-    max_temperature:  row[:max_temperature],
-    mean_temperature: row[:mean_temperature],
-    min_temperature:  row[:min_temperature],
-    mean_humidity:    row[:mean_humidity],
-    mean_visibility:  row[:mean_visibility],
-    mean_wind_speed:  row[:mean_wind_speed],
-    precipitation:    row[:precipitation_inches]
+    max_temperature:  row[:max_temperature_f].to_f,
+    mean_temperature: row[:mean_temperature_f].to_f,
+    min_temperature:  row[:min_temperature_f].to_f,
+    mean_humidity:    row[:mean_humidity].to_f,
+    mean_visibility:  row[:mean_visibility_miles].to_f,
+    mean_wind_speed:  row[:mean_wind_speed_mph].to_f,
+    precipitation:    row[:precipitation_inches].to_f
   )
 end
 
@@ -44,15 +44,15 @@ end
 row_count = 0
 puts "Seeding Trips table"
 CSV.foreach(trip_csv, headers: true, header_converters: :symbol) do |row|
-  Trip.create(
-    duration:          row[:duration],
+  Trip.create!(
+    duration:          row[:duration].to_i,
     start_date:        Date.strptime(row[:start_date], '%m/%d/%Y'),
-    start_station_id:  row[:start_station_id],
+    start_station_id:  row[:start_station_id].to_i,
     end_date:          Date.strptime(row[:end_date], '%m/%d/%Y'),
-    end_station_id:    row[:end_station_id],
-    bike_id:           row[:bike_id],
-    subscription_type: row[:subscription_type],
-    zip_code:          row[:zip_code]
+    end_station_id:    row[:end_station_id].to_i,
+    bike_id:           row[:bike_id].to_i,
+    subscription_type: row[:subscription_type].to_i,
+    zip_code:          row[:zip_code].to_i
   )
   row_count += 1
   break if row_count >= 5000
