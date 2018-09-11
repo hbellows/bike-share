@@ -24,4 +24,12 @@ describe Cart do
       expect(subject.total_price).to eq(53)
     end
   end
+  describe '#accessories_and_quantity' do
+    it 'combines accessory object to its quantity' do
+      subject.add_accessory(@accessory_1.id)
+      subject.add_accessory(@accessory_2.id)
+
+      expect(subject.accessories_and_quantity).to eq({@accessory_1 => 3, @accessory_2 => 4})
+    end
+  end
 end
