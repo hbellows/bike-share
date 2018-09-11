@@ -9,10 +9,11 @@ Rails.application.routes.draw do
 
   get '/logout', to: 'sessions#destroy'
   delete '/logout', to: 'sessions#destroy'
-
+  get '/stations-dashboard', to: 'stations#dashboard'
   get '/bike-shop', to: 'accessories#index'
 
-  get 'admin/dashboard' => 'admin/base#dashboard'
+  get '/admin/dashboard' => 'admin/base#dashboard'
+  get '/dashboard', to: 'users#show'
 
   namespace :admin do
     resources :users
@@ -21,12 +22,16 @@ Rails.application.routes.draw do
     resources :accessories, only: [:index]
   end
 
-  resources :users, only: [:new, :create, :show]
+  resources :users, only: [:new, :create]
   resources :stations, only: [:index]
   resources :trips, only: [:index, :show]
   resources :conditions, only: [:index, :show]
   resources :accessories, only: [:show]
   resources :carts, only: [:create]
+  resources :orders, only: [:show]
+
+  get '/cart', to: 'carts#index'
+
 
   get '/:id', to: 'stations#show'
 
