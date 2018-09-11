@@ -1,7 +1,7 @@
 <h1>Your Cart</h1>
 
 <% @cart.accessories_and_quantity.each do |accessory, quantity| %>
-  <ul>
+  <ul id="accessory-<%= accessory.id %>">
     <li><%= accessory.name %></li>
     <li><%= number_to_currency(accessory.price) %></li>
     <li><%= accessory.image %></li>

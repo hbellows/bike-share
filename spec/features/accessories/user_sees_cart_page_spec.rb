@@ -18,15 +18,15 @@ describe "user visits their cart page" do
 
     visit bike_shop_path
 
-    within(".accessory-#{@accessory_1.id}") do
+    within("#accessory-#{@accessory_1.id}") do
       click_button "Add to Cart"
     end
 
-    within(".accessory-#{@accessory_12.id}") do
+    within("#accessory-#{@accessory_12.id}") do
       click_button "Add to Cart"
     end
 
-    within(".accessory-#{@accessory_12.id}") do
+    within("#accessory-#{@accessory_12.id}") do
       click_button "Add to Cart"
     end
   end
