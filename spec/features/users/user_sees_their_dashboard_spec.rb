@@ -29,6 +29,7 @@ describe 'As a user' do
 
       click_link "Order ##{@order1.id}"
 
+      expect(current_path).to eq(order_path(@order1))
       expect(page).to have_content("Order ##{@order1.id}")
       expect(page).to have_content("Order Status: #{@order1.status}")
       expect(page).to have_content("Order Submitted: #{@order1.created_at}")
@@ -58,6 +59,14 @@ describe 'As a user' do
       end
 
       expect(page).to have_content("Order Total: $#{@order1.total}")
+    end
+    it 'will not show me another user\'s order' do
+      user2 = create(:user)
+      order3 = user2.orders.create(status: 'paid')
+
+      visit order_path(order3)
+
+      expect(current_path).to eq(root_path)
     end
   end
 end
