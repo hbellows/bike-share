@@ -2,9 +2,9 @@ class UsersController < ApplicationController
   before_action :require_user, only: [:show]
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
     unless current_user == @user
-      redirect_to user_path(current_user)
+      redirect_to dashboard_path
     end
   end
 

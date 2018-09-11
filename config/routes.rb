@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :conditions, only: [:index, :show]
   resources :accessories, only: [:show]
   resources :carts, only: [:create]
+  resources :orders, only: [:show]
 
   get '/:id', to: 'stations#show'
 end
