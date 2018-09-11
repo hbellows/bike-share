@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe 'visitor/user can view accessories in cart' do
   before(:each) do
-    @accessory_1 = create(:accessory)
+    @accessory_1 = create(:accessory, price: 10.00)
     @accessory_2 = create(:accessory, price: 11.00)
   end
   describe 'not logged in with accessories in cart' do
-    xit 'should display accessories in cart' do
+    it 'should display accessories in cart' do
 
       visit bike_shop_path
 
@@ -22,13 +22,15 @@ describe 'visitor/user can view accessories in cart' do
 
       visit '/cart'
 
-      expect(page).to have_content(@accessory_1.title)
+      expect(page).to have_content(@accessory_1.name)
       expect(page).to have_content(@accessory_1.price)
-      expect(page).to have_content(@accessory_2.title)
-      expect(page).to have_content(@accessory_2.price)
-      expect(page).to have_content("quantity: 1")
-      expect(page).to have_content("quantity: 2")
-      expect(page).to have_content("Total: #{@accessory_1.price + @accessory_2.price}")
+      expect(page).to have_content(@accessory_1.image)
+      expect(page).to have_content("Quantity: 1")
+      expect(page).to have_content(@accessory_1.name)
+      expect(page).to have_content(@accessory_1.price)
+      expect(page).to have_content(@accessory_1.image)
+      expect(page).to have_content("Quantity: 2")
+      expect(page).to have_content("Total: $32.00")
     end
   end
 
@@ -53,8 +55,8 @@ describe 'visitor/user can view accessories in cart' do
       expect(page).to have_content(@accessory_1.price)
       expect(page).to have_content(@accessory_2.title)
       expect(page).to have_content(@accessory_2.price)
-      expect(page).to have_content("quantity: 1")
-      expect(page).to have_content("quantity: 2")
+      expect(page).to have_content("Quantity: 1")
+      expect(page).to have_content("Quantity: 2")
       expect(page).to have_content("Total: #{@accessory_1.price + @accessory_2.price}")
 
       visit root_path
@@ -74,14 +76,14 @@ describe 'visitor/user can view accessories in cart' do
       expect(page).to have_content(@accessory_1.price)
       expect(page).to have_content(@accessory_2.title)
       expect(page).to have_content(@accessory_2.price)
-      expect(page).to have_content("quantity: 1")
-      expect(page).to have_content("quantity: 2")
+      expect(page).to have_content("Quantity: 1")
+      expect(page).to have_content("Quantity: 2")
       expect(page).to have_content("Total: 922.00")
     end
   end
 
   describe "visitor adds one more of the same accessory" do
-    xit 'should be able to add an additional quantity' do
+    xit 'should be able to add an additional Quantity' do
 
       visit bike_shop_path
 
@@ -101,8 +103,8 @@ describe 'visitor/user can view accessories in cart' do
       expect(page).to have_content(@accessory_1.price)
       expect(page).to have_content(@accessory_2.title)
       expect(page).to have_content(@accessory_2.price)
-      expect(page).to have_content("quantity: 1")
-      expect(page).to have_content("quantity: 2")
+      expect(page).to have_content("Quantity: 1")
+      expect(page).to have_content("Quantity: 2")
       expect(page).to have_content("Total: 922.00")
 
       visit bike_shop_path
@@ -113,8 +115,8 @@ describe 'visitor/user can view accessories in cart' do
 
       visit '/cart'
 
-      expect(page).to have_content("quantity: 1")
-      expect(page).to have_content("quantity: 3")
+      expect(page).to have_content("Quantity: 1")
+      expect(page).to have_content("Quantity: 3")
       expect(page).to have_content("Total: 933.00")
     end
 

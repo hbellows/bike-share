@@ -24,5 +24,8 @@ Rails.application.routes.draw do
   resources :accessories, only: [:show]
   resources :carts, only: [:create]
 
+  get '/cart', to: 'carts#index'
+
+
   get '/:id', to: 'stations#show'
 end
