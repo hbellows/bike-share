@@ -22,9 +22,17 @@
 <% end %>
 
 <div class="most-and-least-ridden-bike">
-    <p>Id: <%= @bike_info[:most_ridden_bike].first %></p>
-    <p>Rides: <%= @bike_info[:most_ridden_bike].last %></p>
-    <p></p>
-    <p>Id: <%= @bike_info[:least_ridden_bike].first %></p>
-    <p>Rides: <%= @bike_info[:least_ridden_bike].last %></p>
+  <p>Id: <%= @bike_info[:most_ridden_bike].first %></p>
+  <p>Rides: <%= @bike_info[:most_ridden_bike].last %></p>
+  <p></p>
+  <p>Id: <%= @bike_info[:least_ridden_bike].first %></p>
+  <p>Rides: <%= @bike_info[:least_ridden_bike].last %></p>
 </div>
+
+<h3>Subscription Info</h3>
+
+<% @subscription_type_info.first.each do |subscription, count| %>
+  <p>Subscription Type <%= subscription %>:</p>
+  <p>Count <%= count %></p>
+  <p>Percentage of Total Trips <%= ((count.to_f / @subscription_type_info.last.to_f) * 100).round(2) %>%</p>
+<% end %>
