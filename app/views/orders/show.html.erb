@@ -1,5 +1,6 @@
 <h1><%= "Order ##{@order.id}" %></h1>
 <h2>Order Status: <%= @order.status %></h2>
+<h2>Order Submitted: <%= @order.created_at %></h2>
 
 <table>
   <thead>
@@ -21,5 +22,8 @@
         </td>
       </tr>
     <% end %>
+    <tr>
+      <td colspan="3">Order Total: <%= number_to_currency(@order.total) %></td>
+    </tr>
   </tbody>
 </table>
