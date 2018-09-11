@@ -161,6 +161,40 @@ describe 'visitor/user can view accessories in cart' do
 
         expect(page).to have_content("Cart: 1")
       end
+      describe "visitor decreases one of the same accessory" do
+        it 'should show cart with accessory decreased' do
+
+          visit bike_shop_path
+
+          within("#accessory-#{@accessory_1.id}") do
+            click_button 'Add to Cart'
+          end
+
+          3.times do
+            within("#accessory-#{@accessory_2.id}") do
+              click_button 'Add to Cart'
+            end
+          end
+
+          visit '/cart'
+
+          expect(page).to have_content(@accessory_1.name)
+          expect(page).to have_content(@accessory_1.price)
+          expect(page).to have_content(@accessory_2.name)
+          expect(page).to have_content(@accessory_2.price)
+          expect(page).to have_content("Quantity: 1")
+          expect(page).to have_content("Quantity: 3")
+          expect(page).to have_content("Total: $43.00")
+
+          within("#accessory-#{@accessory_2.id}") do
+            click_button 'increase quantity'
+          end
+
+          expect(page).to have_content("Quantity: 1")
+          expect(page).to have_content("Quantity: 4")
+          expect(page).to have_content("Total: $54.00")
+        end
+      end
     end
   end
 end

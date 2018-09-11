@@ -14,6 +14,12 @@ describe Cart do
       expect(subject.contents).to eq({@accessory_1.id => 3, @accessory_2.id => 4})
     end
   end
+  describe '#remove_accessory' do
+    it 'removes accessories to its contents' do
+      subject.remove_accessory(@accessory_1.id)
+      expect(subject.contents).to eq({@accessory_2.id => 3})
+    end
+  end
   describe '#total_count' do
     it 'displays total count of accessories in cart' do
       expect(subject.total_count).to eq(5)

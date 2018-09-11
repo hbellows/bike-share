@@ -30,7 +30,7 @@ describe "user visits their cart page" do
       click_button "Add to Cart"
     end
   end
-  it "shows all accessories that have been added to cart" do
+  xit "shows all accessories that have been added to cart" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
     visit cart_path
 
@@ -46,7 +46,7 @@ describe "user visits their cart page" do
     expect(page).to have_content("Grand Total: #{grand_total}")
     expect(page).to have_button("Checkout")
   end
-  it "clicks on checkout and button and recieves message" do
+  xit "clicks on checkout and button and recieves message" do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
     visit cart_path
