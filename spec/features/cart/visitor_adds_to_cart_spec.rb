@@ -11,12 +11,12 @@ describe 'visitor/user can view accessories in cart' do
       visit bike_shop_path
 
       within("#accessory-#{@accessory_1.id}") do
-        click_button 'Add to cart'
+        click_button 'Add to Cart'
       end
 
       2.times do
         within("#accessory-#{@accessory_2.id}") do
-          click_button 'Add to cart'
+          click_button 'Add to Cart'
         end
       end
 
@@ -42,12 +42,12 @@ describe 'visitor/user can view accessories in cart' do
       visit bike_shop_path
 
       within("#accessory-#{@accessory_1.id}") do
-        click_button 'Add to cart'
+        click_button 'Add to Cart'
       end
 
       2.times do
         within("#accessory-#{@accessory_2.id}") do
-          click_button 'Add to cart'
+          click_button 'Add to Cart'
         end
       end
 
@@ -88,12 +88,12 @@ describe 'visitor/user can view accessories in cart' do
       visit bike_shop_path
 
       within("#accessory-#{@accessory_1.id}") do
-        click_button 'Add to cart'
+        click_button 'Add to Cart'
       end
 
       2.times do
         within("#accessory-#{@accessory_2.id}") do
-          click_button 'Add to cart'
+          click_button 'Add to Cart'
         end
       end
 
@@ -110,7 +110,7 @@ describe 'visitor/user can view accessories in cart' do
       visit bike_shop_path
 
       within("#accessory-#{@accessory_2.id}") do
-        click_button 'Add to cart'
+        click_button 'Add to Cart'
       end
 
       visit '/cart'
@@ -126,7 +126,7 @@ describe 'visitor/user can view accessories in cart' do
         visit bike_shop_path
 
         within("#accessory-#{@accessory_2.id}") do
-          click_button 'Add to cart'
+          click_button 'Add to Cart'
         end
 
         expect(page).to have_content("You now have 1 item of #{@accessory_2.name} in your cart")
@@ -136,13 +136,13 @@ describe 'visitor/user can view accessories in cart' do
         visit bike_shop_path
 
         within("#accessory-#{@accessory_2.id}") do
-          click_button 'Add to cart'
+          click_button 'Add to Cart'
         end
 
         expect(page).to have_content("You now have 1 item of #{@accessory_2.name} in your cart")
 
         within("#accessory-#{@accessory_2.id}") do
-          click_button 'Add to cart'
+          click_button 'Add to Cart'
         end
 
         expect(page).to have_content("You now have 2 items of #{@accessory_2.name} in your cart")
@@ -154,7 +154,7 @@ describe 'visitor/user can view accessories in cart' do
         expect(page).to have_content("Cart: 0")
 
         within("#accessory-#{@accessory_2.id}") do
-          click_button 'Add to cart'
+          click_button 'Add to Cart'
         end
 
         expect(page).to have_content("Cart: 1")

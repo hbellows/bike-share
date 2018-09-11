@@ -12,12 +12,12 @@ describe 'visitor removes accessories from cart' do
       visit bike_shop_path
 
       within("#accessory-#{@accessory_1.id}") do
-        click_button 'Add to cart'
+        click_button 'Add to Cart'
       end
 
       3.times do
         within("#accessory-#{@accessory_2.id}") do
-          click_button 'Add to cart'
+          click_button 'Add to Cart'
         end
       end
 
@@ -43,12 +43,12 @@ describe 'visitor removes accessories from cart' do
       visit bike_shop_path
 
       within("#accessory-#{@accessory_1.id}") do
-        click_button 'Add to cart'
+        click_button 'Add to Cart'
       end
 
       3.times do
         within("#accessory-#{@accessory_2.id}") do
-          click_button 'Add to cart'
+          click_button 'Add to Cart'
         end
       end
 
