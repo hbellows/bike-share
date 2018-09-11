@@ -62,6 +62,22 @@
   <p>Date With Fewest Rides: <%= @ride_info[:least_rides][:date].strftime('%m/%d/%Y') %></p>
   <p>Ride Count: <%= @ride_info[:least_rides][:rides] %></p>
 
+  <h3>Weather Conditions:</h3>
+
+    <p>Max Temperature: <%= @ride_info[:least_rides][:condition].max_temperature %> ºF</p>
+
+    <p>Mean Temperature: <%= @ride_info[:least_rides][:condition].mean_temperature %> ºF</p>
+
+    <p>Min Temperature: <%= @ride_info[:least_rides][:condition].min_temperature %> ºF</p>
+
+    <p>Mean Humidity: <%= @ride_info[:least_rides][:condition].mean_humidity %>%</p>
+
+    <p>Mean Visibility: <%= @ride_info[:least_rides][:condition].mean_visibility %> miles</p>
+
+    <p>Mean Wind Speed: <%= @ride_info[:least_rides][:condition].mean_wind_speed %> mph</p>
+
+    <p>Preciptation: <%= @ride_info[:least_rides][:condition].precipitation %> "</p>
+  </div>
 
 
 
