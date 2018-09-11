@@ -72,6 +72,20 @@ describe "user visits trips dashboard" do
     expect(page).to have_content("Percentage of Total Trips", "75.0%")
   end
 
+  it 'they see information about the dates with the most and fewest rides' do
+   visit trips_dashboard_path
+
+   within '.most-rides-by-date' do
+     expect(page).to have_content("Date With Most Rides: 03/03/2003")
+     expect(page).to have_content("Ride Count: 4")
+   end
+
+   within '.least-rides-by-date' do
+     expect(page).to have_content("Date With Fewest Rides: 01/01/2001")
+     expect(page).to have_content("Ride Count: 1")
+   end
+ end
+
 
 
 
