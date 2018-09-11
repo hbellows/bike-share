@@ -12,9 +12,13 @@ Rails.application.routes.draw do
 
   get '/bike-shop', to: 'accessories#index'
 
+  get 'admin/dashboard' => 'admin/base#dashboard'
+
   namespace :admin do
     resources :users
-    resources :stations, only: [:index]
+    resources :stations, only: [:index, :edit, :update, :destroy]
+    resources :orders, only: [:index]
+    resources :accessories, only: [:index]
   end
 
   resources :users, only: [:new, :create, :show]
@@ -25,4 +29,5 @@ Rails.application.routes.draw do
   resources :carts, only: [:create]
 
   get '/:id', to: 'stations#show'
+
 end
