@@ -1,0 +1,12 @@
+<h1>Your Cart</h1>
+
+<% @cart.accessories_and_quantity.each do |accessory, quantity| %>
+  <ul>
+    <li><%= accessory.name %></li>
+    <li><%= number_to_currency(accessory.price) %></li>
+    <li><%= accessory.image %></li>
+    <li>Quantity: <%= quantity %></li>
+    <li>Subtotal: <%= number_to_currency(accessory.price * quantity) %></li>
+  </ul>
+<% end %>
+<p><h3>Total: <%= number_to_currency(@cart.total_price) %></h3><p>

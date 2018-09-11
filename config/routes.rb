@@ -27,5 +27,8 @@ Rails.application.routes.draw do
   resources :carts, only: [:create]
   resources :orders, only: [:show]
 
+  get '/cart', to: 'carts#index'
+
+
   get '/:id', to: 'stations#show'
 end
