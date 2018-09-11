@@ -50,6 +50,20 @@ describe "user visits trips dashboard" do
     expect(page).to have_content('Rides in 2017: 8')
   end
 
+  it 'they see most and least ridden bikes' do
+    visit trips_dashboard_path
+
+    within '.most-and-least-ridden-bike' do
+      expect(page).to have_content("Id: 1")
+      expect(page).to have_content("Rides: 4")
+    end
+
+    within '.most-and-least-ridden-bike' do
+      expect(page).to have_content("Id: 3")
+      expect(page).to have_content("Rides: 1")
+    end
+  end
+
 
 
 

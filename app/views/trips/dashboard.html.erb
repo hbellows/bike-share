@@ -20,3 +20,11 @@
 <% ordered_years.each do |year, count| %>
   <p>Rides in <%= year.strftime('%Y') %>: <%= count %></p>
 <% end %>
+
+<div class="most-and-least-ridden-bike">
+    <p>Id: <%= @bike_info[:most_ridden_bike].first %></p>
+    <p>Rides: <%= @bike_info[:most_ridden_bike].last %></p>
+    <p></p>
+    <p>Id: <%= @bike_info[:least_ridden_bike].first %></p>
+    <p>Rides: <%= @bike_info[:least_ridden_bike].last %></p>
+</div>

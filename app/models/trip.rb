@@ -50,5 +50,13 @@ class Trip < ApplicationRecord
     group("date_trunc('year', start_date)").order('count_all DESC').count
   end
 
+  def self.bike_info
+    ordered_bikes = select('bike_id, COUNT(bike_id) AS ride_count')
+    .group(:bike_id)
+    .order('ride_count DESC')
+    {most_ridden_bike: [ordered_bikes.first.bike_id, ordered_bikes.first.ride_count],
+    least_ridden_bike: [ordered_bikes.last.bike_id, ordered_bikes.last.ride_count]}
+  end
+
 
 end
