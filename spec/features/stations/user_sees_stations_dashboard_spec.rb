@@ -29,4 +29,12 @@ describe "user visits stations dashboard" do
 
     expect(page).to have_content("Most Bikes Per Station: #{station.dock_count}")
   end
+  it 'see station with most bikes' do
+    station = Station.create!(name: 'Ferry Building', dock_count: 45, city: 'San Francisco', installation_date: Date.new(2017, 4, 12))
+    Station.create!(name: 'Coit Tower', dock_count: 20, city: 'San Francisco', installation_date: Date.new(2017, 1, 17))
+
+    visit stations_dashboard_path
+
+    expect(page).to have_content("Station With Most Bikes: #{station.name}")
+  end
 end
