@@ -12,17 +12,20 @@ Rails.application.routes.draw do
   get '/stations-dashboard', to: 'stations#dashboard'
   get '/bike-shop', to: 'accessories#index'
 
+  get '/dashboard', to: 'users#show'
+
   namespace :admin do
     resources :users
     resources :stations, only: [:index]
   end
 
-  resources :users, only: [:new, :create, :show]
+  resources :users, only: [:new, :create]
   resources :stations, only: [:index]
   resources :trips, only: [:index, :show]
   resources :conditions, only: [:index, :show]
   resources :accessories, only: [:show]
   resources :carts, only: [:create]
+  resources :orders, only: [:show]
 
   get '/:id', to: 'stations#show'
 end

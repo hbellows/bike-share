@@ -1,0 +1,29 @@
+<h1><%= "Order ##{@order.id}" %></h1>
+<h2>Order Status: <%= @order.status %></h2>
+<h2>Order Submitted: <%= @order.created_at %></h2>
+
+<table>
+  <thead>
+    <th>Accessory Name</th>
+    <th>Quantity</th>
+    <th>Subtotal</th>
+  </thead>
+  <tbody>
+    <% @order.order_accessories.each do |order_accessory| %>
+      <tr>
+        <td>
+          <%= order_accessory.accessory_name %>
+        </td>
+        <td id="order-accessory-quantity-<%= order_accessory.id %>">
+          <%= order_accessory.quantity %>
+        </td>
+        <td id="order-accessory-subtotal-<%= order_accessory.id %>">
+          <%= number_to_currency(order_accessory.subtotal) %>
+        </td>
+      </tr>
+    <% end %>
+    <tr>
+      <td colspan="3">Order Total: <%= number_to_currency(@order.total) %></td>
+    </tr>
+  </tbody>
+</table>
