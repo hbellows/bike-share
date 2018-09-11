@@ -13,5 +13,10 @@
 <% ordered_rides = @rides_per_month.sort_by { |date, rides| date } %>
 <% ordered_rides.each do |date, count| %>
   <p><%= date.strftime('%B') %> <%= date.strftime('%Y') %> Rides: <%= count %></p>
+<% end %>
 
+<h3>Rides Per Year</h3>
+<% ordered_years = @rides_per_year.sort_by { |date, rides| date} %>
+<% ordered_years.each do |year, count| %>
+  <p>Rides in <%= year.strftime('%Y') %>: <%= count %></p>
 <% end %>

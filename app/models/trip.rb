@@ -46,5 +46,9 @@ class Trip < ApplicationRecord
     group("date_trunc('month', start_date)").order('count_all DESC').count
   end
 
+  def self.rides_per_year
+    group("date_trunc('year', start_date)").order('count_all DESC').count
+  end
+
 
 end

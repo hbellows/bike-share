@@ -43,7 +43,11 @@ describe "user visits trips dashboard" do
 
     expect(page).to have_content('June 2017 Rides: 1')
     expect(page).to have_content('May 2017 Rides: 7')
-  
+  end
+  it 'they see year by year breakdown of number of rides' do
+    visit trips_dashboard_path
+
+    expect(page).to have_content('Rides in 2017: 8')
   end
 
 

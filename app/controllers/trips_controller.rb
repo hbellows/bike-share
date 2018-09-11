@@ -13,5 +13,6 @@ class TripsController < ApplicationController
     @ride_durations = Trip.duration_info
     @station_info = Trip.station_info
     @rides_per_month = Trip.rides_per_month
+    @rides_per_year = Trip.rides_per_year
   end
 end
