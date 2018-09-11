@@ -10,7 +10,7 @@ feature 'User authorization' do
       end
     end
   end
-    describe 'when I visit any administrator page' do
+    describe 'as a logged in user, when I visit any administrator page' do
       it 'redirects to /login and gives me an error message' do
         user = create(:user, password: 'test')
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
@@ -20,15 +20,15 @@ feature 'User authorization' do
         expect(page).to have_content("The page you were looking for doesn't exist.")
       end
     end
-    describe "when I visit another user's order page" do
-      xit 'redirects to /login' do
+    describe "as a logged in user" do
+      it 'prevents me from seeing another users private details' do
         user1 = create(:user, password: 'test')
         user2 = create(:user, password: 'test2')
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
 
         visit user_path(user2)
 
-        expect(current_path).to eq(login_path)
+        expect(current_path).to eq(user_path(user1))
       end
     end
   end
