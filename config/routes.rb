@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get '/logout', to: 'sessions#destroy'
   delete '/logout', to: 'sessions#destroy'
   get '/stations-dashboard', to: 'stations#dashboard'
+  get '/trips-dashboard', to: 'trips#dashboard'
   get '/bike-shop', to: 'accessories#index'
 
   namespace :admin do

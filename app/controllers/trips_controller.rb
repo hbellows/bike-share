@@ -7,4 +7,9 @@ class TripsController < ApplicationController
   def show
     @trip = Trip.find(params[:id])
   end
+
+  def dashboard
+    @trips = Trip.all
+    @ride_durations = Trip.duration_info    
+  end
 end

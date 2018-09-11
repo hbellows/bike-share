@@ -16,5 +16,9 @@ class Trip < ApplicationRecord
     Station.find(end_station_id)
   end
 
+  def self.duration_info
+    [maximum(:duration), average(:duration), minimum(:duration)]
+  end
+
 
 end
