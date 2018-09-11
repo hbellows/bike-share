@@ -7,3 +7,11 @@
 <p>Station Where Most Rides Start: <%= @station_info.first.name %></p>
 
 <p>Station Where Most Rides End: <%= @station_info.last.name  %></p>
+
+<h3>Rides Per Month</h3>
+
+<% ordered_rides = @rides_per_month.sort_by { |date, rides| date } %>
+<% ordered_rides.each do |date, count| %>
+  <p><%= date.strftime('%B') %> <%= date.strftime('%Y') %> Rides: <%= count %></p>
+
+<% end %>
