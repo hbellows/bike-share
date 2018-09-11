@@ -1,15 +1,15 @@
 <h1>Bike Shop</h1>
 
 <% @accessories.each do |accessory| %>
-  <div id="accessory-<%=accessory.id%>">
+  <div class="accessory-<%=accessory.id%>">
     <div><img src="<%= accessory.image %>" alt="thumbnail" style="width:30px;height:30px;"></div>
     <div><%= link_to accessory.name, accessory_path(accessory) %></div>
     <div><%= accessory.description %></div>
-    <div><%= number_to_currency(accessory.price) %></div>
+    <div>Price: <%= number_to_currency(accessory.price) %></div>
     <% if accessory.retired? %>
       <div><%= button_to 'Retired', nil, disabled: true%></div>
     <% else %>
-      <div><%= button_to "Add to cart", carts_path(accessory_id: accessory.id)%></div>
+      <div><%= button_to "Add to Cart", carts_path(accessory_id: accessory.id)%></div>
     <% end %>
   </div>
 <% end %>
