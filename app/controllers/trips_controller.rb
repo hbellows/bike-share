@@ -10,6 +10,7 @@ class TripsController < ApplicationController
 
   def dashboard
     @trips = Trip.all
-    @ride_durations = Trip.duration_info    
+    @ride_durations = Trip.duration_info
+    @station_info = Trip.station_info  
   end
 end

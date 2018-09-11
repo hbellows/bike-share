@@ -32,6 +32,13 @@ describe "user visits trips dashboard" do
     expect(page).to have_content("Longest Ride Duration: 8 minutes")
     expect(page).to have_content("Shortest Ride Duration: 1 minute")
   end
+  it 'they see information about stations where most rides started and ended' do
+    visit trips_dashboard_path
+
+    expect(page).to have_content("Station Where Most Rides Start: #{@station_1.name}")
+    expect(page).to have_content("Station Where Most Rides End: #{@station_2.name}")
+  end
+
 
 
 
