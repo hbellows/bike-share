@@ -10,7 +10,15 @@ describe "user visits stations dashboard" do
     Station.create!(name: 'Coit Tower', dock_count: 20, city: 'San Francisco', installation_date: Date.new(2017, 1, 17))
 
     visit stations_dashboard_path
-save_and_open_page
+
     expect(page).to have_content("Total Station Count: #{Station.count}")
+  end
+  it 'see average_bikes_per_station' do
+    Station.create!(name: 'Ferry Building', dock_count: 45, city: 'San Francisco', installation_date: Date.new(2017, 4, 12))
+    Station.create!(name: 'Coit Tower', dock_count: 20, city: 'San Francisco', installation_date: Date.new(2017, 1, 17))
+
+    visit stations_dashboard_path
+
+    expect(page).to have_content("Average Bikes Per Station: #{Station.average_bikes_per_station}")
   end
 end
