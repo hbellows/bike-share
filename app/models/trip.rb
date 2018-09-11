@@ -62,5 +62,13 @@ class Trip < ApplicationRecord
     [group(:subscription_type).count, Trip.count]
   end
 
+  def self.date_info
+    date_rides = group(:start_date).order('count_all DESC').count
+    condition_1 = Condition.find_by(date: date_rides.keys.first)
+    condition_2 = Condition.find_by(date: date_rides.keys.last)
+    {most_rides: {date: date_rides.keys.first, rides: date_rides.values.first, condition: condition_1},
+     least_rides: {date: date_rides.keys.last, rides: date_rides.values.last, condition: condition_2}}
+  end
+
 
 end

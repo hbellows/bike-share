@@ -76,12 +76,12 @@ describe "user visits trips dashboard" do
    visit trips_dashboard_path
 
    within '.most-rides-by-date' do
-     expect(page).to have_content("Date With Most Rides: 03/03/2003")
+     expect(page).to have_content("Date With Most Rides: 05/12/2017")
      expect(page).to have_content("Ride Count: 4")
    end
 
    within '.least-rides-by-date' do
-     expect(page).to have_content("Date With Fewest Rides: 01/01/2001")
+     expect(page).to have_content("Date With Fewest Rides: 06/15/2017")
      expect(page).to have_content("Ride Count: 1")
    end
  end

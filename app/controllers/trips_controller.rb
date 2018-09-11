@@ -16,5 +16,6 @@ class TripsController < ApplicationController
     @rides_per_year = Trip.rides_per_year
     @bike_info = Trip.bike_info
     @subscription_type_info = Trip.subscription_type_info
+    @ride_info = Trip.date_info
   end
 end
