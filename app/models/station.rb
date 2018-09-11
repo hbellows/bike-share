@@ -23,5 +23,9 @@ class Station < ApplicationRecord
     order(:dock_count).first
   end
 
+  def self.newest_oldest
+    order(:installation_date)
+  end
+
 
 end

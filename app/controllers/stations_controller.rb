@@ -16,5 +16,6 @@ class StationsController < ApplicationController
     @most_bikes = @stations.most_bikes_per_station.dock_count
     @least_bikes = @stations.least_bikes_per_station.dock_count
     @station_with_least_bikes = @stations.least_bikes_per_station.name
+    @newest_station = @stations.newest_oldest.last.name
   end
 end
