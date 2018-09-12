@@ -2,7 +2,7 @@
 
 <ul>
   <% @stations.each do |station| %>
-  <section id="station-#{station.id}">
+  <section id="station-<%= station.id %>">
     <li><%=station.name%></li>
     <li>Dock count: <%=station.dock_count%></li>
     <li><%=station.city%></li>
