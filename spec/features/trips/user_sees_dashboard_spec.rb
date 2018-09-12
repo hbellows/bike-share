@@ -100,6 +100,20 @@ describe "user visits trips dashboard" do
     end
   end
 
+  it 'they see information abouth the weather on the day with the most rides' do
+    visit trips_dashboard_path
+
+    within '.least-rides-by-date' do
+      expect(page).to have_content("Max Temperature: #{@condition_1.max_temperature} ºF")
+      expect(page).to have_content("Mean Temperature: #{@condition_1.mean_temperature} ºF")
+      expect(page).to have_content("Min Temperature: #{@condition_1.min_temperature} ºF")
+      expect(page).to have_content("Mean Humidity: #{@condition_1.mean_humidity}%")
+      expect(page).to have_content("Mean Visibility: #{@condition_1.mean_visibility} miles")
+      expect(page).to have_content("Mean Wind Speed: #{@condition_1.mean_wind_speed} mph")
+      expect(page).to have_content("Precipitation:", "#{@condition_1.precipitation}")
+    end
+  end
+
 
 
 
