@@ -13,4 +13,4 @@
   </ul>
 <% end %>
 <p><h3>Total: <%= number_to_currency(@cart.total_price) %></h3><p>
-<p><h3><%= button_to 'Checkout'%><p>
+<p><h3><%= button_to 'Checkout', cart_path(total: number_to_currency(@cart.total_price), checkout: 'checkout'), method: 'delete'%><p>
