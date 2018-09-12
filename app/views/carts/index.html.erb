@@ -3,7 +3,7 @@
 <% @cart.accessories_and_quantity.each do |accessory, quantity| %>
   <ul id="accessory-<%= accessory.id %>">
     <li><%= accessory.name %></li>
-    <li><%= number_to_currency(accessory.price) %></li>
+    <li>Price: <%= number_to_currency(accessory.price) %></li>
     <li><%= accessory.image %></li>
     <li>Quantity: <%= quantity %></li>
     <li><%= button_to "increase quantity", carts_path(accessory_id: accessory.id, add: 'adding one') %></li>
@@ -13,3 +13,4 @@
   </ul>
 <% end %>
 <p><h3>Total: <%= number_to_currency(@cart.total_price) %></h3><p>
+<p><h3><%= button_to 'Checkout'%><p>
