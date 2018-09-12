@@ -72,4 +72,33 @@ describe 'visitor removes accessories from cart' do
       expect(page).to have_content("Total: $32.00")
     end
   end
+  describe 'visitor clicks decrease quantity button when qty is 1' do
+    it "should disable decrease quantity button" do
+
+      visit bike_shop_path
+
+      2.times do
+        within("#accessory-#{@accessory_2.id}") do
+          click_button 'Add to Cart'
+        end
+      end
+
+      visit '/cart'
+
+      expect(page).to have_content(@accessory_2.name)
+      expect(page).to have_content(@accessory_2.price)
+      expect(page).to have_content("Quantity: 2")
+      expect(page).to have_button('decrease quantity')
+
+      within("#accessory-#{@accessory_2.id}") do
+        click_button 'decrease quantity'
+      end
+
+      expect(current_path).to eq('/cart')
+      expect(page).to_not have_button('decrease quantity')
+      expect(page).to have_content("Quantity: 1")
+      expect(page).to_not have_content("Quantity: 2")
+      expect(page).to_not have_content("Quantity: 0")
+    end
+  end
 end

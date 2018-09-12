@@ -18,10 +18,15 @@ class CartsController < ApplicationController
   end
 
   def destroy
-    accessory = Accessory.find(params[:accessory_id])
+    accessory = Accessory.find(params[:accessory_id]) unless params[:accessory_id] == nil
     if params[:remove] == 'removing one'
       @cart.decrease_quantity(accessory.id.to_s)
       redirect_to '/cart'
+    elsif params[:checkout] == 'checkout'
+      @cart.contents.clear
+      total = params[:total]
+      flash[:notice] = "Successfully submitted your order totalling #{total}"
+      redirect_to dashboard_path
     else
       @cart.remove_accessory(accessory.id.to_s)
       flash[:notice] = "Successfully removed #{view_context.link_to accessory.name, accessory_path(accessory)} from your cart."
