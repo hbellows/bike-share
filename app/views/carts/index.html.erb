@@ -7,9 +7,13 @@
     <li><%= accessory.image %></li>
     <li>Quantity: <%= quantity %></li>
     <li><%= button_to "increase quantity", carts_path(accessory_id: accessory.id, add: 'adding one') %></li>
-    <li><%= button_to "decrease quantity", cart_path(accessory_id: accessory.id, remove: 'removing one'), method: 'delete' %></li>
+    <% if quantity <= 1%>
+          <li><%= button_to "decrease quantity", cart_path(accessory_id: accessory.id, remove: 'removing one'), method: 'delete', disabled: true%>
+    <% else %>
+          <li><%= button_to "decrease quantity", cart_path(accessory_id: accessory.id, remove: 'removing one'), method: 'delete'%></li>
+    <% end %>
     <li>Subtotal: <%= number_to_currency(accessory.price * quantity) %></li>
-    <li><%= button_to 'Remove', cart_path(accessory_id: accessory.id), method: 'delete' %></li>
+    <li><%= button_to 'Remove', cart_path(accessory_id: accessory.id), method: 'delete'%></li>
   </ul>
 <% end %>
 <p><h3>Total: <%= number_to_currency(@cart.total_price) %></h3><p>
