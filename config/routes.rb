@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   resources :orders, only: [:show]
 
   get '/cart', to: 'carts#index'
+  delete '/cart', to: 'carts#destroy'
 
 
   get '/:id', to: 'stations#show'

@@ -35,7 +35,7 @@ describe 'visitor/user can view accessories in cart' do
   end
 
   describe 'logged in with accessories in cart' do
-    xit 'should display existing accessories in cart' do
+    it 'should display existing accessories in cart' do
       username = 'bikeshareuser'
       user = User.create(username: username, password: 'test')
 
@@ -51,13 +51,17 @@ describe 'visitor/user can view accessories in cart' do
         end
       end
 
-      expect(page).to have_content(@accessory_1.title)
+      visit '/cart'
+
+      expect(page).to have_content(@accessory_1.name)
       expect(page).to have_content(@accessory_1.price)
-      expect(page).to have_content(@accessory_2.title)
-      expect(page).to have_content(@accessory_2.price)
+      expect(page).to have_content(@accessory_1.image)
       expect(page).to have_content("Quantity: 1")
+      expect(page).to have_content(@accessory_1.name)
+      expect(page).to have_content(@accessory_1.price)
+      expect(page).to have_content(@accessory_1.image)
       expect(page).to have_content("Quantity: 2")
-      expect(page).to have_content("Total: #{@accessory_1.price + @accessory_2.price}")
+      expect(page).to have_content("Total: $32.00")
 
       visit root_path
 
@@ -72,18 +76,20 @@ describe 'visitor/user can view accessories in cart' do
 
       visit '/cart'
 
-      expect(page).to have_content(@accessory_1.title)
+      expect(page).to have_content(@accessory_1.name)
       expect(page).to have_content(@accessory_1.price)
-      expect(page).to have_content(@accessory_2.title)
-      expect(page).to have_content(@accessory_2.price)
+      expect(page).to have_content(@accessory_1.image)
       expect(page).to have_content("Quantity: 1")
+      expect(page).to have_content(@accessory_1.name)
+      expect(page).to have_content(@accessory_1.price)
+      expect(page).to have_content(@accessory_1.image)
       expect(page).to have_content("Quantity: 2")
-      expect(page).to have_content("Total: 922.00")
+      expect(page).to have_content("Total: $32.00")
     end
   end
 
   describe "visitor adds one more of the same accessory" do
-    xit 'should be able to add an additional Quantity' do
+    it 'should be able to add an additional Quantity' do
 
       visit bike_shop_path
 
@@ -91,33 +97,29 @@ describe 'visitor/user can view accessories in cart' do
         click_button 'Add to Cart'
       end
 
-      2.times do
-        within("#accessory-#{@accessory_2.id}") do
-          click_button 'Add to Cart'
-        end
-      end
 
       visit '/cart'
 
-      expect(page).to have_content(@accessory_1.title)
+      expect(page).to have_content(@accessory_1.name)
       expect(page).to have_content(@accessory_1.price)
-      expect(page).to have_content(@accessory_2.title)
-      expect(page).to have_content(@accessory_2.price)
+      expect(page).to have_content(@accessory_1.image)
       expect(page).to have_content("Quantity: 1")
-      expect(page).to have_content("Quantity: 2")
-      expect(page).to have_content("Total: 922.00")
+      expect(page).to have_content("Total: $10.00")
 
       visit bike_shop_path
 
-      within("#accessory-#{@accessory_2.id}") do
+      within("#accessory-#{@accessory_1.id}") do
         click_button 'Add to Cart'
       end
 
       visit '/cart'
 
-      expect(page).to have_content("Quantity: 1")
-      expect(page).to have_content("Quantity: 3")
-      expect(page).to have_content("Total: 933.00")
+      expect(page).to have_content(@accessory_1.name)
+      expect(page).to have_content(@accessory_1.price)
+      expect(page).to have_content(@accessory_1.image)
+      expect(page).to_not have_content("Quantity: 1")
+      expect(page).to have_content("Quantity: 2")
+      expect(page).to have_content("Total: $20.00")
     end
 
     describe 'When a visitor adds accessories to cart' do
@@ -158,6 +160,41 @@ describe 'visitor/user can view accessories in cart' do
         end
 
         expect(page).to have_content("Cart: 1")
+      end
+      describe "visitor increases one of the same accessory" do
+        it 'should show cart with accessory increased' do
+
+          visit bike_shop_path
+
+          within("#accessory-#{@accessory_1.id}") do
+            click_button 'Add to Cart'
+          end
+
+          3.times do
+            within("#accessory-#{@accessory_2.id}") do
+              click_button 'Add to Cart'
+            end
+          end
+
+          visit '/cart'
+
+          expect(page).to have_content(@accessory_1.name)
+          expect(page).to have_content(@accessory_1.price)
+          expect(page).to have_content(@accessory_2.name)
+          expect(page).to have_content(@accessory_2.price)
+          expect(page).to have_content("Quantity: 1")
+          expect(page).to have_content("Quantity: 3")
+          expect(page).to have_content("Total: $43.00")
+
+
+          within("#accessory-#{@accessory_2.id}") do
+            click_button 'increase quantity'
+          end
+
+          expect(page).to have_content("Quantity: 1")
+          expect(page).to have_content("Quantity: 4")
+          expect(page).to have_content("Total: $54.00")
+        end
       end
     end
   end

@@ -11,7 +11,22 @@ describe Cart do
     it 'adds accessories to its contents' do
       subject.add_accessory(@accessory_1.id)
       subject.add_accessory(@accessory_2.id)
+      
       expect(subject.contents).to eq({@accessory_1.id => 3, @accessory_2.id => 4})
+    end
+  end
+  describe '#remove_accessory' do
+    it 'removes accessories to its contents' do
+      subject.remove_accessory(@accessory_1.id)
+
+      expect(subject.contents).to eq({@accessory_2.id => 3})
+    end
+  end
+  describe '#descrease quantity' do
+    it 'decreases quantity of accessory by one' do
+      subject.decrease_quantity(@accessory_2.id)
+
+      expect(subject.contents).to eq({@accessory_1.id => 2, @accessory_2.id => 2})
     end
   end
   describe '#total_count' do

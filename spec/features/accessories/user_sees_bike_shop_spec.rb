@@ -25,7 +25,7 @@ describe "user visits bike shop page" do
 
       click_on "Add to Cart"
 
-      expect(page).to have_content("You have added #{accessory_1.name} to your cart.")
+      expect(page).to have_content("You now have 1 item of #{accessory_1.name} in your cart")
     end
   end
 end
