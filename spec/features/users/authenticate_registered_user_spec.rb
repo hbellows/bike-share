@@ -16,6 +16,7 @@ describe 'registration and login' do
       fill_in :password, with: 'test'
 
       click_on "Log In"
+      
       expect(current_path).to eq(dashboard_path)
       expect(page).to have_content("Logged in as #{username}!")
       expect(page).to have_content("#{username}'s Dashboard")
