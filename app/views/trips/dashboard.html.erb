@@ -1,0 +1,84 @@
+<h1>Trips Dashboard</h1>
+
+<p>Average Ride Duration: <%= (@ride_durations[1] / 60.to_f).to_i %> minutes</p>
+<p>Longest Ride Duration: <%= (@ride_durations[0] / 60.to_f).to_i %> minutes</p>
+<p>Shortest Ride Duration: <%= (@ride_durations[2] / 60.to_f).to_i %> minutes</p>
+
+<p>Station Where Most Rides Start: <%= @station_info.first.name %></p>
+
+<p>Station Where Most Rides End: <%= @station_info.last.name  %></p>
+
+<h3>Rides Per Month</h3>
+
+<% ordered_rides = @rides_per_month.sort_by { |date, rides| date } %>
+<% ordered_rides.each do |date, count| %>
+  <p><%= date.strftime('%B') %> <%= date.strftime('%Y') %> Rides: <%= count %></p>
+<% end %>
+
+<h3>Rides Per Year</h3>
+<% ordered_years = @rides_per_year.sort_by { |date, rides| date} %>
+<% ordered_years.each do |year, count| %>
+  <p>Rides in <%= year.strftime('%Y') %>: <%= count %></p>
+<% end %>
+
+<div class="most-and-least-ridden-bike">
+  <p>Id: <%= @bike_info[:most_ridden_bike].first %></p>
+  <p>Rides: <%= @bike_info[:most_ridden_bike].last %></p>
+  <p></p>
+  <p>Id: <%= @bike_info[:least_ridden_bike].first %></p>
+  <p>Rides: <%= @bike_info[:least_ridden_bike].last %></p>
+</div>
+
+<h3>Subscription Info</h3>
+
+<% @subscription_type_info.first.each do |subscription, count| %>
+  <p>Subscription Type <%= subscription %>:</p>
+  <p>Count <%= count %></p>
+  <p>Percentage of Total Trips <%= ((count.to_f / @subscription_type_info.last.to_f) * 100).round(2) %>%</p>
+<% end %>
+
+<div class="most-rides-by-date">
+  <p>Date With Most Rides: <%= @ride_info[:most_rides][:date].strftime('%m/%d/%Y') %></p>
+  <p>Ride Count: <%= @ride_info[:most_rides][:rides] %></p>
+
+  <h3>Weather Conditions:</h3>
+
+    <p>Max Temperature: <%= @ride_info[:most_rides][:condition].max_temperature %> ºF</p>
+
+    <p>Mean Temperature: <%= @ride_info[:most_rides][:condition].mean_temperature %> ºF</p>
+
+    <p>Min Temperature: <%= @ride_info[:most_rides][:condition].min_temperature %> ºF</p>
+
+    <p>Mean Humidity: <%= @ride_info[:most_rides][:condition].mean_humidity %>%</p>
+
+    <p>Mean Visibility: <%= @ride_info[:most_rides][:condition].mean_visibility %> miles</p>
+
+    <p>Mean Wind Speed: <%= @ride_info[:most_rides][:condition].mean_wind_speed %> mph</p>
+
+    <p>Preciptation: <%= @ride_info[:most_rides][:condition].precipitation %> "</p>
+</div>
+
+<div class="least-rides-by-date">
+  <p>Date With Fewest Rides: <%= @ride_info[:least_rides][:date].strftime('%m/%d/%Y') %></p>
+  <p>Ride Count: <%= @ride_info[:least_rides][:rides] %></p>
+
+  <h3>Weather Conditions:</h3>
+
+    <p>Max Temperature: <%= @ride_info[:least_rides][:condition].max_temperature %> ºF</p>
+
+    <p>Mean Temperature: <%= @ride_info[:least_rides][:condition].mean_temperature %> ºF</p>
+
+    <p>Min Temperature: <%= @ride_info[:least_rides][:condition].min_temperature %> ºF</p>
+
+    <p>Mean Humidity: <%= @ride_info[:least_rides][:condition].mean_humidity %>%</p>
+
+    <p>Mean Visibility: <%= @ride_info[:least_rides][:condition].mean_visibility %> miles</p>
+
+    <p>Mean Wind Speed: <%= @ride_info[:least_rides][:condition].mean_wind_speed %> mph</p>
+
+    <p>Preciptation: <%= @ride_info[:least_rides][:condition].precipitation %> "</p>
+  </div>
+
+
+
+</div>
