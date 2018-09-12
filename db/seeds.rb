@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
 
 station_csv = Rails.root.join('lib', 'seeds', 'station.csv')
@@ -42,18 +35,20 @@ end
 row_count = 0
 puts "Seeding Trips table"
 CSV.foreach(trip_csv, headers: true, header_converters: :symbol) do |row|
-  Trip.create!(
-    duration:          row[:duration].to_i,
-    start_date:        Date.strptime(row[:start_date], '%m/%d/%Y'),
-    start_station_id:  row[:start_station_id].to_i,
-    end_date:          Date.strptime(row[:end_date], '%m/%d/%Y'),
-    end_station_id:    row[:end_station_id].to_i,
-    bike_id:           row[:bike_id].to_i,
-    subscription_type: row[:subscription_type].to_i,
-    zip_code:          row[:zip_code].to_i
-  )
-  row_count += 1
-  break if row_count >= 5000
+  if rand(1..50) == 35
+    Trip.create!(
+      duration:          row[:duration].to_i,
+      start_date:        Date.strptime(row[:start_date], '%m/%d/%Y'),
+      start_station_id:  row[:start_station_id].to_i,
+      end_date:          Date.strptime(row[:end_date], '%m/%d/%Y'),
+      end_station_id:    row[:end_station_id].to_i,
+      bike_id:           row[:bike_id].to_i,
+      subscription_type: row[:subscription_type].to_i,
+      zip_code:          row[:zip_code].to_i
+    )
+    row_count += 1
+  end
+  break if row_count >= 5500
 end
 
 # Load accessories in
