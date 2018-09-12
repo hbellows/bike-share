@@ -4,4 +4,8 @@ class Admin::StationsController < Admin::BaseController
     @stations = Station.all
   end
 
+  def show
+    @station = Station.friendly.find(params[:id])
+  end
+
 end
