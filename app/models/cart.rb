@@ -9,9 +9,13 @@ class Cart
     @contents[id] ||= 0
     @contents[id] += 1
   end
-  
+
   def remove_accessory(id)
     @contents.delete(id)
+  end
+
+  def decrease_quantity(id)
+    @contents[id] -= 1
   end
 
   def total_count

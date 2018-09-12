@@ -161,8 +161,8 @@ describe 'visitor/user can view accessories in cart' do
 
         expect(page).to have_content("Cart: 1")
       end
-      describe "visitor decreases one of the same accessory" do
-        it 'should show cart with accessory decreased' do
+      describe "visitor increases one of the same accessory" do
+        it 'should show cart with accessory increased' do
 
           visit bike_shop_path
 
@@ -185,6 +185,7 @@ describe 'visitor/user can view accessories in cart' do
           expect(page).to have_content("Quantity: 1")
           expect(page).to have_content("Quantity: 3")
           expect(page).to have_content("Total: $43.00")
+
 
           within("#accessory-#{@accessory_2.id}") do
             click_button 'increase quantity'

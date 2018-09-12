@@ -66,8 +66,9 @@ describe 'visitor removes accessories from cart' do
         click_button 'decrease quantity'
       end
 
-      expect(page).to have_content("quantity: 1")
-      expect(page).to have_content("quantity: 2")
+      expect(page).to have_content("Quantity: 1")
+      expect(page).to have_content("Quantity: 2")
+      expect(page).to_not have_content("Quantity: 3")
       expect(page).to have_content("Total: $32.00")
     end
   end

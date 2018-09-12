@@ -6,6 +6,8 @@
     <li><%= number_to_currency(accessory.price) %></li>
     <li><%= accessory.image %></li>
     <li>Quantity: <%= quantity %></li>
+    <li><%= button_to "increase quantity", carts_path(accessory_id: accessory.id, add: 'adding one') %></li>
+    <li><%= button_to "decrease quantity", cart_path(accessory_id: accessory.id, remove: 'removing one'), method: 'delete' %></li>
     <li>Subtotal: <%= number_to_currency(accessory.price * quantity) %></li>
     <li><%= button_to 'Remove', cart_path(accessory_id: accessory.id), method: 'delete' %></li>
   </ul>
