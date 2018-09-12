@@ -22,11 +22,17 @@ class CartsController < ApplicationController
     if params[:remove] == 'removing one'
       @cart.decrease_quantity(accessory.id.to_s)
       redirect_to '/cart'
-    elsif params[:checkout] == 'checkout'
+    elsif params[:checkout] == 'checkout' && session[:user_id] && @cart.contents == {}
+      flash[:notice] = "Add items to cart to checkout"
+      redirect_to root_path
+    elsif params[:checkout] == 'checkout' && session[:user_id]
       @cart.contents.clear
       total = params[:total]
       flash[:notice] = "Successfully submitted your order totalling #{total}"
       redirect_to dashboard_path
+    elsif params[:checkout] == 'checkout'
+      flash[:notice] = "Need to log in to checkout"
+      redirect_to login_path
     else
       @cart.remove_accessory(accessory.id.to_s)
       flash[:notice] = "Successfully removed #{view_context.link_to accessory.name, accessory_path(accessory)} from your cart."

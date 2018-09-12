@@ -36,8 +36,7 @@ describe "user visits their cart page" do
     expect(page).to have_button("Checkout")
   end
 
-  it "clicks on checkout and button and recieves message" do
-    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
+  it "visitor clicks on checkout with items in the cart and recieves message" do
 
     visit bike_shop_path
 
@@ -55,14 +54,55 @@ describe "user visits their cart page" do
 
     click_button "Checkout"
 
-    expect(current_path).to eq(dashboard_path)
-    expect(page).to have_content("Successfully submitted your order totalling $55.00")
+    expect(current_path).to eq(login_path)
+    expect(page).to have_content("Need to log in to checkout")
+  end
+  it "Registered user clicks on checkout with items in the cart and recieves message" do
+
+    visit bike_shop_path
+
+    within("#accessory-#{@accessory_1.id}") do
+      click_button "Add to Cart"
+    end
+
+    2.times do
+      within("#accessory-#{@accessory_2.id}") do
+        click_button "Add to Cart"
+      end
+    end
+
+    click_on 'Login'
+
+    fill_in :username, with: @user.username
+    fill_in :password, with: @user.password
+    click_on "Log In"
 
     visit '/cart'
 
+    click_button "Checkout"
+
+    expect(current_path).to eq(dashboard_path)
+    expect(page).to have_content("Successfully submitted your order totalling $55.00")
     expect(page).to_not have_content(@accessory_1.name)
     expect(page).to_not have_content("Price: $#{@accessory_1.price}.00")
     expect(page).to_not have_content(@accessory_2.name)
     expect(page).to_not have_content("Price: $#{@accessory_2.price}.00")
+  end
+  it 'registered users on checkout with no items in cart' do
+
+    visit root_path
+
+    click_on 'Login'
+
+    fill_in :username, with: @user.username
+    fill_in :password, with: @user.password
+    click_on "Log In"
+
+    visit '/cart'
+
+    click_button "Checkout"
+
+    expect(current_path).to eq(root_path)
+    expect(page).to have_content("Add items to cart to checkout")
   end
 end
