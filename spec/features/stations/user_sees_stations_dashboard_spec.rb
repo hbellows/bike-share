@@ -11,7 +11,7 @@ describe "user visits stations dashboard" do
 
     visit stations_dashboard_path
 
-    expect(page).to have_content("Total Station Count: #{Station.count}")
+    expect(page).to have_content("#{Station.count}")
   end
   it 'see average_bikes_per_station' do
     Station.create!(name: 'Ferry Building', dock_count: 45, city: 'San Francisco', installation_date: Date.new(2017, 4, 12))
@@ -19,7 +19,7 @@ describe "user visits stations dashboard" do
 
     visit stations_dashboard_path
 
-    expect(page).to have_content("Average Bikes Per Station: #{Station.average_bikes_per_station}")
+    expect(page).to have_content("#{Station.average_bikes_per_station}")
   end
   it 'see most bikes per stations' do
     station = Station.create!(name: 'Ferry Building', dock_count: 45, city: 'San Francisco', installation_date: Date.new(2017, 4, 12))
@@ -27,7 +27,7 @@ describe "user visits stations dashboard" do
 
     visit stations_dashboard_path
 
-    expect(page).to have_content("Most Bikes Per Station: #{station.dock_count}")
+    expect(page).to have_content(station.name)
   end
   it 'see station with most bikes' do
     station = Station.create!(name: 'Ferry Building', dock_count: 45, city: 'San Francisco', installation_date: Date.new(2017, 4, 12))
@@ -35,7 +35,7 @@ describe "user visits stations dashboard" do
 
     visit stations_dashboard_path
 
-    expect(page).to have_content("Station With Most Bikes: #{station.name}")
+    expect(page).to have_content("#{station.name}")
   end
   it 'see least bikes per stations' do
     Station.create!(name: 'Ferry Building', dock_count: 45, city: 'San Francisco', installation_date: Date.new(2017, 4, 12))
@@ -43,7 +43,7 @@ describe "user visits stations dashboard" do
 
     visit stations_dashboard_path
 
-    expect(page).to have_content("Least Bikes Per Station: #{station.dock_count}")
+    expect(page).to have_content("#{station.dock_count}")
   end
 
   it 'see station with least bikes' do
@@ -52,7 +52,7 @@ describe "user visits stations dashboard" do
 
     visit stations_dashboard_path
 
-    expect(page).to have_content("Station With Least Bikes: #{station.name}")
+    expect(page).to have_content("#{station.name}")
   end
   it 'can see most recently installed station' do
     station_1 = Station.create!(name: 'Ferry Building', dock_count: 45, city: 'San Francisco', installation_date: Date.new(2017, 4, 12))
@@ -60,7 +60,7 @@ describe "user visits stations dashboard" do
 
     visit stations_dashboard_path
 
-    expect(page).to have_content("Newest Station: #{station_1.name}")
+    expect(page).to have_content("#{station_1.name}")
   end
   it 'can see oldest station' do
     station_1 = Station.create!(name: 'Ferry Building', dock_count: 45, city: 'San Francisco', installation_date: Date.new(2017, 4, 12))
@@ -68,7 +68,7 @@ describe "user visits stations dashboard" do
 
     visit stations_dashboard_path
 
-    expect(page).to have_content("Oldest Station: #{station_2.name}")
+    expect(page).to have_content("#{station_2.name}")
   end
 
 
