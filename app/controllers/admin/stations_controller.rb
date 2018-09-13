@@ -14,10 +14,10 @@ class Admin::StationsController < Admin::BaseController
   end
 
   def create
-    @station = Station.new(station_params)
-    @station.installation_date = Date.strptime(params[:station][:installation_date], '%m/%d/%Y')
-    if @station.save
-      flash[:notice] = "#{@station.name} Created."
+    station = Station.new(station_params)
+    station.installation_date = Date.strptime(params[:station][:installation_date], '%m/%d/%Y')
+    if station.save
+      flash[:notice] = "#{station.name} Created."
       redirect_to admin_stations_path
     else
       flash[:notice] = "Error - Could not create new station"

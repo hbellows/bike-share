@@ -46,6 +46,10 @@ describe "Admin Stations Index" do
       expect(page).to have_content("New Station")
       expect(page).to have_content("New City")
       expect(page).to have_content('09/12/2018')
+    end
+    it 'does not allow negative dock count' do
+      admin = create(:user, role: 1)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
       visit new_admin_station_path
       fill_in :station_name, with: "New Station"
