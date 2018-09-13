@@ -31,14 +31,14 @@ feature 'Trip index page' do
     it 'show visitor all info for the first 30 trips' do
       visit trips_path
 
-      expect(page).to have_content("Duration: #{Trip.all[29].duration}")
-      expect(page).to have_content("Start date: #{Trip.all[29].start_date.strftime('%m/%d/%Y')}")
-      expect(page).to have_content("End date: #{Trip.all[29].end_date.strftime('%m/%d/%Y')}")
-      expect(page).to have_content("Start station id: #{Trip.all[29].start_station_id}")
-      expect(page).to have_content("End station id: #{Trip.all[29].end_station_id }")
-      expect(page).to have_content("Bike id: #{Trip.all[29].bike_id}")
-      expect(page).to have_content("Subscription type: #{Trip.all[29].subscription_type}")
-      expect(page).to have_content("Zip code: #{Trip.all[29].zip_code}")
+      expect(page).to have_content("#{Trip.all[29].duration}")
+      expect(page).to have_content("#{Trip.all[29].start_date.strftime('%m/%d/%Y')}")
+      expect(page).to have_content("#{Trip.all[29].end_date.strftime('%m/%d/%Y')}")
+      expect(page).to have_content("#{Trip.all[29].start_station_id}")
+      expect(page).to have_content("#{Trip.all[29].end_station_id }")
+      expect(page).to have_content("#{Trip.all[29].bike_id}")
+      expect(page).to have_content("#{Trip.all[29].subscription_type}")
+      expect(page).to have_content("#{Trip.all[29].zip_code}")
 
       expect(page).to_not have_content("Bike id: #{Trip.all.last.bike_id}")
 
@@ -52,7 +52,7 @@ feature 'Trip index page' do
 
       click_on "Next"
 
-      expect(page).to have_content("Bike id: #{Trip.all.last.bike_id}")
+      expect(page).to have_content("#{Trip.all.last.bike_id}")
     end
   end
 end
