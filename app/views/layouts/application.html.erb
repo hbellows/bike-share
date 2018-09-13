@@ -42,8 +42,8 @@
               Dashboards
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <%= link_to "Admin-Dashboard", admin_dashboard_path, class: 'dropdown-item' if admin_user? %>
-              <%= link_to "Trips-Dashboard", trips_dashboard_path, class: 'dropdown-item'%>
+              <%= link_to "Admin-Dashboard", admin_dashboard_path, class: 'dropdown-item' if current_user.admin? %>
+              <%= link_to "Trips-Dashboard", trips_dashboard_path, class: 'dropdown-item' %>
               <%= link_to "Stations-Dashboard", stations_dashboard_path, class: 'dropdown-item' %>
               <%= link_to "Conditions-Dashboard", conditions_dashboard_path, class: 'dropdown-item' %>
             </div>

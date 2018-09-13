@@ -1,0 +1,21 @@
+<%= form_for [:admin, @station] do |form| %>
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div class="field">
+    <%= form.label :dock_count %>
+    <%= form.number_field :dock_count %>
+  </div>
+  <div class="field">
+    <%= form.label :city %>
+    <%= form.text_field :city %>
+  </div>
+  <div class="field">
+    <%= form.label :installation_date %>
+    <%= form.date_field :installation_date %>
+  </div>
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
