@@ -10,10 +10,6 @@
         <th scope="col" id='table-entry'>Mean Visibility</th>
         <th scope="col" id='table-entry'>Mean Wind Speed</th>
         <th scope="col" id='table-entry'>Precipitation</th>
-          <% if current_admin? %>
-            <th scope="col" id='table-entry'>Edit</th>
-            <th scope="col" id='table-entry'>Delete</th>
-          <% end %>
       </tr>
     </thead>
     <tbody>
@@ -27,10 +23,6 @@
         <td id='table-entry'><%= condition.mean_visibility %> miles</td>
         <td id='table-entry'><%= condition.mean_wind_speed %> mph</td>
         <td id='table-entry'><%= condition.precipitation %> "</td>
-          <% if current_admin? %>
-            <td id='table-entry'><%= link_to "Edit", edit_admin_condition_path(condition) %></td>
-            <td id='table-entry'><%= link_to "Delete", admin_conditions_path %></td>
-          <% end %>
       </tr>
       <% end %>
     </tbody>

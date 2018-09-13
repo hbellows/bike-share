@@ -23,6 +23,7 @@ describe 'user visits index page' do
       precipitation: 0.43)
 
     visit conditions_path
+    save_and_open_page
 
     expect(page).to have_link("#{condition_1.date.strftime('%m/%d/%Y')}")
     expect(page).to have_link("#{condition_2.date.strftime('%m/%d/%Y')}")
@@ -54,5 +55,10 @@ describe 'user visits index page' do
     expect(page).to have_content("#{condition_2.precipitation}")
     expect(page).to have_content("#{condition_1.precipitation}")
     expect(page).to have_content("#{condition_2.precipitation}")
+
+    expect(page).to_not have_content("Edit")
+    expect(page).to_not have_content("Delete")
+    expect(page).to_not have_link("Edit")
+    expect(page).to_not have_link("Delete")
   end
 end
