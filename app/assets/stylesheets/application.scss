@@ -1,0 +1,59 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ @import "bootstrap";
+ */
+nav {
+  color: #E8F1F2;
+  background-color: #192BC2;
+
+}
+
+nav p {
+
+  font-family: 'Faster One';
+}
+
+.navbar-light .navbar-brand {
+    color: #1B98E0;
+}
+.navbar-brand {
+  font-size: 4rem;
+}
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+  color: white;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+
+.fa-bicycle {
+  margin-top: 10px;
+  margin-right: 25px;
+  color: #E8F1F2;
+  font-size: 40px;
+  height: 55px;
+  width: 55px;
+}
+
+.middle-section {
+  color: #192BC2;
+  background-color: #1B98E0;
+  padding: 0% 0% 5%;
+}
+.middle-section h1 {
+  text-align: center;
+  font-family: 'Shrikhand';
+  font-size: 4rem;
+  padding: 4%;
+}
