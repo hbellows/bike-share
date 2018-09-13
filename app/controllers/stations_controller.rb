@@ -1,7 +1,7 @@
 class StationsController < ApplicationController
 
   def index
-    @stations = Station.all
+    @stations = Station.paginate(:page => params[:page], :per_page => 30)
   end
 
   def show
