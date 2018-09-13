@@ -23,13 +23,19 @@ feature 'User authorization' do
 
     describe "as a logged in user" do
       it 'prevents me from seeing another users private details' do
-        user1 = create(:user)
-        user2 = create(:user)
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user1)
+        user_1, user_2 = create_list(:user, 2)
+        order_1 = user_1.orders.create(status: 'paid')
+        order_2 = user_2.orders.create(status: 'pending')
 
-        visit user_path(user2)
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user_1)
 
-        expect(current_path).to eq(user_path(user1))
+        visit order_path(user_1.orders.last)
+
+        expect(current_path).to eq(order_path(user_1.orders.last))
+
+        visit order_path(user_2.orders.last)
+
+        expect(current_path).to eq(root_path)
       end
     end
     describe "as an admin user" do

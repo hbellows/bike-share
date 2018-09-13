@@ -1,8 +1,11 @@
 <h1>All Stations</h1>
+<ul>
+  <li><%= link_to "Add Station", new_admin_station_path %></li>
+</ul>
 
 <ul>
   <% @stations.each do |station| %>
-  <section id="station-#{station.id}">
+  <section id="station-<%= station.id %>">
     <li><%=station.name%></li>
     <li>Dock count: <%=station.dock_count%></li>
     <li><%=station.city%></li>
