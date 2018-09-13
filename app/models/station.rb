@@ -1,6 +1,6 @@
 class Station < ApplicationRecord
   validates_presence_of :name
-  validates_presence_of :dock_count, :numericality => { :greater_than_or_equal_to => 0 }
+  validates :dock_count, :numericality => { :greater_than_or_equal_to => 0 }, presence: true
   validates_presence_of :city
   validates_presence_of :installation_date
 

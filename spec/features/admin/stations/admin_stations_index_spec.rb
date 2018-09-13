@@ -45,7 +45,23 @@ describe "Admin Stations Index" do
       expect(current_path).to eq(admin_stations_path)
       expect(page).to have_content("New Station")
       expect(page).to have_content("New City")
-      expect(page).to have_content("09/12/2018")
+      expect(page).to have_content('09/12/2018')
+      expect(page).to have_content('New Station Created')
+    end
+    it 'does not allow negative dock count' do
+      admin = create(:user, role: 1)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+      visit new_admin_station_path
+      fill_in :station_name, with: "New Station"
+      fill_in :station_dock_count, with: -10
+      fill_in :station_city, with: "New City"
+      fill_in :station_installation_date, with: "09/12/2018"
+
+      click_on "Create Station"
+
+      expect(page).to have_content("Error - Could not create new station")
+      expect(current_path).to eq(new_admin_station_path)
     end
   end
 end
