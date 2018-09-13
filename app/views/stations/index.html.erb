@@ -3,7 +3,7 @@
 <ul>
   <% @stations.each do |station| %>
   <section id="station-#{station.id}">
-    <li><%=station.name%></li>
+    <li><%=link_to station.name, admin_station_path(station)%></li>
     <li>Dock count: <%=station.dock_count%></li>
     <li><%=station.city%></li>
     <li><%= station.installation_date.strftime('%m/%d/%Y') %></li>
