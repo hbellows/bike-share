@@ -38,7 +38,7 @@ describe "Admin Stations Index" do
       fill_in :station_name, with: "New Station"
       fill_in :station_dock_count, with: 0
       fill_in :station_city, with: "New City"
-      fill_in :station_installation_date, with: "09/12/2018"
+      fill_in :station_installation_date, with: "2018/09/12"
 
       click_on "Create Station"
 

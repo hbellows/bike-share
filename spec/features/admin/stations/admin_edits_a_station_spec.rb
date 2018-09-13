@@ -12,7 +12,7 @@ describe 'As an admin' do
       fill_in :station_name, with: 'Updated Station Name'
       fill_in :station_dock_count, with: 12
       fill_in :station_city, with: 'Updated City'
-      fill_in :station_installation_date, with: '09/13/2018'
+      fill_in :station_installation_date, with: '2018/09/13'
 
       click_on 'Update Station'
 
