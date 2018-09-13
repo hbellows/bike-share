@@ -113,9 +113,4 @@ describe "user visits trips dashboard" do
       expect(page).to have_content("Precipitation:", "#{@condition_1.precipitation}")
     end
   end
-
-
-
-
-
 end
