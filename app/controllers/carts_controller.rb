@@ -22,10 +22,11 @@ class CartsController < ApplicationController
     if params[:remove] == 'removing one'
       @cart.decrease_quantity(accessory.id.to_s)
       redirect_to '/cart'
-    elsif params[:checkout] == 'checkout' && session[:user_id] && @cart.contents == {}
+    elsif params[:checkout] == 'checkout' && current_user && @cart.contents == {}
       flash[:notice] = "Add items to cart to checkout"
       redirect_to root_path
-    elsif params[:checkout] == 'checkout' && session[:user_id]
+    elsif params[:checkout] == 'checkout' && current_user
+      @cart.checkout(current_user)
       @cart.contents.clear
       total = params[:total]
       flash[:notice] = "Successfully submitted your order totalling #{total}"
