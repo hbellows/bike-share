@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   get '/stations-dashboard', to: 'stations#dashboard'
   get '/trips-dashboard', to: 'trips#dashboard'
+  get '/conditions-dashboard', to: 'conditions#dashboard'
   get '/bike-shop', to: 'accessories#index'
 
   get '/admin/dashboard' => 'admin/base#dashboard'
