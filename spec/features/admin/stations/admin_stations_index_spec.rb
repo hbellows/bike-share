@@ -45,6 +45,7 @@ describe "Admin Stations Index" do
       expect(current_path).to eq(admin_stations_path)
       expect(page).to have_content("New Station")
       expect(page).to have_content("New City")
+      expect(page).to have_content("09/12/2018")
     end
   end
 end
