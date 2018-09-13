@@ -11,7 +11,7 @@ describe Cart do
     it 'adds accessories to its contents' do
       subject.add_accessory(@accessory_1.id)
       subject.add_accessory(@accessory_2.id)
-      
+
       expect(subject.contents).to eq({@accessory_1.id => 3, @accessory_2.id => 4})
     end
   end
