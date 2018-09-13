@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/conditions-dashboard', to: 'conditions#dashboard'
   get '/bike-shop', to: 'accessories#index'
 
-  get '/admin/dashboard' => 'admin/base#dashboard'
+  get '/admin/dashboard', to: 'admin/users#show'
   get '/dashboard', to: 'users#show'
 
   namespace :admin do
