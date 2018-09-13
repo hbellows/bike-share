@@ -80,3 +80,12 @@ accessories.each do |accessory|
     retired?: false
   )
 end
+
+# Create default admin
+User.create!(
+  username: 'admin',
+  password: 'password',
+  password_confirmation: 'password',
+  email: 'admin@admin.com',
+  role: 1
+)
