@@ -162,9 +162,9 @@
     </div>
     <div class="row">
       <div class="col-2"></div>
-      <table class="table table-borderless col-4 most-rides-by-date">
+      <table class="table table-borderless col-4">
       <thead>
-        <tr class="least-rides-by-date-head">
+        <tr class="least-rides-by-date">
           <th scope="col-6">Date With Fewest Rides: <%= @ride_info[:least_rides][:date].strftime('%m/%d/%Y') %></th>
           <th scope="col-6">Ride Count: <%= @ride_info[:least_rides][:rides] %></th>
         </tr>
@@ -175,7 +175,7 @@
           <th scope="col-6"></th>
         </tr>
       </thead>
-      <tbody class="least-rides-by-date">
+      <tbody class="least-rides-by-date-conditions">
         <tr>
           <td>Max Temperature: </td>
           <td><%= @ride_info[:least_rides][:condition].max_temperature %> ºF</td>
@@ -208,7 +208,7 @@
     </table>
 
     <div class="col-1"></div>
-    <table class="table table-borderless col-3 most-rides-by-date">
+    <table class="table table-borderless col-3">
       <thead>
         <tr>
           <th scope="col">Rides Per Year</th>
