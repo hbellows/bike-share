@@ -40,6 +40,13 @@ class Admin::StationsController < Admin::BaseController
     end
   end
 
+  def destroy
+    @station = Station.friendly.find(params[:id])
+    @station.destroy
+    flash[:notice] = "Station deleted."
+    redirect_to admin_stations_path
+  end
+
   private
 
     def station_params
