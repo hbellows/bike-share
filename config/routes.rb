@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :accessories, only: [:index]
   end
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :edit, :update]
   resources :stations, only: [:index]
   resources :trips, only: [:index, :show]
   resources :conditions, only: [:index, :show]

@@ -22,6 +22,17 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+    render file: '/public/404' unless current_user == @user || current_admin?
+  end
+
+  def update
+    @user = User.update(user_params)
+    flash[:notice] = "Account Updated"
+    redirect_to dashboard_path
+  end
+
   private
     def user_params
       params.require(:user).permit(:email, :username, :password, :role)
