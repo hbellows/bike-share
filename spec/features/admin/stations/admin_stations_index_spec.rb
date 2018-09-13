@@ -45,6 +45,7 @@ describe "Admin Stations Index" do
       expect(current_path).to eq(admin_stations_path)
       expect(page).to have_content("New Station")
       expect(page).to have_content("New City")
+      expect(page).to have_content('09/12/2018')
 
       visit new_admin_station_path
       fill_in :station_name, with: "New Station"
