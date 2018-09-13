@@ -1,9 +1,12 @@
 class UsersController < ApplicationController
-  before_action :require_user, only: [:show]
+  before_action :require_user, only: [:show, :edit]
 
   def show
-    @user = User.find(current_user.id)
-    unless current_user == @user
+    if current_admin?
+      @user = User.find(params[:id])
+    elsif current_user
+      @user = User.find(current_user.id)
+    else
       redirect_to dashboard_path
     end
   end
@@ -20,6 +23,22 @@ class UsersController < ApplicationController
     else
       render :new
     end
+  end
+
+  def edit
+    if current_admin?
+      @user = User.find(params[:id])
+    elsif current_user
+      @user = User.find(current_user.id)
+    else
+      render file: '/public/404'
+    end
+  end
+
+  def update
+    @user = User.update(user_params)
+    flash[:notice] = "Account Updated"
+    redirect_to dashboard_path
   end
 
   private
