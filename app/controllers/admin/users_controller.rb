@@ -1,5 +1,9 @@
 class Admin::UsersController < Admin::BaseController
-  before_action :require_user, only: [:show]
+  before_action :require_user, only: [:show, :edit]
+
+  def show
+    @user = User.find(current_user.id)
+  end
 
   def edit
     @user = User.find(params[:id])
