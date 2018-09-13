@@ -1,4 +1,4 @@
-class Admin::DashbordController < Admin::BaseController
+class Admin::DashboardController < Admin::BaseController
   # before_action :require_user
   # def dashboard
   # end

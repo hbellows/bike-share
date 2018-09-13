@@ -73,16 +73,24 @@ feature 'User authorization' do
     end
     describe "as an admin user" do
       it 'logs me in as an admin' do
-        admin = create(:user, role: 1)
-        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+        admin = User.create(email: 'xyz@gmale.com', username: "admin", password: 'test', role: 1)
 
-        visit admin_dashboard_path
+        visit root_path
+
+        click_on 'Login'
+
+        expect(current_path).to eq(login_path)
+
+        fill_in :username, with: admin.username
+        fill_in :password, with: admin.password
+
+        click_on "Log In"
 
         expect(page).to have_content("Logged in as #{admin.username}")
         page.has_link?(admin_orders_path)
         page.has_link?(admin_accessories_path)
       end
-      it 'can edit my own details, but not other users details' do
+      it 'can edit my own details, and other users details' do
         admin = User.create(email: 'xyz@gmale.com', username: "admin", password: 'test', role: 1)
         user_2 = User.create(email: 'notauthorized', username: "shouldntbehere", password: 'test')
 
