@@ -57,3 +57,19 @@ nav p {
   font-size: 4rem;
   padding: 4%;
 }
+.index-main {
+  display: flex;
+  justify-content: center;
+}
+#station-index-table {
+  width: 55%;
+}
+#trip-index-table {
+  width: 80%;
+}
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #78C0E0;
+}
+.table-light, .table-light>td, .table-light>th {
+  background-color: #E0FFFF;
+}
