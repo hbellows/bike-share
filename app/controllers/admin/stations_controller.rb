@@ -15,7 +15,6 @@ class Admin::StationsController < Admin::BaseController
 
   def create
     @station = Station.new(station_params)
-    @station.installation_date = Date.strptime(params[:station][:installation_date], '%m/%d/%Y')
     if @station.save
       flash[:notice] = "#{@station.name} Created."
       redirect_to admin_stations_path
@@ -32,7 +31,6 @@ class Admin::StationsController < Admin::BaseController
   def update
     station = Station.friendly.find(params[:id])
     station.update(station_params)
-    station.update(installation_date: Date.strptime(params[:station][:installation_date], '%m/%d/%Y'))
     if station.save
       flash[:notice] = "#{station.name} updated!"
       redirect_to admin_station_path(station)
@@ -40,6 +38,13 @@ class Admin::StationsController < Admin::BaseController
       flash[:notice] = "All attributes must be present, update failed."
       redirect_to edit_admin_station_path(station)
     end
+  end
+
+  def destroy
+    @station = Station.friendly.find(params[:id])
+    @station.destroy
+    flash[:notice] = "Station deleted."
+    redirect_to admin_stations_path
   end
 
   private
