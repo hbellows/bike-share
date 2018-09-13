@@ -34,8 +34,6 @@ describe 'As a user' do
 
       order = user.orders[0]
 
-      save_and_open_page
-
       expect(current_path).to eq(dashboard_path)
       expect(page).to have_content("Order ##{order.id}")
     end
