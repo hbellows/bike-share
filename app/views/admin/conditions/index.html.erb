@@ -1,1 +1,7 @@
-<%= render partial: '/views/condions/index' %>
+<h1>ADMIN - Conditions</h1>
+
+<%= render partial: 'conditions/conditions' %>
+<% @conditions.each do |condition| %>
+  <%= link_to "Edit", edit_admin_condition_path(condition) %>
+  <%= link_to "Delete", admin_conditions_path %>
+<% end %>
