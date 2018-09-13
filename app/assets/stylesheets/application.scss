@@ -14,21 +14,29 @@
  */
 nav {
   color: #E8F1F2;
-  background-color: #1B98E0;
+  background-color: #192BC2;
 
 }
 
 nav p {
-  color: #E8F1F2;
+
   font-family: 'Faster One';
 }
 
 .navbar-light .navbar-brand {
-    color: #E8F1F2;
+    color: #1B98E0;
 }
 .navbar-brand {
   font-size: 4rem;
 }
+.navbar-light .navbar-nav .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link {
+  color: white;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+
 .fa-bicycle {
   margin-top: 10px;
   margin-right: 25px;
@@ -36,4 +44,16 @@ nav p {
   font-size: 40px;
   height: 55px;
   width: 55px;
+}
+
+.middle-section {
+  color: #192BC2;
+  background-color: #1B98E0;
+  padding: 0% 0% 5%;
+}
+.middle-section h1 {
+  text-align: center;
+  font-family: 'Shrikhand';
+  font-size: 4rem;
+  padding: 4%;
 }
