@@ -54,5 +54,10 @@ describe 'user visits index page' do
     expect(page).to have_content("#{condition_2.precipitation}")
     expect(page).to have_content("#{condition_1.precipitation}")
     expect(page).to have_content("#{condition_2.precipitation}")
+
+    expect(page).to_not have_content("Edit")
+    expect(page).to_not have_content("Delete")
+    expect(page).to_not have_link("Edit")
+    expect(page).to_not have_link("Delete")
   end
 end
