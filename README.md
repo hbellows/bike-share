@@ -1,24 +1,48 @@
-# README
+# Bike Share README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## System Dependencies
+ - Ruby Version > 2.4.0
+ - Rails 5.1.6
+ - Gems
+   - FactoryBot (test)
+   - Rails-RSpec for tests (test)
+   - Launchy (test)
+   - Bootstrap (production)
+   - Shoulda-Matchers (test)
+   - FriendlyID (production)
+   - Faker (test)
+   - BCrpyt (production)
+   - Will_Paginate (production)
+   - DatabaseCleaner (test)
+   - Pry (test)
+   - Figaro (production/test)
+   - PostgreSQL (all)
+   - Capybara (test)
+   - SimpleCov (test)
+   - Paperclip (all)
+   - JQuery Rails (all)
 
-Things you may want to cover:
+## Testing
+ - Run `rspec` for the test suite
+ - SimpleCov data
 
-* Ruby version
+## Initial Setup
+ - Git clone
+ - Bundle install/update
+ - Rake DB Drop Create Migrate Seed
 
-* System dependencies
+## Database Initialization
+ - What and why we did the seeding
+ - Default accounts for admin and user (like a demo)
 
-* Configuration
+## Why We Did This
+ - Business Analytics
+ - To sell bike accessories
 
-* Database creation
+## Screenshots
 
-* Database initialization
+## Navigating Pages
 
-* How to run the test suite
+## Contact Information && Contributing Authors
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## Pull Request Template/Fork Repository
