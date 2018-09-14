@@ -10,10 +10,13 @@
   <% end %>
 </ul>
 
+<h4>Filter By Status</h4>
+<%= %>
+
 <h4>All Orders</h4>
 <% @orders.each do |order| %>
   <ul id="order-<%= order.id %>">
-    <li>Order #<%= order.id %></li>
+    <li><%= link_to "Order ##{order.id}", order_path(order) %></li>
     <li>User: <%= order.user.username %></li>
     <li>Status: <%= order.status %></li>
   </ul>

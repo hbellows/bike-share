@@ -43,16 +43,26 @@ describe 'As an admin' do
       expect(page).to have_content("Paid: 1")
       expect(page).to have_content("Completed: 2")
     end
+    it 'links to each order show page' do
+      visit admin_dashboard_path
+
+      expect(page).to have_link("Order ##{@order1.id}", href: order_path(@order1))
+    end
+    it 'allows me to filter orders by status' do
+      visit admin_dashboard_path
+
+      select 'Ordered', from: :order_filter_by_status
+
+      expect(current_path).to eq(admin_dashboard_path)
+      expect(page).to have_content("Order: #{@order1.id}")
+      expect(page).to_not have_content("Order: #{@order2.id}")
+      expect(page).to_not have_content("Order: #{@order3.id}")
+      expect(page).to_not have_content("Order: #{@order4.id}")
+    end
   end
 end
 
 
-
-# As an admin user,
-# When I visit the admin dashboard,
-# I see a list of all orders,
-# I see the total number of orders for each status ("Ordered", "Paid", "Cancelled", "Completed"),
-# I see a link for each individual order,
 # I can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed"),
 # I have links to transition between statuses
 #
