@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :stations
+    resources :conditions, only: [:new, :create, :edit, :update, :destroy]
     resources :orders, only: [:index]
     resources :accessories, only: [:index]
   end
