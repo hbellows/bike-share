@@ -1,5 +1,13 @@
-<h3>Welcome <%= @user.username %></h3>
+<h3>Welcome Admin <%= @user.username %></h3>
 
 <%= link_to 'Edit Profile', edit_admin_user_path(@user) %>
-<%= link_to "Orders", admin_orders_path %>
 <%= link_to "Accessories", admin_accessories_path %>
+
+<h4>All Orders</h4>
+<% @orders.each do |order| %>
+  <ul id="order-<%= order.id %>">
+    <li>Order #<%= order.id %></li>
+    <li>User: <%= order.user.username %></li>
+    <li>Status: <%= order.status %></li>
+  </ul>
+<% end %>

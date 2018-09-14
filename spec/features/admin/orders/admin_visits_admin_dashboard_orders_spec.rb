@@ -15,21 +15,25 @@ describe 'As an admin' do
     it 'shows me a list of all orders' do
       visit admin_dashboard_path
 
-      expect(page).to have_content("Order ##{@order1.id}")
-      within("#order-status-#{@order1.id}") do
-        expect(page).to have_content(@order1.status)
+      within("#order-#{@order1.id}") do
+        expect(page).to have_content("Order ##{@order1.id}")
+        expect(page).to have_content("User: #{@order1.user.username}")
+        expect(page).to have_content("Status: #{@order1.status}")
       end
-      expect(page).to have_content("Order ##{@order2.id}")
-      within("#order-status-#{@order2.id}") do
-        expect(page).to have_content(@order2.status)
+      within("#order-#{@order2.id}") do
+        expect(page).to have_content("Order ##{@order2.id}")
+        expect(page).to have_content("User: #{@order2.user.username}")
+        expect(page).to have_content("Status: #{@order2.status}")
       end
-      expect(page).to have_content("Order ##{@order3.id}")
-      within("#order-status-#{@order3.id}") do
-        expect(page).to have_content(@order3.status)
+      within("#order-#{@order3.id}") do
+        expect(page).to have_content("Order ##{@order3.id}")
+        expect(page).to have_content("User: #{@order3.user.username}")
+        expect(page).to have_content("Status: #{@order3.status}")
       end
-      expect(page).to have_content("Order ##{@order4.id}")
-      within("#order-status-#{@order4.id}") do
-        expect(page).to have_content(@order4.status)
+      within("#order-#{@order4.id}") do
+        expect(page).to have_content("Order ##{@order4.id}")
+        expect(page).to have_content("User: #{@order4.user.username}")
+        expect(page).to have_content("Status: #{@order4.status}")
       end
     end
   end

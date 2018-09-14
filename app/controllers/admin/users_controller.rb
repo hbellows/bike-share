@@ -3,6 +3,7 @@ class Admin::UsersController < Admin::BaseController
 
   def show
     @user = User.find(current_user.id)
+    @orders = Order.all
   end
 
   def edit
