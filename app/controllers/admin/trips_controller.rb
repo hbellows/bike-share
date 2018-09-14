@@ -8,6 +8,11 @@ class Admin::TripsController < Admin::BaseController
     @stations = Station.all.map { |s| [s.name, s.id] }
   end
 
+  def edit
+    @trip = Trip.find(params[:id])
+    @stations = Station.all.map { |s| [s.name, s.id] }
+  end
+
   def create
     @trip = Trip.new(trip_params)
     @trip.start_date = Date.strptime(trip_params[:start_date], '%m/%d/%Y')
@@ -21,8 +26,18 @@ class Admin::TripsController < Admin::BaseController
     end
   end
 
-  def show
+  def update
     @trip = Trip.find(params[:id])
+    @trip.update(trip_params)
+    @trip.start_date = Date.strptime(trip_params[:start_date], '%m/%d/%Y')
+    @trip.end_date = Date.strptime(trip_params[:end_date], '%m/%d/%Y')
+    if @trip.save
+      flash[:notice] = 'Trip updated!'
+      redirect_to trip_path(@trip)
+    else
+      flash[:notice] = 'Trip was not updated.'
+      redirect_to new_admin_trip_path
+    end
   end
 
   private
