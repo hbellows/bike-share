@@ -9,7 +9,7 @@ describe 'As an admin' do
 
       @order1 = create(:order, user_id: user1.id, status: 'ordered')
       @order2 = create(:order, user_id: user1.id, status: 'paid')
-      @order3 = create(:order, user_id: user2.id, status: 'cancelled')
+      @order3 = create(:order, user_id: user2.id, status: 'completed')
       @order4 = create(:order, user_id: user2.id, status: 'completed')
     end
     it 'shows me a list of all orders' do
@@ -35,6 +35,13 @@ describe 'As an admin' do
         expect(page).to have_content("User: #{@order4.user.username}")
         expect(page).to have_content("Status: #{@order4.status}")
       end
+    end
+    it 'shows me the total number of orders for each status' do
+      visit admin_dashboard_path
+
+      expect(page).to have_content("Ordered: 1")
+      expect(page).to have_content("Paid: 1")
+      expect(page).to have_content("Completed: 2")
     end
   end
 end

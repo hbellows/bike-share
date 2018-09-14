@@ -4,6 +4,7 @@ class Admin::UsersController < Admin::BaseController
   def show
     @user = User.find(current_user.id)
     @orders = Order.all
+    @status_count = Order.status_count
   end
 
   def edit

@@ -6,7 +6,23 @@ describe Order, type: :model do
     it { should have_many :order_accessories }
     it { should have_many(:accessories).through(:order_accessories) }
   end
+  describe 'Class Methods' do
+    it '.status_count(status)' do
+      user = create(:user)
+      order1 = create(:order, status: 'paid', user_id: user.id)
+      order2 = create(:order, status: 'cancelled', user_id: user.id)
+      order3 = create(:order, status: 'completed', user_id: user.id)
+      order4 = create(:order, status: 'completed', user_id: user.id)
 
+      expected_result = {
+        'paid'      => 1,
+        'completed' => 2,
+        'cancelled' => 1
+      }
+
+      expect(Order.status_count).to eq(expected_result)
+    end
+  end
   describe 'Instance Methods' do
     it '#total' do
       user = create(:user)
