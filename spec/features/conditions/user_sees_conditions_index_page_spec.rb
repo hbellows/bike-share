@@ -23,7 +23,6 @@ describe 'user visits index page' do
       precipitation: 0.43)
 
     visit conditions_path
-    save_and_open_page
 
     expect(page).to have_link("#{condition_1.date.strftime('%m/%d/%Y')}")
     expect(page).to have_link("#{condition_2.date.strftime('%m/%d/%Y')}")

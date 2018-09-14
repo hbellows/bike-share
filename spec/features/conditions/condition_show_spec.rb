@@ -23,6 +23,11 @@ feature 'Condition show page' do
       expect(page).to have_content(condition.mean_humidity)
       expect(page).to have_content(condition.mean_visibility)
       expect(page).to have_content(condition.mean_wind_speed)
+
+      expect(page).to_not have_content("Edit")
+      expect(page).to_not have_content("Delete")
+      expect(page).to_not have_link("Edit")
+      expect(page).to_not have_link("Delete")
     end
   end
 end
