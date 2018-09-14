@@ -1,3 +1,5 @@
+[![Waffle.io - Columns and their card count](https://badge.waffle.io/mikecm1141/bike-share.svg?columns=all)](https://waffle.io/mikecm1141/bike-share)
+
 # Bike Share README
 
 ## System Dependencies
