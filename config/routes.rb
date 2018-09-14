@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     resources :conditions, only: [:new, :create, :edit, :update, :destroy]
     resources :orders, only: [:index]
     resources :accessories, only: [:index]
+    resources :trips
   end
 
   resources :users, only: [:new, :create, :edit, :update]
