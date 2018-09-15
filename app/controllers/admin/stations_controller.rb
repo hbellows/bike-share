@@ -25,6 +25,7 @@ class Admin::StationsController < Admin::BaseController
   end
 
   def edit
+    require "pry"; binding.pry
     @station = Station.friendly.find(params[:id])
   end
 
