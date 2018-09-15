@@ -40,7 +40,12 @@ end
 puts "Creating a few default users"
 users = []
 10.times do |n|
-  user = User.create!(username: "User#{n}", email: "useremail#{n}@email.com", password: 'pass', password_confirmation: 'pass')
+  user = User.create!(
+    username: "User#{n}",
+    email: "useremail#{n}@email.com",
+    password: 'pass',
+    password_confirmation: 'pass'
+  )
   users << user
 end
 
@@ -50,7 +55,12 @@ order_statuses = %w[completed paid ordered cancelled]
 20.times do
   order = Order.create!(status: order_statuses.sample, user_id: users.sample.id)
   rand(1..5).times do
-    order.order_accessories.create(quantity: rand(1..5), accessory_id: accessory_array.sample.id)
+    random_accessory = accessory_array.sample
+    order.order_accessories.create(
+      quantity: rand(1..5),
+      unit_price: random_accessory.price,
+      accessory_id: random_accessory.id
+    )
   end
 end
 
