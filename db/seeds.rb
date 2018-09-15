@@ -4,6 +4,74 @@ station_csv = Rails.root.join('lib', 'seeds', 'station.csv')
 trip_csv = Rails.root.join('lib', 'seeds', 'trip.csv')
 weather_csv = Rails.root.join('lib', 'seeds', 'weather.csv')
 
+# Load accessories in
+puts "Seeding Accessories Table"
+accessories = [
+  'Tire',
+  'Rim',
+  'Bike Seat',
+  'Pedals',
+  'Chain',
+  'Air Pump',
+  'Bike Tool Set',
+  'Headlamp',
+  'Helmet',
+  'Chain Grease',
+  'Patch Kit',
+  'Water Bottle Holder',
+  'Grips',
+  'Taillight',
+  'Rack'
+]
+
+accessory_array = []
+accessories.each do |accessory|
+  item = Accessory.create!(
+    name: accessory,
+    price: rand(10..200),
+    description: "#{accessory} is what you need for your biking adventures.",
+    image: 'bike_image.jpg',
+    retired?: false
+  )
+  accessory_array << item
+end
+
+# Create a few default users
+puts "Creating a few default users"
+users = []
+10.times do |n|
+  user = User.create!(
+    full_name: "User_First #{n} Last#{n}",
+    username: "User#{n}",
+    email: "useremail#{n}@email.com",
+    password: 'pass',
+    password_confirmation: 'pass'
+  )
+  users << user
+end
+
+# Create some default orders
+puts "Creating some default orders"
+order_statuses = %w[completed paid ordered cancelled]
+20.times do
+  order = Order.create!(
+    status: order_statuses.sample,
+    user_id: users.sample.id,
+    street_address: '120th St.',
+    city: 'Denver',
+    state: 'CO',
+    zip_code: 80401
+  )
+  rand(1..5).times do
+    random_accessory = accessory_array.sample
+    order.order_accessories.create(
+      quantity: rand(1..5),
+      unit_price: random_accessory.price,
+      accessory_id: random_accessory.id
+    )
+  end
+end
+
 # Load stations in
 puts "Seeding Stations table"
 CSV.foreach(station_csv, headers: true, header_converters: :symbol) do |row|
@@ -51,38 +119,9 @@ CSV.foreach(trip_csv, headers: true, header_converters: :symbol) do |row|
   break if row_count >= 5500
 end
 
-# Load accessories in
-puts "Seeding Accessories Table"
-accessories = [
-  'Tire',
-  'Rim',
-  'Bike Seat',
-  'Pedals',
-  'Chain',
-  'Air Pump',
-  'Bike Tool Set',
-  'Headlamp',
-  'Helmet',
-  'Chain Grease',
-  'Patch Kit',
-  'Water Bottle Holder',
-  'Grips',
-  'Taillight',
-  'Rack'
-]
-
-accessories.each do |accessory|
-  Accessory.create!(
-    name: accessory,
-    price: rand(10..200),
-    description: "#{accessory} is what you need for your biking adventures.",
-    image: 'bike_image.jpg',
-    retired?: false
-  )
-end
-
 # Create default admin
 User.create!(
+  full_name: 'Admin Admin',
   username: 'admin',
   password: 'password',
   password_confirmation: 'password',
