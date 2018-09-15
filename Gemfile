@@ -47,6 +47,7 @@ group :development, :test do
   gem 'launchy'
   gem 'factory_bot_rails'
   gem 'figaro'
+  gem 'active_designer'
 end
 
 group :development do
