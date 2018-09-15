@@ -41,6 +41,7 @@ puts "Creating a few default users"
 users = []
 10.times do |n|
   user = User.create!(
+    full_name: "User_First #{n} Last#{n}",
     username: "User#{n}",
     email: "useremail#{n}@email.com",
     password: 'pass',
@@ -53,7 +54,14 @@ end
 puts "Creating some default orders"
 order_statuses = %w[completed paid ordered cancelled]
 20.times do
-  order = Order.create!(status: order_statuses.sample, user_id: users.sample.id)
+  order = Order.create!(
+    status: order_statuses.sample,
+    user_id: users.sample.id,
+    street_address: '120th St.',
+    city: 'Denver',
+    state: 'CO',
+    zip_code: 80401
+  )
   rand(1..5).times do
     random_accessory = accessory_array.sample
     order.order_accessories.create(
