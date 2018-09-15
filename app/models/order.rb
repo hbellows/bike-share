@@ -1,4 +1,6 @@
 class Order < ApplicationRecord
+  validates_presence_of :street_address, :city, :state, :zip_code
+
   belongs_to :user
 
   has_many :order_accessories

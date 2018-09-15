@@ -6,6 +6,12 @@ describe Order, type: :model do
     it { should have_many :order_accessories }
     it { should have_many(:accessories).through(:order_accessories) }
   end
+  describe 'Validations' do
+    it { should validate_presence_of :street_address }
+    it { should validate_presence_of :city           }
+    it { should validate_presence_of :state          }
+    it { should validate_presence_of :zip_code       }
+  end
   describe 'Scopes' do
     it '#filter_by_status' do
       user = create(:user)
@@ -40,7 +46,7 @@ describe Order, type: :model do
       user = create(:user)
       accessory1, accessory2 = create_list(:accessory, 2)
 
-      order = user.orders.create(status: 'paid')
+      order = user.orders.create(status: 'paid', street_address: '222 Ave', city: 'Denver', state: 'CO', zip_code: 80401)
       order_item1 = order.order_accessories.create(accessory: accessory1, quantity: 2, unit_price: accessory1.price)
       order_item2 = order.order_accessories.create(accessory: accessory2, quantity: 3, unit_price: accessory1.price)
 

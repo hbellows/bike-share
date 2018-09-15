@@ -24,8 +24,8 @@ feature 'User authorization' do
     describe "as a logged in user" do
       it 'prevents me from seeing another users private details' do
         user_1, user_2 = create_list(:user, 2)
-        order_1 = user_1.orders.create(status: 'paid')
-        order_2 = user_2.orders.create(status: 'pending')
+        order_1 = user_1.orders.create(status: 'paid', street_address: '120th St', city: 'Denver', state: 'CO', zip_code: 80401)
+        order_2 = user_2.orders.create(status: 'pending', street_address: '120th St', city: 'Denver', state: 'CO', zip_code: 80401)
 
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user_1)
 
