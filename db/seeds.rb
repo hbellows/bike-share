@@ -121,6 +121,7 @@ end
 
 # Create default admin
 User.create!(
+  full_name: 'Admin, Admin',
   username: 'admin',
   password: 'password',
   password_confirmation: 'password',
