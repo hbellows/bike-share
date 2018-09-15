@@ -38,8 +38,8 @@ feature 'User authorization' do
         expect(current_path).to eq(root_path)
       end
       it 'can edit my own details, but not other users details' do
-        user = User.create(email: 'xyz@gmale.com', username: "firstname", password: 'test')
-        user_2 = User.create(email: 'notauthorized', username: "shouldntbehere", password: 'test')
+        user = User.create(full_name: 'John Johnson', email: 'xyz@gmale.com', username: "firstname", password: 'test')
+        user_2 = User.create(full_name: 'John Johnson', email: 'notauthorized', username: "shouldntbehere", password: 'test')
 
         visit root_path
 
@@ -68,8 +68,8 @@ feature 'User authorization' do
         expect(page).to have_content("Logged in as differentname")
       end
       it 'can edit my own details, but not other users details' do
-        user_1 = User.create(email: 'xyz@gmale.com', username: "firstname", password: 'test')
-        user_2 = User.create(email: 'notauthorized', username: "shouldntbehere", password: 'test')
+        user_1 = User.create(full_name: 'John Johnson', email: 'xyz@gmale.com', username: "firstname", password: 'test')
+        user_2 = User.create(full_name: 'John Johnson', email: 'notauthorized', username: "shouldntbehere", password: 'test')
 
         visit root_path
 
@@ -90,7 +90,7 @@ feature 'User authorization' do
     end
     describe "as an admin user" do
       it 'logs me in as an admin' do
-        admin = User.create(email: 'xyz@gmale.com', username: "admin", password: 'test', role: 1)
+        admin = User.create(full_name: 'John Johnson', email: 'xyz@gmale.com', username: "admin", password: 'test', role: 1)
 
         visit root_path
 
@@ -108,8 +108,8 @@ feature 'User authorization' do
         page.has_link?(admin_accessories_path)
       end
       it 'can edit my own details' do
-        admin = User.create(email: 'xyz@gmale.com', username: "admin", password: 'test', role: 1)
-        user = User.create(email: 'registereduser', username: "registereduser", password: 'test', password_confirmation: 'test')
+        admin = User.create(full_name: 'John Johnson', email: 'xyz@gmale.com', username: "admin", password: 'test', role: 1)
+        user = User.create(full_name: 'John Johnson', email: 'registereduser', username: "registereduser", password: 'test', password_confirmation: 'test')
 
         visit root_path
 
@@ -137,8 +137,8 @@ feature 'User authorization' do
         expect(current_path).to eq(admin_dashboard_path)
       end
       it 'can edit other users details' do
-        admin = User.create(email: 'xyz@gmale.com', username: "admin", password: 'test', role: 1)
-        user = User.create(email: 'registereduser', username: "registereduser", password: 'test', password_confirmation: 'test')
+        admin = User.create(full_name: 'John Johnson', email: 'xyz@gmale.com', username: "admin", password: 'test', role: 1)
+        user = User.create(full_name: 'John Johnson', email: 'registereduser', username: "registereduser", password: 'test', password_confirmation: 'test')
 
         visit root_path
 

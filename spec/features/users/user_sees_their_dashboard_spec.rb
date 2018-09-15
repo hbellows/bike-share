@@ -31,7 +31,7 @@ describe 'As a user' do
 
       expect(current_path).to eq(order_path(@order1))
       expect(page).to have_content("Order ##{@order1.id}")
-      expect(page).to have_content("Order Status: #{@order1.status}")
+      expect(page).to have_content("Order Status: #{@order1.status.capitalize}")
       expect(page).to have_content("Order Submitted: #{@order1.created_at}")
 
       expect(page).to have_content(@order1.accessories[0].name)

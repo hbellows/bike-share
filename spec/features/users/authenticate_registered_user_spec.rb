@@ -4,7 +4,7 @@ describe 'registration and login' do
   describe 'login' do
     it 'existing user should be able to login' do
       username = 'bikeshareuser'
-      user = User.create(email: 'xyz@gmale.com', username: username, password: 'test')
+      user = User.create(full_name: 'John Johnson', email: 'xyz@gmale.com', username: username, password: 'test')
 
       visit root_path
 
@@ -16,7 +16,7 @@ describe 'registration and login' do
       fill_in :password, with: 'test'
 
       click_on "Log In"
-      
+
       expect(current_path).to eq(dashboard_path)
       expect(page).to have_content("Logged in as #{username}!")
       expect(page).to have_content("#{username}'s Dashboard")
@@ -27,7 +27,7 @@ describe 'registration and login' do
   describe 'logout' do
     it 'allows users to log out' do
       username = 'bikeshareuser'
-      user = User.create(email: 'xyz@gmale.com', username: username, password: 'test')
+      user = User.create(full_name: 'John Johnson', email: 'xyz@gmale.com', username: username, password: 'test')
 
       visit login_path
       click_on 'Login'
