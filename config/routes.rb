@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'users#show'
 
   namespace :admin do
+    resources :accessories, only: [:new, :create, :edit, :update]
     resources :users
     resources :stations
     resources :conditions

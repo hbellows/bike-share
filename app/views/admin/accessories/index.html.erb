@@ -1,1 +1,19 @@
 <h1>Admin Accessories Index</h1>
+
+<h2><%= link_to 'Add New Accessory', new_admin_accessory_path %></h2>
+
+<% @accessories.each do |accessory| %>
+	<ul id="accessory-<%= accessory.id %>">
+		<li><%= image_tag('bike_image.jpg') %></li>
+		<li><%= accessory.name %></li>
+		<li><%= accessory.description %></li>
+		<li><%= number_to_currency(accessory.price) %></li>
+		<li><%= boolean_to_text(accessory.retired?) %></li>
+		<li><%= link_to 'Edit', edit_admin_accessory_path(accessory) %>
+		<% if accessory.retired? %>
+			<li><%= link_to 'Reactivate', admin_accessory_path(accessory, retired?: false), method: :put %></li>
+		<% else %>
+			<li><%= link_to 'Retire', admin_accessory_path(accessory, retired?: true), method: :put %></li>
+		<% end %>
+	</ul>
+<% end %>
