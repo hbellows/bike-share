@@ -5,9 +5,9 @@ class Admin::UsersController < Admin::BaseController
     @user = User.find(current_user.id)
     @status_count = Order.status_count
     if params[:filter_by_status]
-      @orders = Order.filter_by_status(params[:filter_by_status])
+      @orders = Order.filter_by_status(params[:filter_by_status]).order(:id)
     else
-      @orders = Order.all
+      @orders = Order.order(:id)
     end
   end
 

@@ -68,13 +68,46 @@ describe 'As an admin' do
       expect(page).to_not have_content("Status: Paid")
       expect(page).to_not have_content("Status: Cancelled")
     end
+    it 'allows me to cancel orders that are paid or ordered' do
+      visit admin_dashboard_path
+
+      within("#order-#{@order1.id}") do
+        click_link 'Cancel'
+      end
+      expect(current_path).to eq(admin_dashboard_path)
+      within("#order-#{@order1.id}") do
+        expect(page).to have_content("Status: Cancelled")
+      end
+
+      within("#order-#{@order2.id}") do
+        click_link 'Cancel'
+      end
+      expect(current_path).to eq(admin_dashboard_path)
+      within("#order-#{@order2.id}") do
+        expect(page).to have_content("Status: Cancelled")
+      end
+    end
+    it 'allows me to mark as paid orders which are ordered' do
+      visit admin_dashboard_path
+
+      within("#order-#{@order1.id}") do
+        click_link 'Mark as Paid'
+      end
+      expect(current_path).to eq(admin_dashboard_path)
+      within("#order-#{@order1.id}") do
+        expect(page).to have_content("Status: Paid")
+      end
+    end
+    it 'allows me to mark as completed orders which are paid' do
+      visit admin_dashboard_path
+
+      within("#order-#{@order2.id}") do
+        click_link 'Mark as Completed'
+      end
+      expect(current_path).to eq(admin_dashboard_path)
+      within("#order-#{@order2.id}") do
+        expect(page).to have_content("Status: Completed")
+      end
+    end
   end
 end
-
-
-# I can filter orders to display by each status type ("Ordered", "Paid", "Cancelled", "Completed"),
-# I have links to transition between statuses
-#
-# I can click on "cancel" on individual orders which are "paid" or "ordered"
-# I can click on "mark as paid" on orders that are "ordered"
-# I can click on "mark as completed" on orders that are "paid"
