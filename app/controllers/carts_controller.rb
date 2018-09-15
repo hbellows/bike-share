@@ -26,7 +26,7 @@ class CartsController < ApplicationController
       flash[:notice] = "Add items to cart to checkout"
       redirect_to root_path
     elsif params[:checkout] == 'checkout' && current_user
-      @cart.checkout(current_user)
+      @cart.checkout(current_user, params[:street_address], params[:city], params[:state], params[:zip_code])
       @cart.contents.clear
       total = params[:total]
       flash[:notice] = "Successfully submitted your order totalling #{total}"

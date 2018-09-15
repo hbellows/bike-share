@@ -24,6 +24,11 @@ describe 'As a user' do
 
       visit cart_path
 
+      fill_in :street_address, with: '999 Street Ave'
+      fill_in :city, with: 'Denver'
+      select 'Colorado', from: :state
+      fill_in :zip_code, with: 80401
+
       click_button 'Checkout'
 
       order = user.orders[0]
