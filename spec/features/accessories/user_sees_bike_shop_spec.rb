@@ -11,10 +11,10 @@ describe "user visits bike shop page" do
 
       expect(page).to have_content(accessory_1.name)
       expect(page).to have_content(accessory_1.description)
-      expect(page).to have_content("Price: $#{accessory_1.price}.00")
+      expect(page).to have_content("$#{accessory_1.price}.00")
       expect(page).to have_content(accessory_2.name)
       expect(page).to have_content(accessory_2.description)
-      expect(page).to have_content("Price: $#{accessory_2.price}.00")
+      expect(page).to have_content("$#{accessory_2.price}.00")
     end
     it "shows button to add to cart" do
       accessory_1 = create(:accessory)

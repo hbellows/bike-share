@@ -13,7 +13,7 @@
     </thead>
     <tbody>
       <% @accessories.each do |accessory| %>
-        <tr class="accessory-<%= accessory.id %>"<%= accessory.id %>>
+        <tr id="accessory-<%= accessory.id %>"<%= accessory.id %>>
           <th id='table-entry'><img src="<%= accessory.image %>" alt="thumbail" style="width:30px;height:30px;"></th>
           <th id='table-entry'><%= link_to accessory.name, accessory_path(accessory) %></th>
           <td id='table-entry'><%= accessory.description %></td>

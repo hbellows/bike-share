@@ -8,7 +8,7 @@ describe 'user visits accessory show page' do
 
     expect(page).to have_content(accessory.name)
     expect(page).to have_content(accessory.description)
-    expect(page).to have_content("Price: $#{accessory.price}.00")
+    expect(page).to have_content("$#{accessory.price}.00")
     expect(page).to have_button("Add to Cart")
   end
   it "shows a retired accessory correctly" do
@@ -18,7 +18,7 @@ describe 'user visits accessory show page' do
 
     expect(page).to have_content(accessory.name)
     expect(page).to have_content(accessory.description)
-    expect(page).to have_content("Price: $#{accessory.price}.00")
+    expect(page).to have_content("$#{accessory.price}.00")
     expect(page).to_not have_button("Add to Cart")
     expect(page).to have_button("Retired")
   end
