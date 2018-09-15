@@ -1,16 +1,22 @@
 <h1>Trip #<%= @trip.id %></h1>
 
-<ul>
-  <li>Duration: <%= @trip.duration / 60 %> minutes</li>
-  <li>Start Station: <%= @trip.start_station.name %></li>
-  <li>End Station: <%= @trip.end_station.name %></li>
-  <li>Start Date: <%= @trip.start_date.strftime("%m/%d/%Y") %></li>
-  <li>End Date: <%= @trip.end_date.strftime("%m/%d/%Y") %></li>
-  <li>Bike ID: <%= @trip.bike_id %></li>
-  <li>Subscription Type: <%= @trip.subscription_type %></li>
-  <li>Zip Code: <%= @trip.zip_code %></li>
-  <% if current_user && current_user.admin? %>
-    <li><%= link_to 'Edit', edit_admin_trip_path(@trip) %></li>
-    <li><%= link_to 'Delete', admin_trip_path(@trip), method: :delete %></li>
-  <% end %>
-</ul>
+  <section class='show-main'>
+    <div>Duration: <%= @trip.duration / 60 %> minutes</div>
+    <% unless @trip.start_station.nil? %>
+      <div>Start Station: <%= @trip.start_station.name %></div>
+    <% end %>
+    <% unless @trip.end_station.nil? %>
+      <div>End Station: <%= @trip.end_station.name %></div>
+    <% end %>
+    <div>Start Date: <%= @trip.start_date.strftime("%m/%d/%Y") %></div>
+    <div>End Date: <%= @trip.end_date.strftime("%m/%d/%Y") %></div>
+    <div>Bike ID: <%= @trip.bike_id %></div>
+    <div>Subscription Type: <%= @trip.subscription_type %></div>
+    <div>Zip Code: <%= @trip.zip_code %></div>
+  <%= link_to '<< Back to Trips Index', trips_path %>
+</section>
+
+<% if current_admin? %>
+  <%= button_to 'Edit', edit_admin_trip_path(@trip), method: :get, class:'btn btn-success show-edit-button' %>
+  <%= button_to 'Delete', admin_trip_path(@trip), method: :delete, data: {confirm: "Really want to delete this trip?"}, class:'btn btn-danger' %>
+<% end %>

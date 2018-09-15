@@ -26,8 +26,8 @@ feature 'Condition show page' do
 
       expect(page).to_not have_content("Edit")
       expect(page).to_not have_content("Delete")
-      expect(page).to_not have_link("Edit")
-      expect(page).to_not have_link("Delete")
+      expect(page).to_not have_button("Edit")
+      expect(page).to_not have_button("Delete")
     end
   end
 end

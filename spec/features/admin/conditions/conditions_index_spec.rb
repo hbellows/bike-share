@@ -28,10 +28,8 @@ describe 'Admin Condition Index Page' do
       expect(page).to have_content("#{condition2.mean_wind_speed}")
       expect(page).to have_content("#{condition2.precipitation}")
 
-      expect(page).to have_content("Edit")
-      expect(page).to have_content("Delete")
-      expect(page).to have_link("Edit")
-      expect(page).to have_link("Delete")
+      expect(page).to have_button("Edit")
+      expect(page).to have_button("Delete")
     end
   end
 end
