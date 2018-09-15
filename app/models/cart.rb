@@ -35,8 +35,15 @@ class Cart
     end.sum
   end
 
-  def checkout(current_user)
-    order = Order.create(status: 'ordered', user_id: current_user.id)
+  def checkout(current_user, street_address, city, state, zip_code)
+    order = Order.create(
+      status: 'ordered',
+      user_id: current_user.id,
+      street_address: street_address,
+      city: city,
+      state: state,
+      zip_code: zip_code
+    )
     contents.each do |accessory_id, quantity|
       accessory = Accessory.find(accessory_id)
       OrderAccessory.create(

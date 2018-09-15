@@ -5,12 +5,12 @@ describe 'As a user' do
     before(:each) do
       @accessory1, @accessory2, @accessory3, @accessory4 = create_list(:accessory, 4)
       @user = create(:user)
-      @order1 = @user.orders.create(status: 'paid')
+      @order1 = @user.orders.create(status: 'paid', street_address: '120th St', city: 'Denver', state: 'CO', zip_code: 80401)
       @order1.order_accessories.create(accessory: @accessory1, quantity: 2, unit_price: @accessory1.price)
       @order1.order_accessories.create(accessory: @accessory2, quantity: 1, unit_price: @accessory2.price)
       @order1.order_accessories.create(accessory: @accessory3, quantity: 1, unit_price: @accessory3.price)
 
-      @order2 = @user.orders.create(status: 'ordered')
+      @order2 = @user.orders.create(status: 'ordered', street_address: '120th St', city: 'Denver', state: 'CO', zip_code: 80401)
       @order2.order_accessories.create(accessory: @accessory1, quantity: 1, unit_price: @accessory1.price)
       @order2.order_accessories.create(accessory: @accessory2, quantity: 1, unit_price: @accessory2.price)
       @order2.order_accessories.create(accessory: @accessory3, quantity: 1, unit_price: @accessory3.price)
@@ -31,7 +31,7 @@ describe 'As a user' do
 
       expect(current_path).to eq(order_path(@order1))
       expect(page).to have_content("Order ##{@order1.id}")
-      expect(page).to have_content("Order Status: #{@order1.status}")
+      expect(page).to have_content("Order Status: #{@order1.status.capitalize}")
       expect(page).to have_content("Order Submitted: #{@order1.created_at}")
 
       expect(page).to have_content(@order1.accessories[0].name)
@@ -62,7 +62,7 @@ describe 'As a user' do
     end
     it 'will not show me another user\'s order' do
       user2 = create(:user)
-      order3 = user2.orders.create(status: 'paid')
+      order3 = user2.orders.create(status: 'paid', street_address: '120th St', city: 'Denver', state: 'CO', zip_code: 80401)
 
       visit order_path(order3)
 
