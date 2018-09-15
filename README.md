@@ -2,6 +2,13 @@
 
 # Bike Share README
 
+### Abstract
+
+This application uses Ruby on Rails and ActiveRecord to analyze data from a Bay Area bike share program. Data explored includes general stats along with usage stats. The usage stats will be particularly helpful in creating relationships with local business for mutual benefit. As well as showing financial impact for immediate communities near a proposed new bike docking station. Data also includes weather information for all days. 
+
+Also included is a bike shop where visitors are able to peruse bike asseccories. Visitors are able to create an account in order to login and checkout their cart.
+
+
 ## System Dependencies
  - Ruby Version > 2.4.0
  - Rails 5.1.6
