@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
-
 
   root to: 'accessories#index'
 
@@ -32,7 +30,7 @@ Rails.application.routes.draw do
   resources :conditions, only: [:index, :show]
   resources :accessories, only: [:show]
   resources :carts, only: [:create]
-  resources :orders, only: [:show]
+  resources :orders, only: [:show, :update]
 
   get '/cart', to: 'carts#index'
   delete '/cart', to: 'carts#destroy'

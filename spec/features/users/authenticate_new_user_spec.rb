@@ -15,6 +15,7 @@ describe 'registration and login' do
 
       expect(current_path).to eq(new_user_path)
 
+      fill_in :user_full_name, with: 'Blah Johnson'
       fill_in :user_email, with: "xyz@gmale.com"
       fill_in :user_username, with: username
       fill_in :user_password, with: 'test'

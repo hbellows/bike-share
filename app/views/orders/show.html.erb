@@ -1,6 +1,12 @@
 <h1><%= "Order ##{@order.id}" %></h1>
-<h2>Order Status: <%= @order.status %></h2>
+<h2>Order Status: <%= @order.status.capitalize %></h2>
 <h2>Order Submitted: <%= @order.created_at %></h2>
+<h2>Ordered by: <%= @order.user.full_name %></h2>
+<h2>Shipping Address:</h2>
+<p>
+  <%= @order.street_address %><br />
+  <%= "#{@order.city}, #{@order.state} #{@order.zip_code}" %>
+</p>
 
 <table>
   <thead>
@@ -12,7 +18,7 @@
     <% @order.order_accessories.each do |order_accessory| %>
       <tr>
         <td>
-          <%= order_accessory.accessory_name %>
+          <%= link_to order_accessory.accessory_name, accessory_path(order_accessory.accessory) %>
         </td>
         <td id="order-accessory-quantity-<%= order_accessory.id %>">
           <%= order_accessory.quantity %>

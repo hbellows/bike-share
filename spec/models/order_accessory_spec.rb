@@ -10,7 +10,7 @@ describe OrderAccessory, type: :model do
     before(:each) do
       @user = create(:user)
       @accessory = create(:accessory)
-      @order = @user.orders.create(status: 'paid')
+      @order = @user.orders.create(status: 'paid', street_address: '120th St', city: 'Denver', state: 'CO', zip_code: 80401)
       @order_accessory = @order.order_accessories.create(accessory: @accessory, quantity: 2, unit_price: @accessory.price)
     end
     it "#accessory_name" do

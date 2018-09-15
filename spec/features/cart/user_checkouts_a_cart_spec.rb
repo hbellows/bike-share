@@ -1,9 +1,3 @@
-# As a user,
-# When I visit my cart
-# And I click 'Checkout'
-# I am taken to my dashboard
-# And I see that order in my order history
-
 require 'rails_helper'
 
 describe 'As a user' do
@@ -29,6 +23,11 @@ describe 'As a user' do
       end
 
       visit cart_path
+
+      fill_in :street_address, with: '999 Street Ave'
+      fill_in :city, with: 'Denver'
+      select 'Colorado', from: :state
+      fill_in :zip_code, with: 80401
 
       click_button 'Checkout'
 
