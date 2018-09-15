@@ -6,8 +6,10 @@ describe 'As an admin' do
       @admin = create(:admin)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@admin)
       user1, user2 = create_list(:user, 2)
+      accessory = create(:accessory)
 
       @order1 = create(:order, user_id: user1.id, status: 'ordered')
+      @order1.order_accessories.create(accessory_id: accessory.id, quantity: 2, unit_price: accessory.price)
       @order2 = create(:order, user_id: user1.id, status: 'paid')
       @order3 = create(:order, user_id: user2.id, status: 'completed')
       @order4 = create(:order, user_id: user2.id, status: 'completed')
@@ -108,6 +110,19 @@ describe 'As an admin' do
       within("#order-#{@order2.id}") do
         expect(page).to have_content("Status: Completed")
       end
+    end
+    it 'allows me to click an order and see that order\'s details' do
+      visit admin_dashboard_path
+
+      click_link "Order ##{@order1.id}"
+
+      expect(page).to have_content("Order ##{@order1.id}")
+      expect(page).to have_content("Order Status: #{@order1.status.capitalize}")
+      expect(page).to have_content("Order Submitted: #{@order1.created_at}")
+      expect(page).to have_content("Ordered by: #{@order1.user.full_name}")
+      expect(page).to have_content("Shipping Address:\n#{@order1.street_address}")
+      expect(page).to have_content("#{@order1.city}, #{@order1.state} #{@order1.zip_code}")
+      expect(page).to have_link(@order1.accessories.first.name, href: accessory_path(@order1.accessories.first))
     end
   end
 end
