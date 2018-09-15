@@ -48,3 +48,12 @@
 ## Contact Information && Contributing Authors
 
 ## Pull Request Template/Fork Repository
+
+### Contact Information
+
+Feel free to contact us with any questions, comments, or suggestions:
+* Abdulla: [https://github.com/abdullaqudrat](https://github.com/abdullaqudrat)
+* Andrew: [https://github.com/andrewetobin](https://github.com/andrewetobin)
+* Harper: [https://github.com/hbellows](https://github.com/hbellows)
+* Mike: [https://github.com/mikecm1141](https://github.com/mikecm1141)
+
