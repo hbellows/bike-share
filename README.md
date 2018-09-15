@@ -29,7 +29,11 @@
  - SimpleCov data
 
 ## Initial Setup
- - Git clone
+ - Clone this repository
+
+ ```
+ git clone https://github.com/mikecm1141/bike-share
+ ```
  - Bundle install/update
  - Rake DB Drop Create Migrate Seed
 
