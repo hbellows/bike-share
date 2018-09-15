@@ -6,6 +6,18 @@ describe Order, type: :model do
     it { should have_many :order_accessories }
     it { should have_many(:accessories).through(:order_accessories) }
   end
+  describe 'Scopes' do
+    it '#filter_by_status' do
+      user = create(:user)
+      order1 = create(:order, status: 'paid', user_id: user.id)
+      order2 = create(:order, status: 'cancelled', user_id: user.id)
+      order3 = create(:order, status: 'completed', user_id: user.id)
+      order4 = create(:order, status: 'completed', user_id: user.id)
+
+      expect(Order.filter_by_status('paid').first).to eq(order1)
+      expect(Order.filter_by_status('completed').to_a).to eq([order3, order4])
+    end
+  end
   describe 'Class Methods' do
     it '.status_count(status)' do
       user = create(:user)

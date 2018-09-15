@@ -18,22 +18,22 @@ describe 'As an admin' do
       within("#order-#{@order1.id}") do
         expect(page).to have_content("Order ##{@order1.id}")
         expect(page).to have_content("User: #{@order1.user.username}")
-        expect(page).to have_content("Status: #{@order1.status}")
+        expect(page).to have_content("Status: #{@order1.status.capitalize}")
       end
       within("#order-#{@order2.id}") do
         expect(page).to have_content("Order ##{@order2.id}")
         expect(page).to have_content("User: #{@order2.user.username}")
-        expect(page).to have_content("Status: #{@order2.status}")
+        expect(page).to have_content("Status: #{@order2.status.capitalize}")
       end
       within("#order-#{@order3.id}") do
         expect(page).to have_content("Order ##{@order3.id}")
         expect(page).to have_content("User: #{@order3.user.username}")
-        expect(page).to have_content("Status: #{@order3.status}")
+        expect(page).to have_content("Status: #{@order3.status.capitalize}")
       end
       within("#order-#{@order4.id}") do
         expect(page).to have_content("Order ##{@order4.id}")
         expect(page).to have_content("User: #{@order4.user.username}")
-        expect(page).to have_content("Status: #{@order4.status}")
+        expect(page).to have_content("Status: #{@order4.status.capitalize}")
       end
     end
     it 'shows me the total number of orders for each status' do
@@ -51,13 +51,22 @@ describe 'As an admin' do
     it 'allows me to filter orders by status' do
       visit admin_dashboard_path
 
-      select 'Ordered', from: :order_filter_by_status
+      select 'Ordered', from: :filter_by_status
+      click_on 'Filter'
 
       expect(current_path).to eq(admin_dashboard_path)
-      expect(page).to have_content("Order: #{@order1.id}")
-      expect(page).to_not have_content("Order: #{@order2.id}")
-      expect(page).to_not have_content("Order: #{@order3.id}")
-      expect(page).to_not have_content("Order: #{@order4.id}")
+      expect(page).to have_content("Status: #{@order1.status.capitalize}")
+      expect(page).to_not have_content("Status: Completed")
+      expect(page).to_not have_content("Status: Cancelled")
+      expect(page).to_not have_content("Status: Paid")
+
+      select 'Completed', from: :filter_by_status
+      click_on 'Filter'
+
+      expect(current_path).to eq(admin_dashboard_path)
+      expect(page).to have_content("Status: #{@order3.status.capitalize}")
+      expect(page).to_not have_content("Status: Paid")
+      expect(page).to_not have_content("Status: Cancelled")
     end
   end
 end

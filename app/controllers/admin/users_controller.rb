@@ -3,8 +3,12 @@ class Admin::UsersController < Admin::BaseController
 
   def show
     @user = User.find(current_user.id)
-    @orders = Order.all
     @status_count = Order.status_count
+    if params[:filter_by_status]
+      @orders = Order.filter_by_status(params[:filter_by_status])
+    else
+      @orders = Order.all
+    end
   end
 
   def edit
