@@ -12,12 +12,7 @@ class Admin::StationsController < Admin::BaseController
   def new
     @station = Station.new
   end
-
-  def edit
-    @station = Station.friendly.find(params[:id])
-    @admin = current_user.role
-  end
-    
+  
   def create
     @station = Station.new(station_params)
     if @station.save
@@ -28,7 +23,11 @@ class Admin::StationsController < Admin::BaseController
       redirect_to new_admin_station_path
     end
   end
-
+  
+  def edit
+    @station = Station.friendly.find(params[:id])
+    @admin = current_user.role
+  end
 
   def update
     station = Station.friendly.find(params[:id])
