@@ -1,15 +1,30 @@
 <h1>Bike Shop</h1>
 
-<% @accessories.each do |accessory| %>
-  <div id="accessory-<%=accessory.id%>">
-    <div><img src="<%= accessory.image %>" alt="thumbnail" style="width:30px;height:30px;"></div>
-    <div><%= link_to accessory.name, accessory_path(accessory) %></div>
-    <div><%= accessory.description %></div>
-    <div>Price: <%= number_to_currency(accessory.price) %></div>
-    <% if accessory.retired? %>
-      <div><%= button_to 'Retired', nil, disabled: true %></div>
-    <% else %>
-      <div><%= button_to "Add to Cart", carts_path(accessory_id: accessory.id)%></div>
-    <% end %>
-  </div>
-<% end %>
+<section class='index-main'>
+  <table class="table table-borderless" id='station-index-table'>
+    <thead>
+      <tr>
+        <th scope="col" id='table-entry'></th>
+        <th scope="col" id='table-entry'>Accessory</th>
+        <th scope="col" id='table-entry'>Description</th>
+        <th scope="col" id='table-entry'>Price</th>
+        <th scope="col" id='table-entry'></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @accessories.each do |accessory| %>
+        <tr class="accessory-<%= accessory.id %>"<%= accessory.id %>>
+          <th id='table-entry'><img src="<%= accessory.image %>" alt="thumbail" style="width:30px;height:30px;"></th>
+          <th id='table-entry'><%= link_to accessory.name, accessory_path(accessory) %></th>
+          <td id='table-entry'><%= accessory.description %></td>
+          <td id='table-entry'><%= number_to_currency(accessory.price) %></td>
+          <% if accessory.retired? %>
+            <td><%= button_to 'Retired', nil, disabled: true, class:'btn btn-outline-dark retired-button' %></td>
+          <% else %>
+            <td><%= button_to "Add to Cart", carts_path(accessory_id: accessory.id), class:'btn btn-primary' %></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
