@@ -1,5 +1,9 @@
 <h1><%= @station.name %></h1>
 
+  <% if current_admin? %>
+    <%= link_to 'Create New Station', new_admin_station_path, class:'btn btn-secondary' %>
+  <% end %>
+
 <ul>
     <li><%=@station.name%></li>
     <li>Dock count: <%=@station.dock_count%></li>
@@ -17,4 +21,9 @@
     <li>Most Frequent Zipcode For Users Starting Here: <%= @station.top_starting_user_zipcode %></li>
     <li>Bike ID Most Frequently Starting Here: <%= @station.top_starting_bike_id %></li>
   </ul>
+<% end %>
+
+<% if current_admin? %>
+  <%= button_to 'Edit', edit_admin_station_path(@station), method: :get, class:'btn btn-success show-edit-button' %>
+  <%= button_to 'Delete', admin_station_path(@station), method: :delete, data: {confirm: "Really want to delete this station?"}, class:'btn btn-danger' %>
 <% end %>
