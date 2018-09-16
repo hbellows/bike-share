@@ -64,14 +64,26 @@ describe 'As an admin' do
 			expect(current_path).to eq(new_admin_accessory_path)
 			expect(page).to have_content('Accessory could not be created.')
 		end
+		it 'requires that price must be valid numerical value and greater than zero' do
+			visit new_admin_accessory_path
+
+			fill_in :accessory_name, with: @accessory_name
+			fill_in :accessory_description, with: @accessory_description
+			fill_in :accessory_price, with: 'not a number'
+			click_on 'Create Accessory'
+
+			expect(current_path).to eq(new_admin_accessory_path)
+			expect(page).to have_content('Accessory could not be created.')
+
+			fill_in :accessory_name, with: @accessory_name
+			fill_in :accessory_description, with: @accessory_description
+			fill_in :accessory_price, with: -1
+			click_on 'Create Accessory'
+
+			expect(current_path).to eq(new_admin_accessory_path)
+			expect(page).to have_content('Accessory could not be created.')
+		end
 	end
 end
 
-# As an admin user,
-# When I visit admin bikeshop new
-# I can create an accessory,
-# An accessory must have a title, description and price,
-# The title and description cannot be empty,
-# The title must be unique for all accessories in the system,
-# The price must be a valid decimal numeric value and greater than zero,
 # The photo is optional. If not present, a stand-in photo is used. (PAPERCLIP)
