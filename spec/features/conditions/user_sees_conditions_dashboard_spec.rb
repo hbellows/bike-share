@@ -16,6 +16,5 @@ describe 'Registered user visits conditions dashboard' do
 
     expect(page).to have_content()
 
-    # I see the Breakout of average number of rides, highest number of rides, and lowest number of rides on days with a high temperature in 10 degree chunks (e.g. average number of rides on days with high temps between fifty and sixty degrees)
   end
 end
