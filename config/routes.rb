@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :edit, :update]
   resources :stations, only: [:index, :show]
   resources :trips, only: [:index, :show]
-  resources :conditions, only: [:index, :show]
+  resources :conditions, only: [:index, :show, :destroy]
   resources :accessories, only: [:show]
   resources :carts, only: [:create]
   resources :orders, only: [:show, :update]
