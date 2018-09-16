@@ -1,7 +1,7 @@
 <%= form_for [:admin, @condition] do |form| %>
   <div class="field">
     <%= form.label :date %>
-    <%= form.date_field :date %>
+    <%= form.text_field :date %>
   </div>
   <div class="field">
     <%= form.label :max_temperature %>

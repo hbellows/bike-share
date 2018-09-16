@@ -3,14 +3,6 @@
     <%= link_to 'Create New Weather Condition', new_admin_condition_path, class:'btn btn-secondary button-link' %>
   <% end %>
 
-<div class="admin-add-condition">
-  <ul>
-    <% if current_admin? %>
-    <li><%= link_to 'Add Condition', new_admin_condition_path(@condition) %></li>
-    <% end %>
-  </ul>
-</div>
-
 <section class='index-main'>
   <table class="table table-striped table-light" id='conditions-index-table'>
     <thead class='table-light table-header'>
@@ -42,8 +34,8 @@
         <td id='table-entry'><%= condition.mean_wind_speed %> mph</td>
         <td id='table-entry'><%= condition.precipitation %> "</td>
         <% if current_admin? %>
-          <td><%= button_to 'Edit', edit_admin_condition_path(condition), method: :get, class:'btn btn-success edit-button' %></td>
-          <td><%= button_to 'Delete', admin_condition_path(condition), method: :delete, data: {confirm: "Really want to delete this condition?"}, class:'btn btn-danger delete-button' %></td>
+          <td><%= button_to 'Edit', edit_admin_condition_path(condition), class:'btn btn-success edit-button' %></td>
+          <td><%= button_to 'Delete', condition_path(condition), method: :delete, data: {confirm: "Really want to delete this condition?"}, class:'btn btn-danger delete-button' %></td>
         <% end %>
       </tr>
       </section>

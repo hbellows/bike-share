@@ -17,5 +17,5 @@
 
 <% if current_admin? %>
   <%= button_to 'Edit', edit_admin_condition_path(@condition), method: :get, class:'btn btn-success show-edit-button' %>
-  <%= button_to 'Delete', admin_condition_path(@condition), method: :delete, data: {confirm: "Really want to delete this condition?"}, class:'btn btn-danger' %>
+  <%= button_to 'Delete', condition_path(@condition), method: :delete, data: {confirm: "Really want to delete this condition?"}, class:'btn btn-danger' %>
 <% end %>
