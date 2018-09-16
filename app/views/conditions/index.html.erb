@@ -40,7 +40,7 @@
         <td id='table-entry'><%= condition.precipitation %> "</td>
         <% if current_admin? %>
           <td id='table-entry'><%= link_to "Edit", edit_admin_condition_path(condition) %></td>
-          <td id='table-entry'><%= link_to "Delete", conditions_path %></td>
+          <td id='table-entry'><%= link_to "Delete", condition_path(condition), method: :delete %></td>
         <% end %>
       </tr>
       </section>

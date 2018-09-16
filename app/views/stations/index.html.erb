@@ -24,7 +24,7 @@
     </thead>
     <tbody>
       <% @stations.each do |station| %>
-      <section id="station-#{station.id}">
+      <section id="station-<%= station.id %>">
         <tr>
           <th id='table-entry'><%= link_to station.name, station_path(station) %></th>
           <td id='table-entry'><%= station.city %></td>
