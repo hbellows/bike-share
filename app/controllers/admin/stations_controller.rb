@@ -26,15 +26,14 @@ class Admin::StationsController < Admin::BaseController
   
   def edit
     @station = Station.friendly.find(params[:id])
-    @admin = current_user.role
   end
 
   def update
-    station = Station.friendly.find(params[:id])
-    station.update(station_params)
+    @station = Station.friendly.find(params[:id])
+    @station.update(station_params)
     if station.save
       flash[:notice] = "#{station.name} updated!"
-      redirect_to admin_station_path(station)
+      redirect_to admin_station_path(@station)
     else
       flash[:notice] = "All attributes must be present, update failed."
       redirect_to edit_admin_station_path(station)

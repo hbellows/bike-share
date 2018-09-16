@@ -1,17 +1,44 @@
 <h1>All Stations</h1>
-<ul>
-  <li><%= link_to "Add Station", new_admin_station_path %></li>
-</ul>
 
-<ul>
-  <% @stations.each do |station| %>
-  <section id="station-<%= station.id %>">
-    <li><%=station.name%></li>
-    <li>Dock count: <%=station.dock_count%></li>
-    <li><%=station.city%></li>
-    <li><%= station.installation_date.strftime('%m/%d/%Y') %></li>
-    <%= link_to "Edit", edit_admin_station_path(station) %>
-    <%= link_to "Delete", admin_station_path(station), method: :delete %>
-  </section>
-  <% end %>
-</ul>
+<div class="admin-add-station">
+  <ul>
+    <% if current_admin? %>
+    <li><%= link_to 'Add Station', new_admin_station_path(@station) %></li>
+    <% end %>
+  </ul>
+</div>
+
+<section class='index-main'>
+  <table class="table table-striped table-light" id='station-index-table'>
+    <thead class='table-light table-header'>
+      <tr>
+        <th scope="col" id='table-entry'>Station</th>
+        <th scope="col" id='table-entry'>City</th>
+        <th scope="col" id='table-entry'>Dock Count</th>
+        <th scope="col" id='table-entry'>Installation Date</th>
+          <% if current_admin? %>
+            <th scope="col" id='table-entry'>Edit</th>
+            <th scope="col" id='table-entry'>Delete</th>
+          <% end %>
+      </tr>
+    </thead>
+    <tbody>
+      <% @stations.each do |station| %>
+      <section id="station-#{station.id}">
+        <tr>
+          <th id='table-entry'><%= link_to station.name, station_path(station) %></th>
+          <td id='table-entry'><%= station.city %></td>
+          <td id='table-entry'><%= station.dock_count %></td>
+          <td id='table-entry'><%= station.installation_date.strftime('%m/%d/%Y') %></td>
+            <% if current_admin? %>
+              <td id='table-entry'><%= link_to 'Edit', edit_admin_station_path(@station) %></td>
+              <td id='table-entry'><%= link_to 'Delete', station_path(@station), method: :delete %></td>
+            <% end %>
+        </tr>
+      </section>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
+<%= will_paginate @stations %>

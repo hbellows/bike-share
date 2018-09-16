@@ -4,17 +4,13 @@ class Admin::ConditionsController < ApplicationController
     @conditions = Condition.all
   end
 
-  # def show
-  #   @condition = Condition.find(params[:id])
-  # end
-
   def new
     @condition = Condition.new
   end
 
   def create
     @condition = Condition.new(condition_params)
-    @condition.start_date = Date.strptime(condition_params[:start_date], '%m/%d/%Y')
+    @condition.date = Date.strptime(condition_params[:date], '%m/%d/%Y')
     if @condition.save
       flash[:notice] = 'New condition added!'
       redirect_to condition_path(@condition)
@@ -27,7 +23,8 @@ class Admin::ConditionsController < ApplicationController
   private
 
     def condition_params
-      params.require(:condition).permit(:date, :dock_count, :city, :installation_date)
+      params.require(:condition).permit(:date, :max_temperature, :mean_temperature, :min_temperature,
+        :mean_humidity, :mean_visibility, :mean_wind_speed, :precipitation)
     end
 
 end
