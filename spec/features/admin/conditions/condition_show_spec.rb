@@ -49,5 +49,12 @@ describe 'Admin Condition Show Page' do
       expect(page).to have_content("4")
       expect(page).to have_content("0.05")
     end
+    it 'allows me to delete a condition' do
+      admin = create(:user, role: 1)
+      condition = create(:condition)
+
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+    end
   end
 end
