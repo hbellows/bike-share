@@ -62,25 +62,28 @@ describe 'Admin Condition Index Page' do
     end
     it 'allows me to delete a condition' do
       admin = create(:user, role: 1)
-      condition = create(:condition)
-
+      condition1 = create(:condition)
+      condition2 = create(:condition)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
-      visit admin_conditions_path
 
-      click_on 'Delete'
+      visit conditions_path
 
-      expect(current_path).to eq(admin_conditions_path)
+      within("#condition-#{condition1.id}") do
+        click_link 'Delete'
+      end
+
+      expect(current_path).to eq(conditions_path)
       
       expect(page).to have_content('Condition deleted.')
       
-      expect(page).to_not have_content(condition.date.strftime('%m/%d/%Y'))
-      expect(page).to_not have_content(condition.max_temperature)
-      expect(page).to_not have_content(condition.mean_temperature)
-      expect(page).to_not have_content(condition.min_temperature)
-      expect(page).to_not have_content(condition.mean_humidity)
-      expect(page).to_not have_content(condition.mean_visibility)
-      expect(page).to_not have_content(condition.mean_wind_speed)
+      expect(page).to_not have_content(condition1.date.strftime('%m/%d/%Y'))
+      expect(page).to_not have_content(condition1.max_temperature)
+      expect(page).to_not have_content(condition1.mean_temperature)
+      expect(page).to_not have_content(condition1.min_temperature)
+      expect(page).to_not have_content(condition1.mean_humidity)
+      expect(page).to_not have_content(condition1.mean_visibility)
+      expect(page).to_not have_content(condition1.mean_wind_speed)
     end
   end
 end
