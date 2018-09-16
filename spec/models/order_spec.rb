@@ -50,7 +50,7 @@ describe Order, type: :model do
       order_item1 = order.order_accessories.create(accessory: accessory1, quantity: 2, unit_price: accessory1.price)
       order_item2 = order.order_accessories.create(accessory: accessory2, quantity: 3, unit_price: accessory1.price)
 
-      expected_result = order_item1.subtotal + order_item2.subtotal
+      expected_result = (order_item1.subtotal + order_item2.subtotal).round(2)
 
       expect(order.total).to eq(expected_result)
     end

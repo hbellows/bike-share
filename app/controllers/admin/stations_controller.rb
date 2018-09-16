@@ -1,5 +1,5 @@
 class Admin::StationsController < Admin::BaseController
-  # before_action :set_station, only: [:show, :create, :new]
+  # before_action :set_station, only: [:show, :update, :edit, :create, :new]
 
   def index
     @stations = Station.all
@@ -12,7 +12,7 @@ class Admin::StationsController < Admin::BaseController
   def new
     @station = Station.new
   end
-
+  
   def create
     @station = Station.new(station_params)
     if @station.save
@@ -23,9 +23,10 @@ class Admin::StationsController < Admin::BaseController
       redirect_to new_admin_station_path
     end
   end
-
+  
   def edit
     @station = Station.friendly.find(params[:id])
+    @admin = current_user.role
   end
 
   def update
@@ -53,7 +54,7 @@ class Admin::StationsController < Admin::BaseController
       params.require(:station).permit(:name, :dock_count, :city, :installation_date)
     end
 
-    def set_station
-      @station = Station.friendly.find(params[:id])
-    end
+    # def set_station
+    #   @station = Station.friendly.find(params[:id])
+    # end
 end

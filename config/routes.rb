@@ -12,15 +12,17 @@ Rails.application.routes.draw do
   get '/conditions-dashboard', to: 'conditions#dashboard'
   get '/bike-shop', to: 'accessories#index'
 
+  get '/admin/bike-shop', to: 'admin/accessories#index'
+
   get '/admin/dashboard', to: 'admin/users#show'
   get '/dashboard', to: 'users#show'
 
   namespace :admin do
+    resources :accessories, only: [:new, :create, :edit, :update]
     resources :users
     resources :stations
     resources :conditions
     resources :orders, only: [:index]
-    resources :accessories, only: [:index]
     resources :trips
   end
 

@@ -25,5 +25,9 @@ describe "user visits index page" do
     expect(page).to have_content(station_2.installation_date.strftime('%m/%d/%Y'))
     expect(page).to have_content(station_3.installation_date.strftime('%m/%d/%Y'))
     expect(page).to have_content(station_4.installation_date.strftime('%m/%d/%Y'))
+
+    expect(page).to_not have_content("Edit")
+    expect(page).to_not have_content("Delete")
+    expect(page).to_not have_content("Add Station")
   end
 end
