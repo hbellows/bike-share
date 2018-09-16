@@ -9,8 +9,8 @@
   <li>Mean Visibility: <%=@condition.mean_visibility%></li>
   <li>Mean Wind Speed: <%=@condition.mean_wind_speed%></li>
   <li>Precipitation: <%=@condition.precipitation%></li>
-  <% if current_admin? %>
-    <li><%= link_to "Edit", edit_admin_condition_path(condition) %></li>
+  <% if current_user && current_admin? %>
+    <li><%= link_to "Edit", edit_admin_condition_path(@condition) %></li>
     <li><%= link_to "Delete", admin_conditions_path %></li>
   <% end %>
 </ul>
