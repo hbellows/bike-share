@@ -60,6 +60,9 @@ describe 'Admin Condition Show Page' do
       click_on 'Delete'
 
       expect(current_path).to eq(conditions_path)
+      
+      expect(page).to have_content('Condition deleted.')
+      
       expect(page).to_not have_content(condition.date.strftime('%m/%d/%Y'))
       expect(page).to_not have_content(condition.max_temperature)
       expect(page).to_not have_content(condition.mean_temperature)
@@ -67,7 +70,6 @@ describe 'Admin Condition Show Page' do
       expect(page).to_not have_content(condition.mean_humidity)
       expect(page).to_not have_content(condition.mean_visibility)
       expect(page).to_not have_content(condition.mean_wind_speed)
-
     end
   end
 end
