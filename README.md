@@ -2,7 +2,14 @@
 
 # Bike Share README
 
-## System Dependencies
+### Abstract
+
+This application uses Ruby on Rails and ActiveRecord to analyze data from a Bay Area bike share program. Data explored includes general stats along with usage stats. The usage stats will be particularly helpful in creating relationships with local business for mutual benefit. As well as showing financial impact for immediate communities near a proposed new bike docking station. Data also includes weather information for all days. 
+
+Also included is a bike shop where visitors are able to peruse bike asseccories. Visitors are able to create an account in order to login and checkout their cart.
+
+
+### System Dependencies
  - Ruby Version > 2.4.0
  - Rails 5.1.6
  - Gems
@@ -24,28 +31,26 @@
    - Paperclip (all)
    - JQuery Rails (all)
 
-## Testing
+### Testing
  - Run `rspec` for the test suite
  - SimpleCov data
 
-## Initial Setup
+### Initial Setup
  - Clone this repository ``git clone https://github.com/mikecm1141/bike-share``
  - Bundle install/update
  - Rake DB Drop Create Migrate Seed
 
-## Database Initialization
+### Database Initialization
  - What and why we did the seeding
  - Default accounts for admin and user (like a demo)
 
-## Why We Did This
+### Why We Did This
  - Business Analytics
  - To sell bike accessories
 
-## Screenshots
+### Screenshots
 
-## Navigating Pages
-
-## Contact Information && Contributing Authors
+### Navigating Pages
 
 ## Pull Request Template/Fork Repository
 

@@ -42,7 +42,7 @@ describe "Admin Stations Index" do
 
       click_on "Create Station"
 
-      expect(current_path).to eq(admin_stations_path)
+      expect(current_path).to eq(stations_path)
       expect(page).to have_content("New Station")
       expect(page).to have_content("New City")
       expect(page).to have_content('09/12/2018')
