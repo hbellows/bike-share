@@ -4,15 +4,19 @@ class Admin::StationsController < Admin::BaseController
     @stations = Station.all
   end
 
+  # def show
+  #   @station = Station.friendly.find(params[:id])
+  # end
+
   def new
     @station = Station.new
   end
   
   def create
-    @station = Station.new(station_params)
-    if @station.save
-      flash[:notice] = "#{@station.name} Created."
-      redirect_to stations_path
+    station = Station.new(station_params)
+    if station.save
+      flash[:notice] = "#{station.name} Created."
+      redirect_to station_path(station)
     else
       flash[:notice] = "Error - Could not create new station"
       redirect_to new_admin_station_path
