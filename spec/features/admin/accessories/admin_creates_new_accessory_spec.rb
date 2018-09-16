@@ -22,7 +22,7 @@ describe 'As an admin' do
 			expect(page).to have_content("#{@accessory_name} created!")
 			expect(page).to have_content(@accessory_name)
 			expect(page).to have_content(@accessory_description)
-			expect(page).to have_content("Price: $#{@accessory_price}")
+			expect(page).to have_content("$#{@accessory_price}")
 		end
 		it 'requires name, description, and price fields' do
 			visit new_admin_accessory_path

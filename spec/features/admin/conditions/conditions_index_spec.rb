@@ -68,14 +68,13 @@ describe 'Admin Condition Index Page' do
       visit conditions_path
 
       within("#condition-#{condition1.id}") do
-        click_link 'Delete'
+        click_button 'Delete'
       end
 
       expect(current_path).to eq(conditions_path)
-      
+
       expect(page).to have_content('Condition deleted.')
-      
-      expect(page).to_not have_content(condition1.date.strftime('%m/%d/%Y'))
+
       expect(page).to_not have_content(condition1.max_temperature)
       expect(page).to_not have_content(condition1.mean_temperature)
       expect(page).to_not have_content(condition1.min_temperature)
@@ -85,5 +84,3 @@ describe 'Admin Condition Index Page' do
     end
   end
 end
-
-

@@ -17,8 +17,8 @@ describe 'Admin Condition Show Page' do
       expect(page).to have_content("#{condition.mean_visibility}")
       expect(page).to have_content("#{condition.mean_wind_speed}")
 
-      expect(page).to have_link("Edit")
-      expect(page).to have_link("Delete")
+      expect(page).to have_button("Edit")
+      expect(page).to have_button("Delete")
     end
     it 'allows me to edit a condition' do
       admin = create(:user, role: 1)
