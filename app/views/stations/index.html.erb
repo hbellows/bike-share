@@ -2,8 +2,8 @@
 
 <div class="admin-add-station">
   <ul>
-    <% if current_user && current_admin? %>
-    <li><%= link_to 'Add Station', new_admin_station_path(@station) %></li>
+    <% if current_admin? %>
+    <li><%= link_to 'Add Station', new_admin_station_path %></li>
     <% end %>
   </ul>
 </div>
@@ -16,7 +16,7 @@
         <th scope="col" id='table-entry'>City</th>
         <th scope="col" id='table-entry'>Dock Count</th>
         <th scope="col" id='table-entry'>Installation Date</th>
-          <% if current_user && current_admin? %>
+          <% if current_admin? %>
             <th scope="col" id='table-entry'>Edit</th>
             <th scope="col" id='table-entry'>Delete</th>
           <% end %>
@@ -30,9 +30,9 @@
           <td id='table-entry'><%= station.city %></td>
           <td id='table-entry'><%= station.dock_count %></td>
           <td id='table-entry'><%= station.installation_date.strftime('%m/%d/%Y') %></td>
-            <% if current_user && current_admin? %>
-              <td id='table-entry'><%= link_to 'Edit', edit_admin_station_path(@station) %></td>
-              <td id='table-entry'><%= link_to 'Delete', station_path(@station), method: :delete %></td>
+            <% if current_admin? %>
+              <td id='table-entry'><%= link_to 'Edit', edit_admin_station_path(station) %></td>
+              <td id='table-entry'><%= link_to 'Delete', station_path(station), method: :delete %></td>
             <% end %>
         </tr>
       </section>

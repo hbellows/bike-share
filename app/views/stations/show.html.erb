@@ -7,6 +7,13 @@
     <li><%= @station.installation_date.strftime('%m/%d/%Y') %></li>
 </ul>
 
+<div>
+  <% if current_admin? %>
+    <li><%= link_to 'Edit', edit_admin_station_path(@station) %></li>
+    <li><%= link_to 'Delete', admin_station_path(@station), method: :delete %></li>
+  <% end %>
+  </div>
+
 <% if current_user %>
   <ul>
     <li>Rides Started Here: <%= @station.number_rides_started %></li>
