@@ -18,13 +18,27 @@ class Admin::AccessoriesController < Admin::BaseController
   	end
   end
 
+  def edit
+    @accessory = Accessory.find(params[:id])
+  end
+
   def update
   	accessory = Accessory.find(params[:id])
+
   	if params[:retired?]
   		accessory.update(retired?: params[:retired?])
   		accessory.save
   		redirect_to admin_bike_shop_path
-  	end
+  	else
+      accessory.update(accessory_params)
+      if accessory.save
+        flash[:notice] = "#{accessory.name} updated!"
+        redirect_to accessory_path(accessory)
+      else
+        flash[:notice] = 'Accessory could not be updated.'
+        redirect_to edit_admin_accessory_path(accessory)
+      end
+    end
   end
 
   private
