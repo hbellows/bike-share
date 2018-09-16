@@ -13,7 +13,7 @@ class Admin::ConditionsController < ApplicationController
     @condition.date = Date.strptime(condition_params[:date], '%m/%d/%Y')
     if @condition.save
       flash[:notice] = 'New condition added!'
-      redirect_to condition_path(@condition)
+      redirect_to conditions_path
     else
       flash[:notice] = 'Condition was not created.'
       redirect_to new_admin_condition_path
