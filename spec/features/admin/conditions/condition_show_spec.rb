@@ -20,5 +20,7 @@ describe 'Admin Condition Show Page' do
       expect(page).to have_link("Edit")
       expect(page).to have_link("Delete")
     end
+    it 'allows me to edit a condition' do
+    end
   end
 end
