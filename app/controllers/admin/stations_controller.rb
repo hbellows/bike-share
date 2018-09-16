@@ -1,12 +1,7 @@
 class Admin::StationsController < Admin::BaseController
-  # before_action :set_station, only: [:show, :update, :edit, :create, :new]
 
   def index
     @stations = Station.all
-  end
-
-  def show
-    @station = Station.friendly.find(params[:id])
   end
 
   def new
@@ -17,7 +12,7 @@ class Admin::StationsController < Admin::BaseController
     @station = Station.new(station_params)
     if @station.save
       flash[:notice] = "#{@station.name} Created."
-      redirect_to station_path(@station)
+      redirect_to stations_path
     else
       flash[:notice] = "Error - Could not create new station"
       redirect_to new_admin_station_path
@@ -31,12 +26,12 @@ class Admin::StationsController < Admin::BaseController
   def update
     @station = Station.friendly.find(params[:id])
     @station.update(station_params)
-    if station.save
-      flash[:notice] = "#{station.name} updated!"
-      redirect_to admin_station_path(@station)
+    if @station.save
+      flash[:notice] = "#{@station.name} updated!"
+      redirect_to station_path(@station)
     else
       flash[:notice] = "All attributes must be present, update failed."
-      redirect_to edit_admin_station_path(station)
+      redirect_to edit_admin_station_path(@station)
     end
   end
 
@@ -52,8 +47,4 @@ class Admin::StationsController < Admin::BaseController
     def station_params
       params.require(:station).permit(:name, :dock_count, :city, :installation_date)
     end
-
-    # def set_station
-    #   @station = Station.friendly.find(params[:id])
-    # end
 end

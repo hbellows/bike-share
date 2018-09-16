@@ -39,7 +39,7 @@ describe 'Admin Condition Index Page' do
 
       visit new_admin_condition_path
 
-      fill_in :condition_date, with: "2018/09/12"
+      fill_in :condition_date, with: '09/13/2018'
       fill_in :condition_max_temperature, with: 80
       fill_in :condition_mean_temperature, with: 60
       fill_in :condition_min_temperature, with: 50
@@ -50,8 +50,8 @@ describe 'Admin Condition Index Page' do
 
       click_on "Create Condition"
 
-      expect(current_path).to eq(new_admin_conditions_path)
-      expect(page).to have_content("09/12/2018")
+      expect(current_path).to eq(conditions_path)
+      expect(page).to have_content("09/13/2018")
       expect(page).to have_content("80")
       expect(page).to have_content("60")
       expect(page).to have_content("50")
