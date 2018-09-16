@@ -49,7 +49,7 @@ nav p {
 .middle-section {
   color: #192BC2;
   background-color: #1B98E0;
-  padding: 0% 0% 5%;
+  padding: 0% 0% 20%;
 }
 .middle-section h1 {
   text-align: center;
@@ -78,10 +78,21 @@ nav p {
   background-color: #E0FFFF;
 }
 .table .thead-light th {
-  background-color: #1B98E0
+  background-color: #1B98E0;
 }
 .table {
   padding-top: 2%;
   border-radius: 25px;
-  background-color: #B0E0E6
+  background-color: #B0E0E6;
+}
+.show-main {
+  margin-top: 12px;
+  font-size: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.card {
+  background-color: #B0E0E6;
+  
 }

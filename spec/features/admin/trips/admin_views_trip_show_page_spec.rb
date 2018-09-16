@@ -11,8 +11,8 @@ describe 'As an admin' do
 
       visit trip_path(trip)
 
-      expect(page).to have_link('Edit', href: edit_admin_trip_path(trip))
-      expect(page).to have_link('Delete', href: admin_trip_path(trip))
+      expect(page).to have_button('Edit')
+      expect(page).to have_button('Delete')
     end
   end
 end

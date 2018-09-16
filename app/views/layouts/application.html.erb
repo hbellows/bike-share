@@ -38,15 +38,15 @@
           </li>
           <li class="nav-item active dropdown">
             <% if current_user %>
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Dashboards
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <%= link_to "Admin-Dashboard", admin_dashboard_path, class: 'dropdown-item' if current_user.admin? %>
-              <%= link_to "Trips-Dashboard", trips_dashboard_path, class: 'dropdown-item' %>
-              <%= link_to "Stations-Dashboard", stations_dashboard_path, class: 'dropdown-item' %>
-              <%= link_to "Conditions-Dashboard", conditions_dashboard_path, class: 'dropdown-item' %>
-            </div>
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Dashboards
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <%= link_to "Admin-Dashboard", admin_dashboard_path, class: 'dropdown-item' if current_admin? %>
+                <%= link_to "Trips-Dashboard", trips_dashboard_path, class: 'dropdown-item' %>
+                <%= link_to "Stations-Dashboard", stations_dashboard_path, class: 'dropdown-item' %>
+                <%= link_to "Conditions-Dashboard", conditions_dashboard_path, class: 'dropdown-item' %>
+              </div>
             <% end %>
           </li>
         </ul>

@@ -1,12 +1,25 @@
 <h1><%= @accessory.name %></h1>
-<img src='<%= @accessory.image %>' alt="accessory image" style="width:400px;height:400px;">
-      <div>
-        <h3><%= @accessory.name %></h3>
-        <p><%= @accessory.description %></p>
-        <p>Price: <%= number_to_currency(@accessory.price) %></p>
-        <% if @accessory.retired? %>
-          <p><%= button_to 'Retired', disabled: true%></p>
-        <% else %>
-          <p><%= button_to 'Add to Cart', carts_path(accessory_id: @accessory.id, on_show: true)%></p>
-        <% end %>
-      </div>
+
+<section class='show-main'>
+  <div class="card">
+    <img class="card-img-top" src='<%= @accessory.image %>' alt="Card image cap" style="width:400px;height:400px;">
+    <div class="card-body">
+      <h3 class="card-title"><%= @accessory.name %></h3>
+      <p class="card-text"><%= @accessory.description %></p>
+      <p class='card-text'><%= number_to_currency(@accessory.price) %></p>
+      <% if @accessory.retired? %>
+      <p><%= button_to 'Retired', disabled: true, class:'btn btn-outline-dark retired-button' %></p>
+      <% else %>
+      <p><%= button_to 'Add to Cart', carts_path(accessory_id: @accessory.id, on_show: true), class:'btn btn-primary' %></p>
+      <% end %>
+      <% if current_admin? %>
+      <% if @accessory.retired? %>
+      <td><%= button_to 'Activate', admin_accessory_path(@accessory, retire: 'false'), method: :patch, class:'btn btn-primary accessory-show-button-activate' %></td>
+      <% else %>
+      <td><%= button_to 'Retire', admin_accessory_path(@accessory, retire: 'true'), method: :patch, class:'btn btn-danger index-retire-button accessory-show-button-retire' %></td>
+      <% end %>
+      <% end %>
+      <%= link_to '<< Back to Bike Shop', bike_shop_path %>
+    </div>
+  </div>
+</section>
