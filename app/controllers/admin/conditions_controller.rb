@@ -20,6 +20,24 @@ class Admin::ConditionsController < ApplicationController
     end
   end
 
+  def edit
+    @condition = Condition.find(params[:id])
+  end
+
+  def update
+    @condition = Condition.find(params[:id])
+    @condition.update(condition_params)
+    @condition.date = Date.strptime(condition_params[:date], '%m/%d/%Y')
+    if @condition.save
+      flash[:notice] = 'Condition updated!'
+      redirect_to condition_path(@condition)
+    else
+      flash[:notice] = 'Condition was not updated.'
+      redirect_to edit_admin_conition_path(@condition)
+    end
+  end
+
+
   private
 
     def condition_params

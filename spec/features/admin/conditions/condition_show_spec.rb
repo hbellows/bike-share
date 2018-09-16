@@ -37,9 +37,9 @@ describe 'Admin Condition Show Page' do
       fill_in :condition_mean_wind_speed, with: 4
       fill_in :condition_precipitation, with: 0.05
 
-      click_on "Create Condition"
+      click_on "Update Condition"
 
-      expect(current_path).to eq(conditions_path)
+      expect(current_path).to eq(condition_path(condition))
       expect(page).to have_content("09/13/2018")
       expect(page).to have_content("80")
       expect(page).to have_content("60")
