@@ -1,13 +1,3 @@
-# As an admin user,
-# When I visit admin trip edit,
-# I fill in a form with all trip attributes,
-# When I click "Update Trip",
-# I am directed to that trip's show page,
-# I see the updated trip's information,
-# I also see a flash message that I have updated that trip.
-#
-# ** All Attributes must be present **
-
 require 'rails_helper'
 
 describe 'As an admin' do
