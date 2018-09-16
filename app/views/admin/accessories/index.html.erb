@@ -4,7 +4,7 @@
 
 <% @accessories.each do |accessory| %>
 	<ul id="accessory-<%= accessory.id %>">
-		<li><%= image_tag('bike_image.jpg') %></li>
+		<li><%= image_tag(accessory.image) %></li>
 		<li><%= link_to accessory.name, accessory_path(accessory) %></li>
 		<li><%= accessory.description %></li>
 		<li><%= number_to_currency(accessory.price) %></li>

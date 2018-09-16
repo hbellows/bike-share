@@ -30,6 +30,6 @@ class Admin::AccessoriesController < Admin::BaseController
   private
 
   def accessory_params
-  	params.require(:accessory).permit(:name, :description, :price)
+  	params.require(:accessory).permit(:name, :description, :price, :image)
   end
 end

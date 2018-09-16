@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180916000045) do
+ActiveRecord::Schema.define(version: 20180916011419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20180916000045) do
     t.string "name"
     t.float "price"
     t.text "description"
-    t.string "image", default: "bike_image.jpg"
+    t.string "image"
     t.boolean "retired?", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
