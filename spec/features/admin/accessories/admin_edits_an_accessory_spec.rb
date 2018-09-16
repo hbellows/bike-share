@@ -10,7 +10,7 @@ describe 'As an admin' do
 
 			@accessory_name = 'Updated Accessory'
 			@accessory_description = 'Updated Accessory description'
-			@accessory_price = 66.6
+			@accessory_price = 66.60
 		end
 		it 'allows me to edit an accessory' do
 			visit edit_admin_accessory_path(@accessory)
@@ -24,7 +24,7 @@ describe 'As an admin' do
 			expect(page).to have_content("#{@accessory_name} updated!")
 			expect(page).to have_content(@accessory_name)
 			expect(page).to have_content(@accessory_description)
-			expect(page).to have_content("Price: $#{@accessory_price}")
+			expect(page).to have_content("$#{@accessory_price}")
 		end
 		it 'requires name, description, and price fields' do
 			visit edit_admin_accessory_path(@accessory)
