@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180915020021) do
+ActiveRecord::Schema.define(version: 20180916000045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "accessories", force: :cascade do |t|
     t.string "name"
-    t.integer "price"
+    t.float "price"
     t.text "description"
-    t.string "image"
+    t.string "image", default: "bike_image.jpg"
     t.boolean "retired?", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

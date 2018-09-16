@@ -1,18 +1,3 @@
-# As an admin user,
-# When I visit "/admin/dashboard",
-# I see a link for viewing all accessories,
-# When I click that link,
-# My current path should be "/admin/bike-shop",
-# I see a table with all accessories (active and inactive)
-#
-# Each accessory should have:
-#
-# A thumbnail of the image
-# Description
-# Status
-# Ability to Edit accessory
-# Ability to Retire/Reactivate accessory
-
 require 'rails_helper'
 
 describe 'As an admin' do
@@ -27,7 +12,7 @@ describe 'As an admin' do
 			visit admin_bike_shop_path
 
 			within("#accessory-#{@accessory1.id}") do
-				expect(page).to have_content(@accessory1.name)
+				expect(page).to have_link(@accessory1.name, href: accessory_path(@accessory1))
 				expect(page).to have_content(@accessory1.description)
 				expect(page).to have_content(@accessory1.price)
 				expect(page).to have_content('Active')
@@ -36,7 +21,7 @@ describe 'As an admin' do
 			end
 
 			within("#accessory-#{@accessory2.id}") do
-				expect(page).to have_content(@accessory2.name)
+				expect(page).to have_link(@accessory2.name, href: accessory_path(@accessory2))
 				expect(page).to have_content(@accessory2.description)
 				expect(page).to have_content(@accessory2.price)
 				expect(page).to have_content('Retired')

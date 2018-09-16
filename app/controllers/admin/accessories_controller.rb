@@ -3,6 +3,10 @@ class Admin::AccessoriesController < Admin::BaseController
   	@accessories = Accessory.order(:name)
   end
 
+  def new
+  	@accessory = Accessory.new
+  end
+
   def update
   	accessory = Accessory.find(params[:id])
   	if params[:retired?]
