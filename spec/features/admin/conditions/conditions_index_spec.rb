@@ -63,8 +63,4 @@ describe 'Admin Condition Index Page' do
   end
 end
 
-# As a admin user, When I visit admin condition new, 
-# I fill in a form with all condition attributes, 
-# When I click "Create Condition", I am directed to a that condition's show page. 
-# I also see a flash message that I have created that condition.  
-# ** All Attributes must be present **
+
