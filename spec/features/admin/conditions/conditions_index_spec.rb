@@ -58,6 +58,26 @@ describe 'Admin Condition Index Page' do
       expect(page).to have_content("4")
       expect(page).to have_content("0.05")
     end
+    it 'requires all attributes to be present to create a condition' do
+      admin = create(:user, role: 1)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+      visit new_admin_condition_path
+
+      fill_in :condition_date, with: '09/13/2018'
+      fill_in :condition_max_temperature, with: ''
+      fill_in :condition_mean_temperature, with: ''
+      fill_in :condition_min_temperature, with: 50
+      fill_in :condition_mean_humidity, with: 34.0
+      fill_in :condition_mean_visibility, with: ''
+      fill_in :condition_mean_wind_speed, with: 4
+      fill_in :condition_precipitation, with: 0.05
+
+      click_on "Create Condition"
+
+      expect(current_path).to eq(new_admin_condition_path)
+      expect(page).to have_content('Condition was not created.')
+    end
     it 'allows me to delete a condition' do
       admin = create(:user, role: 1)
       condition1 = create(:condition)

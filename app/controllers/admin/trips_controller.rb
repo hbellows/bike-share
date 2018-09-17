@@ -36,7 +36,7 @@ class Admin::TripsController < Admin::BaseController
       redirect_to trip_path(@trip)
     else
       flash[:notice] = 'Trip was not updated.'
-      redirect_to new_admin_trip_path
+      redirect_to edit_admin_trip_path(@trip)
     end
   end
 

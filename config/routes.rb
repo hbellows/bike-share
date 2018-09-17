@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     resources :trips
   end
 
-  resources :users, only: [:new, :create, :edit, :update]
+  resources :users, only: [:new, :create, :edit, :update, :show]
   resources :stations, only: [:index, :show]
   resources :trips, only: [:index, :show]
   resources :conditions, only: [:index, :show, :destroy]

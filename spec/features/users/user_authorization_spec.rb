@@ -4,7 +4,7 @@ feature 'User authorization' do
   describe 'As a visitor' do
     describe 'when I visit any administrator pages' do
       it 'redirects to /login and gives me an error message' do
-        visit admin_stations_path
+      	visit admin_stations_path
 
         expect(page).to have_content("The page you were looking for doesn't exist.")
       end
@@ -66,6 +66,13 @@ feature 'User authorization' do
 
         expect(current_path).to eq(dashboard_path)
         expect(page).to have_content("Logged in as differentname")
+      end
+      it 'visitor cannot visit user edit pages' do
+        user = create(:user)
+
+        visit edit_user_path(user)
+
+        expect(current_path).to eq(login_path)
       end
       it 'can edit my own details, but not other users details' do
         user_1 = User.create(full_name: 'John Johnson', email: 'xyz@gmale.com', username: "firstname", password: 'test')

@@ -6,8 +6,6 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     elsif current_user
       @user = User.find(current_user.id)
-    else
-      redirect_to dashboard_path
     end
   end
 
@@ -30,8 +28,6 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
     elsif current_user
       @user = User.find(current_user.id)
-    else
-      render file: '/public/404'
     end
   end
 

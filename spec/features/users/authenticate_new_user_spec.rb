@@ -28,5 +28,16 @@ describe 'registration and login' do
       expect(page).to_not have_content('Login')
       expect(page).to have_content('Logout')
     end
+    it 'requires all attributes to register' do
+      visit root_path
+
+      click_on 'Login'
+
+      click_on 'Create Account'
+
+      click_on 'Create User'
+
+      expect(current_path).to eq (users_path)
+    end
   end
 end
