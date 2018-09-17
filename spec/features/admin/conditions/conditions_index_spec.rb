@@ -2,39 +2,37 @@ require 'rails_helper'
 
 describe 'Admin Condition Index Page' do
   describe 'as an admin when I visit the condition index page' do
-    it 'should show me all conditions with a link to edit or delete a condition' do
-      admin = create(:user, role: 1)
-      condition1 = create(:condition)
-      condition2 = create(:condition)
+    before(:each) do
+      admin = create(:admin)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-
+      @condition1 = create(:condition)
+      @condition2 = create(:condition)
+    end
+    it 'should show me all conditions with a link to edit or delete a condition' do
       visit conditions_path
 
-      expect(page).to have_content("#{condition1.date.strftime('%m/%d/%Y')}")
-      expect(page).to have_content("#{condition1.max_temperature}")
-      expect(page).to have_content("#{condition1.mean_temperature}")
-      expect(page).to have_content("#{condition1.min_temperature}")
-      expect(page).to have_content("#{condition1.mean_humidity}")
-      expect(page).to have_content("#{condition1.mean_visibility}")
-      expect(page).to have_content("#{condition1.mean_wind_speed}")
-      expect(page).to have_content("#{condition1.precipitation}")
+      expect(page).to have_content("#{@condition1.date.strftime('%m/%d/%Y')}")
+      expect(page).to have_content("#{@condition1.max_temperature}")
+      expect(page).to have_content("#{@condition1.mean_temperature}")
+      expect(page).to have_content("#{@condition1.min_temperature}")
+      expect(page).to have_content("#{@condition1.mean_humidity}")
+      expect(page).to have_content("#{@condition1.mean_visibility}")
+      expect(page).to have_content("#{@condition1.mean_wind_speed}")
+      expect(page).to have_content("#{@condition1.precipitation}")
 
-      expect(page).to have_content("#{condition2.date.strftime('%m/%d/%Y')}")
-      expect(page).to have_content("#{condition2.max_temperature}")
-      expect(page).to have_content("#{condition2.mean_temperature}")
-      expect(page).to have_content("#{condition2.min_temperature}")
-      expect(page).to have_content("#{condition2.mean_humidity}")
-      expect(page).to have_content("#{condition2.mean_visibility}")
-      expect(page).to have_content("#{condition2.mean_wind_speed}")
-      expect(page).to have_content("#{condition2.precipitation}")
+      expect(page).to have_content("#{@condition2.date.strftime('%m/%d/%Y')}")
+      expect(page).to have_content("#{@condition2.max_temperature}")
+      expect(page).to have_content("#{@condition2.mean_temperature}")
+      expect(page).to have_content("#{@condition2.min_temperature}")
+      expect(page).to have_content("#{@condition2.mean_humidity}")
+      expect(page).to have_content("#{@condition2.mean_visibility}")
+      expect(page).to have_content("#{@condition2.mean_wind_speed}")
+      expect(page).to have_content("#{@condition2.precipitation}")
 
       expect(page).to have_button("Edit")
       expect(page).to have_button("Delete")
     end
     it 'allows an admin to create a new condition' do
-      admin = create(:user, role: 1)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-
       visit new_admin_condition_path
 
       fill_in :condition_date, with: '09/13/2018'
@@ -59,9 +57,6 @@ describe 'Admin Condition Index Page' do
       expect(page).to have_content("0.05")
     end
     it 'requires all attributes to be present to create a condition' do
-      admin = create(:user, role: 1)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-
       visit new_admin_condition_path
 
       fill_in :condition_date, with: '09/13/2018'
@@ -79,15 +74,9 @@ describe 'Admin Condition Index Page' do
       expect(page).to have_content('Condition was not created.')
     end
     it 'allows me to delete a condition' do
-      admin = create(:user, role: 1)
-      condition1 = create(:condition)
-      condition2 = create(:condition)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-
-
       visit conditions_path
 
-      within("#condition-#{condition1.id}") do
+      within("#condition-#{@condition1.id}") do
         click_button 'Delete'
       end
 
@@ -95,12 +84,12 @@ describe 'Admin Condition Index Page' do
 
       expect(page).to have_content('Condition deleted.')
 
-      expect(page).to_not have_content(condition1.max_temperature)
-      expect(page).to_not have_content(condition1.mean_temperature)
-      expect(page).to_not have_content(condition1.min_temperature)
-      expect(page).to_not have_content(condition1.mean_humidity)
-      expect(page).to_not have_content(condition1.mean_visibility)
-      expect(page).to_not have_content(condition1.mean_wind_speed)
+      expect(page).to_not have_content(@condition1.max_temperature)
+      expect(page).to_not have_content(@condition1.mean_temperature)
+      expect(page).to_not have_content(@condition1.min_temperature)
+      expect(page).to_not have_content(@condition1.mean_humidity)
+      expect(page).to_not have_content(@condition1.mean_visibility)
+      expect(page).to_not have_content(@condition1.mean_wind_speed)
     end
   end
 end
