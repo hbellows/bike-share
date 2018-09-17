@@ -2,13 +2,10 @@ require 'rails_helper'
 
 describe "user visits trips dashboard" do
   before :each do
-    @user = User.create(username: 'Joseph', password: '1234')
+    @user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
 
-    @station_1 = Station.create(name: 'Ferry Building', dock_count: 20, city: 'San Francisco', installation_date: Date.new(2017, 12, 25))
-    @station_2 = Station.create(name: 'Coit Tower', dock_count: 25, city: 'San Francisco', installation_date: Date.new(2017, 10, 17))
-    @station_3 = Station.create(name: '24th & Balboa', dock_count: 30, city: 'San Francisco', installation_date: Date.new(2017, 10, 23))
-    @station_4 = Station.create(name: 'Palace of Fine Arts', dock_count: 35, city: 'San Francisco', installation_date: Date.new(2017, 11, 26))
+    @station_1, @station_2, @station_3, @station_4 = create_list(:station, 4)
 
     @trip_1 = Trip.create!(duration: 60, start_date: Date.new(2017, 6, 15), end_date: Date.new(2017, 6, 15), start_station_id: @station_1.id, end_station_id: @station_2.id, bike_id: 1, subscription_type: 0, zip_code: 68686)
     @trip_2 = Trip.create!(duration: 120, start_date: Date.new(2017, 5, 13), end_date: Date.new(2017, 5, 13), start_station_id: @station_1.id, end_station_id: @station_2.id, bike_id: 1, subscription_type: 0, zip_code: 93413)

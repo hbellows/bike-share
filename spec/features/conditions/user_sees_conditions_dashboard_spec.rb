@@ -6,6 +6,7 @@ describe 'Registered user visits conditions dashboard' do
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
     station_1, station_2 = create_list(:station, 2)
+
     create_list(:trip, 5, start_station_id: station_1.id, end_station_id: station_2.id, start_date: '2018-09-09 16:34:34', end_date: '2018-09-11 17:34:34')
     create_list(:trip, 10, start_station_id: station_1.id, end_station_id: station_2.id, start_date: '2018-09-10 16:34:34', end_date: '2018-09-11 17:34:34')
     create_list(:trip, 8, start_station_id: station_1.id, end_station_id: station_2.id, start_date: '2018-09-11 16:34:34', end_date: '2018-09-12 17:34:34')

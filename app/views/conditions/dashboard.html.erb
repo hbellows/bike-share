@@ -7,15 +7,18 @@
     <div class="col-2"></div>
     <table class="table table-borderless col-4">
       <thead>
-        <caption>High Temperatures</caption>
+        <tr>
+          <th scope="col">Ride Duration stats</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
         <tr>
           <th scope="col">Farenheit</th>
           <th scope="col">Most Rides</th>
           <th scope="col">Least Rides</th>
           <th scope="col">Average Rides</th>
         </tr>
-      </thead>
-      <tbody>
         <tr>
           <td>40 - 50</td>
           <td><%= @max_temperature['max_rides']['40s']%> rides</td>
@@ -57,19 +60,21 @@
 
 
 
-    <div class="col-2"></div>
+    <div class="col-1"></div>
     <table class="table table-borderless col-4">
-      <thead>
-        <caption>Precipitation</caption>
-
+    <thead>
+      <tr>
+        <th scope="col">Preciptation</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
         <tr>
           <th scope="col">Inches</th>
           <th scope="col">Most Rides</th>
           <th scope="col">Least Rides</th>
           <th scope="col">Average Rides</th>
         </tr>
-      </thead>
-      <tbody>
         <tr>
           <td>0 - 0.5</td>
           <td><%= @precipitation['max_rides']['half']%> rides</td>
@@ -102,15 +107,16 @@
     <div class="col-2"></div>
     <table class="table table-borderless col-4">
       <thead>
-        <caption>Mean Wind Speed</caption>
+        <th scope="col">Mean Wind Speed</th>
+        <th scope="col"></th>
+      </thead>
+      <tbody>
         <tr>
           <th scope="col">Miles</th>
           <th scope="col">Most Rides</th>
           <th scope="col">Least Rides</th>
           <th scope="col">Average Rides</th>
         </tr>
-      </thead>
-      <tbody>
         <tr>
           <td>0 - 4</td>
           <td><%= @mean_wind_speed['max_rides']['four']%> rides</td>
@@ -150,18 +156,19 @@
       </tbody>
     </table>
 
-    <div class="col-2"></div>
+    <div class="col-1"></div>
     <table class="table table-borderless col-4">
       <thead>
-        <caption>Mean Visibility</caption>
+        <th scope="col">Mean Visibility</th>
+        <th scope="col"></th>
+      </thead>
+      <tbody>
         <tr>
           <th scope="col">Miles</th>
           <th scope="col">Most Rides</th>
           <th scope="col">Least Rides</th>
           <th scope="col">Average Rides</th>
         </tr>
-      </thead>
-      <tbody>
         <tr>
           <td>0 - 4</td>
           <td><%= @mean_visibility['max_rides']['four']%> rides</td>
@@ -202,4 +209,5 @@
     </table>
   </div>
 </section>
+
 </div>

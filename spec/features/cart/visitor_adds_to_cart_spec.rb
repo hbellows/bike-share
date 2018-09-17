@@ -36,8 +36,7 @@ describe 'visitor/user can view accessories in cart' do
 
   describe 'logged in with accessories in cart' do
     it 'should display existing accessories in cart' do
-      username = 'bikeshareuser'
-      user = User.create(username: username, password: 'test')
+      user = create(:user)
 
       visit bike_shop_path
 
@@ -63,16 +62,7 @@ describe 'visitor/user can view accessories in cart' do
       expect(page).to have_content("Quantity: 2")
       expect(page).to have_content("Total: $32.00")
 
-      visit root_path
-
-      click_on 'Login'
-
-      expect(current_path).to eq(login_path)
-
-      fill_in :username, with: username
-      fill_in :password, with: 'test'
-
-      click_on "Log In"
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
       visit '/cart'
 
@@ -90,7 +80,6 @@ describe 'visitor/user can view accessories in cart' do
 
   describe "visitor adds one more of the same accessory" do
     it 'should be able to add an additional Quantity' do
-
       visit bike_shop_path
 
       within("#accessory-#{@accessory_1.id}") do
@@ -124,7 +113,6 @@ describe 'visitor/user can view accessories in cart' do
 
     describe 'When a visitor adds accessories to cart' do
       it 'a message is displayed' do
-
         visit bike_shop_path
 
         within("#accessory-#{@accessory_2.id}") do
@@ -134,7 +122,6 @@ describe 'visitor/user can view accessories in cart' do
         expect(page).to have_content("You now have 1 item of #{@accessory_2.name} in your cart")
       end
       it 'a message correctly increments for multiple accessories' do
-
         visit bike_shop_path
 
         within("#accessory-#{@accessory_2.id}") do
@@ -150,7 +137,6 @@ describe 'visitor/user can view accessories in cart' do
         expect(page).to have_content("You now have 2 items of #{@accessory_2.name} in your cart")
       end
       it 'total number of accessories in cart increments' do
-
         visit bike_shop_path
 
         expect(page).to have_content("Cart: 0")
@@ -163,7 +149,6 @@ describe 'visitor/user can view accessories in cart' do
       end
       describe "visitor increases one of the same accessory" do
         it 'should show cart with accessory increased' do
-
           visit bike_shop_path
 
           within("#accessory-#{@accessory_1.id}") do
