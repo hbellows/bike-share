@@ -2,25 +2,8 @@ require 'rails_helper'
 
 describe 'user visits index page' do
   it "show all conditions and attributes" do
-    condition_1 = Condition.create(
-      date: Date.new(2018, 4, 29),
-      max_temperature: 75.0,
-      mean_temperature: 65.0,
-      min_temperature: 55.0,
-      mean_humidity: 30.0,
-      mean_visibility: 15.0,
-      mean_wind_speed: 9.0,
-      precipitation: 0.01)
-
-    condition_2 = Condition.create(
-      date: Date.new(2018, 4, 30),
-      max_temperature: 80.0,
-      mean_temperature: 60.0,
-      min_temperature: 40.0,
-      mean_humidity: 20.0,
-      mean_visibility: 9.0,
-      mean_wind_speed: 8.0,
-      precipitation: 0.43)
+    condition_1 = create(:condition)
+    condition_2 = create(:condition)
 
     visit conditions_path
 

@@ -5,10 +5,8 @@ describe 'visitor removes accessories from cart' do
     @accessory_1 = create(:accessory, price: 10)
     @accessory_2 = create(:accessory, price: 11)
   end
-
   describe 'removes accessories in cart' do
     it 'should show cart without item that was removed' do
-
       visit bike_shop_path
 
       within("#accessory-#{@accessory_1.id}") do
@@ -39,7 +37,6 @@ describe 'visitor removes accessories from cart' do
   end
   describe "visitor decreases one of the same accessory" do
     it 'should show cart with accessory decreased' do
-
       visit bike_shop_path
 
       within("#accessory-#{@accessory_1.id}") do
@@ -74,7 +71,6 @@ describe 'visitor removes accessories from cart' do
   end
   describe 'visitor clicks decrease quantity button when qty is 1' do
     it "should disable decrease quantity button" do
-
       visit bike_shop_path
 
       2.times do

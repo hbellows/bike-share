@@ -4,7 +4,7 @@ describe 'Admin Station Show Page' do
   describe 'As an admin user when I visit a station show page' do
     it 'shows me station attributes and the option to edit or delete' do
       station = create(:station)
-      admin = create(:user, role: 1)
+      admin = create(:admin)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
       visit admin_station_path(station)
