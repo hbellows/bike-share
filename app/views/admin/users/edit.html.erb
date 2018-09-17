@@ -1,6 +1,6 @@
 <h1>Edit Account</h1>
 
-<%= form_for @user, url: admin_user_path(@user) do |f| %>
+<%= form_for [:admin, @user] do |f| %>
 
   <%= f.label :email %>
   <%= f.text_field :email %>

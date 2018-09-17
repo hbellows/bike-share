@@ -2,11 +2,7 @@ class UsersController < ApplicationController
   before_action :require_user, only: [:show, :edit]
 
   def show
-    if current_admin?
-      @user = User.find(params[:id])
-    elsif current_user
-      @user = User.find(current_user.id)
-    end
+    @user = User.find(current_user.id)
   end
 
   def new

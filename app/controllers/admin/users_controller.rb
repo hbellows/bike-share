@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  before_action :require_user, only: [:show, :edit]
+  # before_action :require_user, only: [:show, :edit]
 
   def show
     @user = User.find(current_user.id)
@@ -25,6 +25,13 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+    flash[:notice] = 'User deleted.'
+    redirect_to admin_users_path
+  end
+  
   private
     def user_params
       params.require(:user).permit(:email, :username, :password, :role)
