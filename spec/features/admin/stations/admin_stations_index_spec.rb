@@ -2,38 +2,36 @@ require 'rails_helper'
 
 describe "Admin Stations Index" do
   describe "Admin user visits stations index page" do
-    it "shows edit and delete buttons next to each station" do
+    before(:each) do
       admin = create(:user, role: 1)
-      station1 = create(:station)
-      station2 = create(:station)
+      @station1 = create(:station)
+      @station2 = create(:station)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-
+    end
+    it "shows edit and delete buttons next to each station" do
       visit admin_stations_path
 
       expect(page).to have_content("Add Station")
 
-      within("#station-#{station1.id}") do
-        expect(page).to have_content(station1.name)
-        expect(page).to have_content(station1.dock_count)
-        expect(page).to have_content(station1.city)
-        expect(page).to have_content(station1.installation_date.strftime('%m/%d/%Y'))
+      within("#station-#{@station1.id}") do
+        expect(page).to have_content(@station1.name)
+        expect(page).to have_content(@station1.dock_count)
+        expect(page).to have_content(@station1.city)
+        expect(page).to have_content(@station1.installation_date.strftime('%m/%d/%Y'))
         expect(page).to have_content("Edit")
         expect(page).to have_content("Delete")
       end
 
-      within("#station-#{station2.id}") do
-        expect(page).to have_content(station2.name)
-        expect(page).to have_content(station2.dock_count)
-        expect(page).to have_content(station2.city)
-        expect(page).to have_content(station2.installation_date.strftime('%m/%d/%Y'))
+      within("#station-#{@station2.id}") do
+        expect(page).to have_content(@station2.name)
+        expect(page).to have_content(@station2.dock_count)
+        expect(page).to have_content(@station2.city)
+        expect(page).to have_content(@station2.installation_date.strftime('%m/%d/%Y'))
         expect(page).to have_content("Edit")
         expect(page).to have_content("Delete")
       end
     end
     it 'allows an admin to create a new station' do
-      admin = create(:user, role: 1)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-
       visit new_admin_station_path
       fill_in :station_name, with: "New Station"
       fill_in :station_dock_count, with: 0
@@ -49,9 +47,6 @@ describe "Admin Stations Index" do
       expect(page).to have_content('New Station Created')
     end
     it 'does not allow negative dock count' do
-      admin = create(:user, role: 1)
-      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
-
       visit new_admin_station_path
       fill_in :station_name, with: "New Station"
       fill_in :station_dock_count, with: -10
