@@ -23,6 +23,27 @@ describe 'registration and login' do
       expect(page).to have_content('Logout')
     end
   end
+  describe 'no login' do
+    it 'existing user should not be able to login with wrong credentials' do
+      user = create(:user)
+
+      visit root_path
+
+      click_on 'Login'
+
+      expect(current_path).to eq(login_path)
+
+      fill_in :username, with: user.username
+      fill_in :password, with: "wrong"
+
+      click_on "Log In"
+
+      expect(current_path).to eq(login_path)
+      expect(page).to have_content("Invalid credentials, please try again or create an account")
+      expect(page).to have_content('Login')
+      expect(page).to_not have_content('Logout')
+    end
+  end
   describe 'logout' do
     it 'allows users to log out' do
       user = create(:user)
