@@ -19,9 +19,9 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :accessories, only: [:new, :create, :edit, :update]
-    resources :users
+    resources :users, only: [:show, :edit, :update]
     resources :stations
-    resources :conditions
+    resources :conditions, only: [:new, :create, :edit, :update]
     resources :orders, only: [:index]
     resources :trips
   end
@@ -36,7 +36,6 @@ Rails.application.routes.draw do
 
   get '/cart', to: 'carts#index'
   delete '/cart', to: 'carts#destroy'
-
 
   get '/:id', to: 'stations#show'
 

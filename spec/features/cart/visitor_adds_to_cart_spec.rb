@@ -24,12 +24,14 @@ describe 'visitor/user can view accessories in cart' do
 
       expect(page).to have_content(@accessory_1.name)
       expect(page).to have_content(@accessory_1.price)
-      expect(page).to have_content(@accessory_1.image)
-      expect(page).to have_content("Quantity: 1")
+      within("#accessory-#{@accessory_1.id}-quantity") do
+        expect(page).to have_content("1")
+      end
       expect(page).to have_content(@accessory_1.name)
       expect(page).to have_content(@accessory_1.price)
-      expect(page).to have_content(@accessory_1.image)
-      expect(page).to have_content("Quantity: 2")
+      within("#accessory-#{@accessory_2.id}-quantity") do
+        expect(page).to have_content("2")
+      end
       expect(page).to have_content("Total: $32.00")
     end
   end
@@ -54,12 +56,14 @@ describe 'visitor/user can view accessories in cart' do
 
       expect(page).to have_content(@accessory_1.name)
       expect(page).to have_content(@accessory_1.price)
-      expect(page).to have_content(@accessory_1.image)
-      expect(page).to have_content("Quantity: 1")
-      expect(page).to have_content(@accessory_1.name)
-      expect(page).to have_content(@accessory_1.price)
-      expect(page).to have_content(@accessory_1.image)
-      expect(page).to have_content("Quantity: 2")
+      within("#accessory-#{@accessory_1.id}-quantity") do
+        expect(page).to have_content("1")
+      end
+      expect(page).to have_content(@accessory_2.name)
+      expect(page).to have_content(@accessory_2.price)
+      within("#accessory-#{@accessory_2.id}-quantity") do
+        expect(page).to have_content("2")
+      end
       expect(page).to have_content("Total: $32.00")
 
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
@@ -68,12 +72,14 @@ describe 'visitor/user can view accessories in cart' do
 
       expect(page).to have_content(@accessory_1.name)
       expect(page).to have_content(@accessory_1.price)
-      expect(page).to have_content(@accessory_1.image)
-      expect(page).to have_content("Quantity: 1")
-      expect(page).to have_content(@accessory_1.name)
-      expect(page).to have_content(@accessory_1.price)
-      expect(page).to have_content(@accessory_1.image)
-      expect(page).to have_content("Quantity: 2")
+      within("#accessory-#{@accessory_1.id}-quantity") do
+        expect(page).to have_content("1")
+      end
+      expect(page).to have_content(@accessory_2.name)
+      expect(page).to have_content(@accessory_2.price)
+      within("#accessory-#{@accessory_2.id}-quantity") do
+        expect(page).to have_content("2")
+      end
       expect(page).to have_content("Total: $32.00")
     end
   end
@@ -91,8 +97,9 @@ describe 'visitor/user can view accessories in cart' do
 
       expect(page).to have_content(@accessory_1.name)
       expect(page).to have_content(@accessory_1.price)
-      expect(page).to have_content(@accessory_1.image)
-      expect(page).to have_content("Quantity: 1")
+      within("#accessory-#{@accessory_1.id}-quantity") do
+        expect(page).to have_content("1")
+      end
       expect(page).to have_content("Total: $10.00")
 
       visit bike_shop_path
@@ -105,9 +112,10 @@ describe 'visitor/user can view accessories in cart' do
 
       expect(page).to have_content(@accessory_1.name)
       expect(page).to have_content(@accessory_1.price)
-      expect(page).to have_content(@accessory_1.image)
-      expect(page).to_not have_content("Quantity: 1")
-      expect(page).to have_content("Quantity: 2")
+      within("#accessory-#{@accessory_1.id}-quantity") do
+        expect(page).to_not have_content("1")
+        expect(page).to have_content("2")
+      end
       expect(page).to have_content("Total: $20.00")
     end
 
@@ -167,8 +175,12 @@ describe 'visitor/user can view accessories in cart' do
           expect(page).to have_content(@accessory_1.price)
           expect(page).to have_content(@accessory_2.name)
           expect(page).to have_content(@accessory_2.price)
-          expect(page).to have_content("Quantity: 1")
-          expect(page).to have_content("Quantity: 3")
+          within("#accessory-#{@accessory_1.id}-quantity") do
+            expect(page).to have_content("1")
+          end
+          within("#accessory-#{@accessory_2.id}-quantity") do
+            expect(page).to have_content("3")
+          end
           expect(page).to have_content("Total: $43.00")
 
 
@@ -176,8 +188,12 @@ describe 'visitor/user can view accessories in cart' do
             click_button 'increase quantity'
           end
 
-          expect(page).to have_content("Quantity: 1")
-          expect(page).to have_content("Quantity: 4")
+          within("#accessory-#{@accessory_1.id}-quantity") do
+            expect(page).to have_content("1")
+          end
+          within("#accessory-#{@accessory_2.id}-quantity") do
+            expect(page).to have_content("4")
+          end
           expect(page).to have_content("Total: $54.00")
         end
       end

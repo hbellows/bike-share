@@ -69,6 +69,4 @@ class Trip < ApplicationRecord
     {most_rides: {date: date_rides.keys.first, rides: date_rides.values.first, condition: condition_1},
      least_rides: {date: date_rides.keys.last, rides: date_rides.values.last, condition: condition_2}}
   end
-
-
 end

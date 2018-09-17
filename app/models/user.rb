@@ -4,8 +4,8 @@ class User < ApplicationRecord
   validates :username, :email, :role, presence: true, unless: :admin?
   validates_presence_of :full_name
 
-  # validates_confirmation_of :password
   validates :password, presence: true, on: :create
+  validates_confirmation_of :password, on: :create
 
   has_many :orders
 
