@@ -1,8 +1,5 @@
 <h1>Conditions on <%=@condition.date.strftime('%m/%d/%Y')%></h1>
 
-<% if current_admin? %>
-  <%= link_to 'Create New Weather Condition', new_admin_condition_path, class:'btn btn-secondary button-link' %>
-<% end %>
 <section class='show-main'>
   <div>Max Temperature: <%= @condition.max_temperature %> ºF</div>
   <div>Mean Temperature: <%= @condition.mean_temperature %> ºF</div>
@@ -14,7 +11,11 @@
   <%= link_to '<< Back to Conditions Index', conditions_path %>
 </section>
 
-<% if current_admin? %>
-  <%= button_to 'Edit', edit_admin_condition_path(@condition), method: :get, class:'btn btn-success show-edit-button' %>
-  <%= button_to 'Delete', condition_path(@condition), method: :delete, data: {confirm: "Really want to delete this condition?"}, class:'btn btn-danger' %>
-<% end %>
+<div class="center-buttons">
+  <div class="buttons">
+    <% if current_admin? %>
+      <%= button_to 'Edit', edit_admin_condition_path(@condition), method: :get, class:'btn btn-success show-edit-button' %>
+      <%= button_to 'Delete', condition_path(@condition), method: :delete, data: {confirm: "Really want to delete this condition?"}, class:'btn btn-danger' %>
+    <% end %>
+  </div>
+</div>
