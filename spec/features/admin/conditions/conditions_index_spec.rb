@@ -74,6 +74,11 @@ describe 'Admin Condition Index Page' do
       expect(page).to have_content('Condition was not created.')
     end
     it 'allows me to delete a condition' do
+      admin = create(:user, role: 1)
+      condition1 = create(:condition)
+      condition2 = create(:condition)
+      allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
       visit conditions_path
 
       within("#condition-#{@condition1.id}") do

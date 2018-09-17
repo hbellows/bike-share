@@ -1,6 +1,7 @@
 class ConditionsController < ApplicationController
 
   def dashboard
+    require_user
     @max_temperature = Condition.max_temp_breakdown
     @precipitation = Condition.precip_breakdown
     @mean_wind_speed = Condition.wind_breakdown

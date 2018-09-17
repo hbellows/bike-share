@@ -4,6 +4,7 @@ describe 'Registered user visits conditions dashboard' do
   it 'sees the average number of rides for degree range' do
     user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
+
     station_1, station_2 = create_list(:station, 2)
 
     create_list(:trip, 5, start_station_id: station_1.id, end_station_id: station_2.id, start_date: '2018-09-09 16:34:34', end_date: '2018-09-11 17:34:34')
@@ -28,5 +29,13 @@ describe 'Registered user visits conditions dashboard' do
     expect(page).to have_content("#{Condition.max_rides_breakdown(0.5,1,'precipitation')} rides")
     expect(page).to have_content("#{Condition.min_rides_breakdown(0,4,'mean_wind_speed')} rides")
     expect(page).to have_content("#{Condition.max_rides_breakdown(8,12,'mean_visibility')} rides")
+  end
+end
+describe 'visitor cannot view dashboard' do
+  it 'should redirect to login' do
+
+    visit conditions_dashboard_path
+
+    expect(current_path).to eq(login_path)
   end
 end
