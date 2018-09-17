@@ -11,9 +11,9 @@
 		<li><%= boolean_to_text(accessory.retired?) %></li>
 		<li><%= link_to 'Edit', edit_admin_accessory_path(accessory) %>
 		<% if accessory.retired? %>
-			<li><%= link_to 'Reactivate', admin_accessory_path(accessory, retired?: false), method: :put %></li>
+			<li><%= link_to 'Reactivate', admin_accessory_path(accessory, index_retired?: false), method: :put %></li>
 		<% else %>
-			<li><%= link_to 'Retire', admin_accessory_path(accessory, retired?: true), method: :put %></li>
+			<li><%= link_to 'Retire', admin_accessory_path(accessory, index_retired?: true), method: :put %></li>
 		<% end %>
 	</ul>
 <% end %>
