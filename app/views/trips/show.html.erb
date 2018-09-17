@@ -16,7 +16,11 @@
   <%= link_to '<< Back to Trips Index', trips_path %>
 </section>
 
-<% if current_admin? %>
-  <%= button_to 'Edit', edit_admin_trip_path(@trip), method: :get, class:'btn btn-success show-edit-button' %>
-  <%= button_to 'Delete', admin_trip_path(@trip), method: :delete, data: {confirm: "Really want to delete this trip?"}, class:'btn btn-danger' %>
-<% end %>
+<div class="center-buttons">
+  <div class="buttons">
+    <% if current_admin? %>
+      <%= button_to 'Edit', edit_admin_trip_path(@trip), method: :get, class:'btn btn-success show-edit-button' %>
+      <%= button_to 'Delete', admin_trip_path(@trip), method: :delete, data: {confirm: "Really want to delete this trip?"}, class:'btn btn-danger' %>
+    <% end %>
+  </div>
+</div>

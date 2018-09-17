@@ -99,3 +99,22 @@ nav p {
 .card {
   background-color: #B0E0E6;
 }
+
+.center-buttons {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+.buttons {
+  width: 20%;
+  display: flex;
+  justify-content: space-around;
+}
+.accessory-show-button-retire {
+  padding-left: 34px;
+  padding-right: 34px;
+}
+.accessory-show-button-activate {
+  padding-left: 25px;
+  padding-right: 25px;
+}
