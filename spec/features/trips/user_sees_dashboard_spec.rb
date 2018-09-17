@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 describe "user visits trips dashboard" do
   before :each do
     @user = User.create(username: 'Joseph', password: '1234')
@@ -112,5 +111,16 @@ describe "user visits trips dashboard" do
       expect(page).to have_content("#{@condition_1.mean_wind_speed} mph")
       expect(page).to have_content("#{@condition_1.precipitation}")
     end
+  end
+end
+describe 'visitor cannot view dashboard' do
+  it 'should redirect to login' do
+    station_1 = Station.create(name: 'Ferry Building', dock_count: 20, city: 'San Francisco', installation_date: Date.new(2017, 12, 25))
+    station_2 = Station.create(name: 'Coit Tower', dock_count: 25, city: 'San Francisco', installation_date: Date.new(2017, 10, 17))
+    trip_1 = Trip.create!(duration: 60, start_date: Date.new(2017, 6, 15), end_date: Date.new(2017, 6, 15), start_station_id: station_1.id, end_station_id: station_2.id, bike_id: 1, subscription_type: 0, zip_code: 68686)
+
+    visit trips_dashboard_path
+
+    expect(current_path).to eq(login_path)
   end
 end

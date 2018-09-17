@@ -20,7 +20,6 @@ feature 'User authorization' do
         expect(page).to have_content("The page you were looking for doesn't exist.")
       end
     end
-
     describe "as a logged in user" do
       it 'prevents me from seeing another users private details' do
         user_1, user_2 = create_list(:user, 2)

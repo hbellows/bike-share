@@ -70,8 +70,13 @@ describe "user visits stations dashboard" do
 
     expect(page).to have_content("#{station_2.name}")
   end
+end
+describe 'visitor cannot view dashboard' do
+  it 'should redirect to login' do
+    Station.create!(name: 'Ferry Building', dock_count: 45, city: 'San Francisco', installation_date: Date.new(2017, 4, 12))
 
+    visit stations_dashboard_path
 
-
-
+    expect(current_path).to eq(login_path)
+  end
 end

@@ -6,7 +6,6 @@ describe "user visits bike shop page" do
       accessory_1 = create(:accessory)
       accessory_2 = create(:accessory)
 
-
       visit bike_shop_path
 
       expect(page).to have_content(accessory_1.name)

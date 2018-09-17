@@ -18,12 +18,5 @@ feature 'When a visitor visits the trip show page' do
     expect(page).to have_content("Subscription Type: #{trip_1.subscription_type}")
     expect(page).to have_content("Zip Code: #{trip_1.zip_code}")
 
-    # expect(page).to have_content(trip_1.name)
-    # expect(page).to have_content(trip_1.start_date)
-    # expect(page).to have_content(trip_1.start_station_name)
-    # expect(page).to have_content("Station ID: #{trip_1.start_station_id}")
-    # expect(page).to have_content(trip_1.end_date)
-    # expect(page).to have_content(trip_1.end_station_name)
-    # expect(page).to have_content(trip_1.bike_id)
   end
 end
