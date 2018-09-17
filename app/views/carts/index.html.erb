@@ -1,21 +1,39 @@
 <h1>Your Cart</h1>
 
-<% @cart.accessories_and_quantity.each do |accessory, quantity| %>
-  <ul id="accessory-<%= accessory.id %>">
-    <li><%= accessory.name %></li>
-    <li>Price: <%= number_to_currency(accessory.price) %></li>
-    <li><%= accessory.image %></li>
-    <li>Quantity: <%= quantity %></li>
-    <li><%= button_to "increase quantity", carts_path(accessory_id: accessory.id, add: 'adding one') %></li>
-    <% if quantity <= 1%>
-          <li><%= button_to "decrease quantity", cart_path(accessory_id: accessory.id, remove: 'removing one'), method: 'delete', disabled: true%>
-    <% else %>
-          <li><%= button_to "decrease quantity", cart_path(accessory_id: accessory.id, remove: 'removing one'), method: 'delete'%></li>
-    <% end %>
-    <li>Subtotal: <%= number_to_currency(accessory.price * quantity) %></li>
-    <li><%= button_to 'Remove', cart_path(accessory_id: accessory.id), method: 'delete'%></li>
-  </ul>
-<% end %>
+<section class='index-main'>
+  <table class="table table-borderless" id='station-index-table'>
+    <thead>
+      <tr>
+        <th scope="col" id='table-entry'></th>
+        <th scope="col" id='table-entry'>Accessory</th>
+        <th scope="col" id='table-entry'>Price</th>
+        <th scope="col" id='table-entry'>Quantity</th>
+        <th scope="col" id='table-entry'>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @cart.accessories_and_quantity.each do |accessory, quantity| %>
+        <tr id="accessory-<%= accessory.id %>">
+          <th id='table-entry'><img src="<%= accessory.image %>" alt="thumbnail" style="width:60px;height:60px;"></th>
+          <th id='table-entry'><%= link_to accessory.name, accessory_path(accessory) %></th>
+          <td id='table-entry'><%= number_to_currency(accessory.price) %></td>
+          <div id="accessory-<%= accessory.id %>-quantity">
+            <td id='table-entry'><%= quantity %></td>
+          </div>
+          <td id='table-entry'><%= number_to_currency(accessory.price * quantity) %></td>
+          <td id='table-entry'><%= button_to "increase quantity", carts_path(accessory_id: accessory.id, add: 'adding one') %></td>
+          <% if quantity <= 1%>
+                <td id='table-entry'><%= button_to "decrease quantity", cart_path(accessory_id: accessory.id, remove: 'removing one'), method: 'delete', disabled: true%></td>
+          <% else %>
+                <td id='table-entry'><%= button_to "decrease quantity", cart_path(accessory_id: accessory.id, remove: 'removing one'), method: 'delete'%></td>
+          <% end %>
+          <td id='table-entry'><%= button_to 'Remove', cart_path(accessory_id: accessory.id), method: 'delete'%></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</section>
+
 <p><h3>Total: <%= number_to_currency(@cart.total_price) %></h3><p>
 
 <%= form_tag cart_path(total: number_to_currency(@cart.total_price), checkout: 'checkout'), method: 'delete' do %>
