@@ -1,27 +1,45 @@
-<%= form_for [:admin, @trip] do |f| %>
-  <%= f.label :duration %>
-  <%= f.text_field :duration %>
+ <div class="container-fluid card form-container">
+  <%= form_for [:admin, @trip] do |f| %>
+    <div class="form-group">    
+      <%= f.label :duration %>
+      <%= f.text_field :duration, class: "form-control" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :start_date %>
+      <%= f.text_field :start_date, class: "form-control" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :end_date %>
+      <%= f.text_field :end_date, class: "form-control" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :start_station_id, 'Origin Station' %>
+      <%= f.select :start_station_id, @stations, {}, { class: "form-control" } %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :end_station_id, 'Terminal Station' %>
+      <%= f.select :end_station_id, @stations, {}, { class: "form-control" } %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :bike_id %>
+      <%= f.text_field :bike_id, class: "form-control" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :subscription_type %>
+      <%= f.text_field :subscription_type, class: "form-control" %>
+    </div>
+    
+    <div class="form-group">
+      <%= f.label :zip_code %>
+      <%= f.text_field :zip_code, class: "form-control" %>
+    </div>
 
-  <%= f.label :start_date %>
-  <%= f.text_field :start_date %>
-
-  <%= f.label :end_date %>
-  <%= f.text_field :end_date %>
-
-  <%= f.label :start_station_id, 'Origin Station' %>
-  <%= f.select :start_station_id, @stations %>
-
-  <%= f.label :end_station_id, 'Terminal Station' %>
-  <%= f.select :end_station_id, @stations %>
-
-  <%= f.label :bike_id %>
-  <%= f.text_field :bike_id %>
-
-  <%= f.label :subscription_type %>
-  <%= f.text_field :subscription_type %>
-
-  <%= f.label :zip_code %>
-  <%= f.text_field :zip_code %>
-
-  <%= f.submit %>
-<% end %>
+    <%= f.submit class: "btn btn-primary ml-left" %>
+  <% end %>
+</div>
