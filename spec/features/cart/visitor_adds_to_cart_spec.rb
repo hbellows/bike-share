@@ -185,7 +185,7 @@ describe 'visitor/user can view accessories in cart' do
 
 
           within("#accessory-#{@accessory_2.id}") do
-            click_button 'increase quantity'
+            click_button '+'
           end
 
           within("#accessory-#{@accessory_1.id}-quantity") do

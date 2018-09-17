@@ -62,7 +62,7 @@ describe 'visitor removes accessories from cart' do
       expect(page).to have_content("Total: $43.00")
 
       within("#accessory-#{@accessory_2.id}") do
-        click_button 'decrease quantity'
+        click_button '-'
       end
 
       within("#accessory-#{@accessory_2.id}-quantity") do
@@ -89,14 +89,14 @@ describe 'visitor removes accessories from cart' do
       within("#accessory-#{@accessory_2.id}-quantity") do
         expect(page).to have_content("2")
       end
-      expect(page).to have_button('decrease quantity')
+      expect(page).to have_button('-')
 
       within("#accessory-#{@accessory_2.id}") do
-        click_button 'decrease quantity'
+        click_button '-'
       end
 
       expect(current_path).to eq(cart_path)
-      expect(page).to_not have_button('decrease quantity')
+      expect(page).to_not have_button('-')
       within("#accessory-#{@accessory_2.id}-quantity") do
         expect(page).to have_content("1")
         expect(page).to_not have_content("2")

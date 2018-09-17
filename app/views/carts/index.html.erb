@@ -21,35 +21,47 @@
             <td id='table-entry'><%= quantity %></td>
           </div>
           <td id='table-entry'><%= number_to_currency(accessory.price * quantity) %></td>
-          <td id='table-entry'><%= button_to "increase quantity", carts_path(accessory_id: accessory.id, add: 'adding one') %></td>
+          <td id='table-entry'><%= button_to "+", carts_path(accessory_id: accessory.id, add: 'adding one'), class: 'btn btn-success' %></td>
           <% if quantity <= 1%>
-                <td id='table-entry'><%= button_to "decrease quantity", cart_path(accessory_id: accessory.id, remove: 'removing one'), method: 'delete', disabled: true%></td>
+                <td id='table-entry'><%= button_to "-", cart_path(accessory_id: accessory.id, remove: 'removing one'), method: 'delete', class: 'btn btn-danger', disabled: true %></td>
           <% else %>
-                <td id='table-entry'><%= button_to "decrease quantity", cart_path(accessory_id: accessory.id, remove: 'removing one'), method: 'delete'%></td>
+                <td id='table-entry'><%= button_to "-", cart_path(accessory_id: accessory.id, remove: 'removing one'), method: 'delete', class: 'btn btn-danger' %></td>
           <% end %>
-          <td id='table-entry'><%= button_to 'Remove', cart_path(accessory_id: accessory.id), method: 'delete'%></td>
+          <td id='table-entry'><%= button_to 'Remove', cart_path(accessory_id: accessory.id), method: 'delete', class: 'btn btn-danger' %></td>
+        </tr>
+        <tr>
+          <td colspan=5><h3>Total: <%= number_to_currency(@cart.total_price) %></h3></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </section>
 
-<p><h3>Total: <%= number_to_currency(@cart.total_price) %></h3><p>
+<div class="form-container container-fluid card">
+  <%= form_tag cart_path(total: number_to_currency(@cart.total_price), checkout: 'checkout'), method: 'delete' do %>
+    <% if current_user %>
+      <h3>Shipping Address</h3>
 
-<%= form_tag cart_path(total: number_to_currency(@cart.total_price), checkout: 'checkout'), method: 'delete' do %>
-  <% if current_user %>
-    <h2>Shipping Address</h2>
-    <%= label_tag :street_address %>
-    <%= text_field_tag :street_address %>
+      <div class="form-group">
+        <%= label_tag :street_address %>
+        <%= text_field_tag :street_address, nil, class: 'form-control' %>
+      </div>
 
-    <%= label_tag :city %>
-    <%= text_field_tag :city %>
-
-    <%= label_tag :state %>
-    <%= select_tag :state, options_for_select(us_states) %>
-
-    <%= label_tag :zip_code %>
-    <%= text_field_tag :zip_code %>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <%= label_tag :city %>
+          <%= text_field_tag :city, nil, class: 'form-control' %>
+        </div>
+        <div class="form-group col-md-4">
+          <%= label_tag :state %>
+          <%= select_tag :state, options_for_select(us_states), { class: "form-control" } %>
+        </div>
+        <div class="form-group col-md-2">
+          <%= label_tag :zip_code %>
+          <%= text_field_tag :zip_code, nil, class: 'form-control' %>
+        </div>
+      </div>
+    <% end %>
+    <%= submit_tag 'Checkout', class: 'btn btn-success' %>
   <% end %>
-  <%= submit_tag 'Checkout' %>
-<% end %>
+</div>

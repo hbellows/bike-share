@@ -34,7 +34,7 @@
         <td id='table-entry'><%= condition.mean_wind_speed %> mph</td>
         <td id='table-entry'><%= condition.precipitation %> "</td>
         <% if current_admin? %>
-          <td><%= button_to 'Edit', edit_admin_condition_path(condition), class:'btn btn-success edit-button' %></td>
+          <td><%= button_to 'Edit', edit_admin_condition_path(condition), method: :get, class:'btn btn-success edit-button' %></td>
           <td><%= button_to 'Delete', condition_path(condition), method: :delete, data: {confirm: "Really want to delete this condition?"}, class:'btn btn-danger delete-button' %></td>
         <% end %>
       </tr>
