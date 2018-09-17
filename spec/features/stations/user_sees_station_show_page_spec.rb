@@ -47,5 +47,3 @@ describe 'As a user' do
     end
   end
 end
-
-# I see the Bike ID most frequently starting a trip at this station.
