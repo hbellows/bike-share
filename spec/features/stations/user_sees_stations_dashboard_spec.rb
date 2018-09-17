@@ -2,9 +2,10 @@ require 'rails_helper'
 
 describe "user visits stations dashboard" do
   before :each do
-    @user = User.create(username: 'Joseph', password: '1234')
+    @user = create(:user)
     allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(@user)
-    @station_1, @station_2 = create_list(:station, 2)
+    @station_1 = create(:station, dock_count: 2)
+    @station_2 = create(:station)
   end
   it 'see total count of stations' do
     visit stations_dashboard_path
