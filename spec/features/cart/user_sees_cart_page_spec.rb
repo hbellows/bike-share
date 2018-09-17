@@ -27,12 +27,12 @@ describe 'As a user' do
       subtotal_1 = @accessory_1.price
       grand_total = subtotal_2 + subtotal_1
       expect(page).to have_content(@accessory_1.name)
-      expect(page).to have_content("Price: $#{@accessory_1.price}")
-      expect(page).to have_content("Subtotal: $#{subtotal_1}")
+      expect(page).to have_content(@accessory_1.price)
+      expect(page).to have_content(subtotal_1)
       expect(page).to have_content(@accessory_2.name)
-      expect(page).to have_content("Price: $#{@accessory_2.price}")
-      expect(page).to have_content("Subtotal: $#{subtotal_2}")
-      expect(page).to have_content("Total: $#{grand_total}")
+      expect(page).to have_content(@accessory_2.price)
+      expect(page).to have_content(subtotal_2)
+      expect(page).to have_content(grand_total)
       expect(page).to have_button("Checkout")
     end
     it "Registered user clicks on checkout with items in the cart and recieves message" do
@@ -55,9 +55,9 @@ describe 'As a user' do
       expect(current_path).to eq(dashboard_path)
       expect(page).to have_content("Successfully submitted your order totalling $55.00")
       expect(page).to_not have_content(@accessory_1.name)
-      expect(page).to_not have_content("Price: $#{@accessory_1.price}")
+      expect(page).to_not have_content(@accessory_1.price)
       expect(page).to_not have_content(@accessory_2.name)
-      expect(page).to_not have_content("Price: $#{@accessory_2.price}")
+      expect(page).to_not have_content(@accessory_2.price)
     end
     it 'registered users on checkout with no items in cart' do
       visit '/cart'
