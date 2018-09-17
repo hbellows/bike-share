@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def show
     if current_admin?
-      @user = User.find(params[:id])
+      @user = User.find(current_user.id)
     elsif current_user
       @user = User.find(current_user.id)
     end
