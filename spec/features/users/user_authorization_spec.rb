@@ -88,8 +88,8 @@ feature 'User authorization' do
 
         visit edit_user_path(user_2)
 
-        expect(page).to have_content("Edit #{user_1.username}'s Account")
-        expect(page).to_not have_content("Edit #{user_2.username}'s Account")
+        expect(page).to have_content("Edit Account")
+        expect(page).to_not have_content("#{user_2.username} Updated")
       end
     end
     describe "as an admin user" do
@@ -139,6 +139,8 @@ feature 'User authorization' do
         click_on "Update User"
 
         expect(current_path).to eq(admin_dashboard_path)
+        expect(page).to have_content("#{admin.username} Updated")
+        expect(page).to have_content("differentnameadmin")
       end
       it 'can edit other users details' do
         admin = create(:admin)
@@ -157,7 +159,8 @@ feature 'User authorization' do
 
         visit edit_user_path(user)
 
-        expect(page).to have_content("Edit #{user.username}'s Account")
+        expect(page).to have_content("Edit Account")
+        expect(page).to have_content("#{user.username} Updated")
       end
     end
   end
