@@ -1,9 +1,5 @@
 class Admin::ConditionsController < ApplicationController
 
-  def index
-    @conditions = Condition.paginate(:page => params[:page], :per_page => 30)
-  end
-
   def new
     @condition = Condition.new
   end
@@ -33,7 +29,7 @@ class Admin::ConditionsController < ApplicationController
       redirect_to condition_path(@condition)
     else
       flash[:notice] = 'Condition was not updated.'
-      redirect_to edit_admin_conition_path(@condition)
+      redirect_to edit_admin_condition_path(@condition)
     end
   end
 

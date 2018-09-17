@@ -61,11 +61,3 @@ describe 'As an admin' do
     end
   end
 end
-
-
-
-# As an admin user,
-# When I visit the trips index,
-# I see all attributes that a visitor can see,
-# I see a button next to each trip to edit that trip,
-# I also see a button next to each trip to delete that trip.
