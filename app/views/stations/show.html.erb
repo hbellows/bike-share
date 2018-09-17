@@ -9,7 +9,7 @@
   <div>City: <%= @station.city %></div>
   <div>Installation Date: <%= @station.installation_date.strftime("%m/%d/%Y") %></div>
 
-  <% if current_user %>
+  <% if current_user && @station.start_stations.any? && @station.end_stations.any? %>
     <div>Number of Rides Started Here: <%= @station.number_rides_started %></div>
     <div>Number of Rides Ended Here: <%= @station.number_rides_ended %></div>
 

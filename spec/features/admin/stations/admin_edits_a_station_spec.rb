@@ -17,7 +17,7 @@ describe 'As an admin' do
 
       click_on 'Update Station'
 
-      expect(current_path).to eq(admin_station_path(@station))
+      expect(current_path).to eq(station_path(@station))
       expect(page).to have_content('Updated Station Name updated!')
       expect(page).to have_content('Updated Station Name')
       expect(page).to have_content('Updated City')

@@ -8,13 +8,8 @@ class Trip < ApplicationRecord
   validates_presence_of :subscription_type
   validates_presence_of :zip_code
 
-  def start_station
-    Station.find(start_station_id)
-  end
-
-  def end_station
-    Station.find(end_station_id)
-  end
+  belongs_to :start_station, class_name: 'Station', foreign_key: 'start_station_id'
+  belongs_to :end_station, class_name: 'Station', foreign_key: 'end_station_id'
 
   def self.duration_info
     [maximum(:duration), average(:duration), minimum(:duration)]
