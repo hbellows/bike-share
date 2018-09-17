@@ -11,4 +11,8 @@ RSpec.describe Trip, type: :model do
     it { should validate_presence_of :subscription_type }
     it { should validate_presence_of :zip_code }
   end
+  describe 'Relationships' do
+    it { should belong_to(:start_station).class_name('Station').with_foreign_key('start_station_id') }
+    it { should belong_to(:end_station).class_name('Station').with_foreign_key('end_station_id') }
+  end
 end

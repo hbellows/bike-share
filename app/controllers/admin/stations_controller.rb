@@ -1,13 +1,4 @@
 class Admin::StationsController < Admin::BaseController
-
-  def index
-    @stations = Station.all
-  end
-
-  def show
-    @station = Station.friendly.find(params[:id])
-  end
-
   def new
     @station = Station.new
   end
@@ -33,7 +24,7 @@ class Admin::StationsController < Admin::BaseController
     station.update(station_params)
     if station.save
       flash[:notice] = "#{station.name} updated!"
-      redirect_to admin_station_path(station)
+      redirect_to station_path(station)
     else
       flash[:notice] = "All attributes must be present, update failed."
       redirect_to edit_admin_station_path(station)
@@ -44,12 +35,12 @@ class Admin::StationsController < Admin::BaseController
     @station = Station.friendly.find(params[:id])
     @station.destroy
     flash[:notice] = "Station deleted."
-    redirect_to admin_stations_path
+    redirect_to stations_path
   end
 
   private
 
-    def station_params
-      params.require(:station).permit(:name, :dock_count, :city, :installation_date)
-    end
+  def station_params
+    params.require(:station).permit(:name, :dock_count, :city, :installation_date)
+  end
 end
