@@ -24,17 +24,17 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if current_admin?
-      @user = User.find(params[:id])
-    elsif current_user
-      @user = User.find(current_user.id)
-    end
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.update(user_params)
-    flash[:notice] = "Account Updated"
-    redirect_to dashboard_path
+    @user = User.find(params[:id])
+    if @user = User.update(user_params)
+      flash[:notice] = "Account Updated"
+      redirect user_path(@user)
+    else
+      redirect_to dashboard_path
+    end
   end
 
   private

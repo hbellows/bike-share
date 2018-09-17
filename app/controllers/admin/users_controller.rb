@@ -16,9 +16,13 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def update
-    @user = User.update(user_params)
-    flash[:notice] = "Account Updated"
-    redirect_to admin_dashboard_path
+    @user = User.find(params[:id])
+    if @user = User.update(user_params)
+      flash[:notice] = "Account Updated"
+      redirect admin_user_path(@user)
+    else
+     redirect_to admin_dashboard_path
+    end
   end
 
   private
