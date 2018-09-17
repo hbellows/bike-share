@@ -17,13 +17,12 @@
           <td id='table-entry'><%= user.username %></td>
           <td id='table-entry'><%= user.email %></td>
           <td><%= button_to 'Edit', edit_admin_user_path(user), class:'btn btn-success edit-button' %></td>
-          <td><%= button_to 'Delete', admin_user_path(user), method: :delete, data: {confirm: "Really want to delete this station?"}, class:'btn btn-danger delete-button' %></td>
+          <td><%= button_to 'Delete', admin_user_path(user), method: :delete, data: {confirm: "Really want to delete this user?"}, class:'btn btn-danger delete-button' %></td>
           <% end %>
         </tr>
       </section>
-      <% end %>
     </tbody>
   </table>
 </section>
 
-<%= will_paginate @stations %>
+<%= will_paginate @users %>

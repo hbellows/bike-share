@@ -1,6 +1,10 @@
 class Admin::UsersController < Admin::BaseController
   # before_action :require_user, only: [:show, :edit]
 
+  def index
+    @users = User.paginate(:page => params[:page], :per_page => 30)
+  end
+  
   def show
     @user = User.find(current_user.id)
     @status_count = Order.status_count
@@ -8,6 +12,20 @@ class Admin::UsersController < Admin::BaseController
       @orders = Order.filter_by_status(params[:filter_by_status]).order(:id)
     else
       @orders = Order.order(:id)
+    end
+  end
+
+  def new
+    @user = User.new
+  end
+
+  def create
+    @user = User.create(user_params)
+    if @user.save
+      session[:user_id] = @user.id
+      redirect_to admin_dashboard_path
+    else
+      render :new
     end
   end
 
@@ -19,7 +37,7 @@ class Admin::UsersController < Admin::BaseController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "#{@user.username} Updated"
-      redirect_to admin_dashboard_path
+      redirect_to admin_user_path(@user)
     else
       render :edit
     end
@@ -31,7 +49,7 @@ class Admin::UsersController < Admin::BaseController
     flash[:notice] = 'User deleted.'
     redirect_to admin_users_path
   end
-  
+
   private
     def user_params
       params.require(:user).permit(:email, :username, :password, :role)
