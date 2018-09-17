@@ -3,31 +3,12 @@ require 'rails_helper'
 feature 'Trip index page' do
   context 'When a visitor visits page, they see all trips' do
     before(:each) do
-      station_1 = Station.create(name: 'San Jose Diridon Caltrain Station', dock_count: 27, city: 'San Jose', installation_date: Date.new(2014, 10, 17))
-      station_2 = Station.create(name: 'Redwood City Muni', dock_count: 37, city: 'Redwood City', installation_date: Date.new(2016, 11, 26))
-
-      duration = 0
-      start_date = Date.new(2018, 5, 26)
-      end_date = Date.new(2018, 1, 17)
-      start_station_id = station_1.id
-      end_station_id = station_2.id
-      bike_id = 1
-      subscription_type = 0
-      zip_code = 60446
+      station_1, station_2 = create_list(:station, 2)
 
       31.times do
-      Trip.create!(
-        duration: duration += 1,
-        start_date: start_date,
-        end_date: end_date,
-        start_station_id: start_station_id,
-        end_station_id: end_station_id,
-        bike_id: bike_id += 1,
-        subscription_type: subscription_type,
-        zip_code: zip_code += 1)
+        create(:trip, start_station_id: station_1.id, end_station_id: station_2.id)
       end
     end
-
     it 'show visitor all info for the first 30 trips' do
       visit trips_path
 
