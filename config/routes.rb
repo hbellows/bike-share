@@ -19,8 +19,8 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :accessories, only: [:new, :create, :edit, :update]
-    resources :users, only: [:index, :show, :edit, :update, :destroy]
-    resources :stations
+    resources :users, only: [:show, :edit, :update]
+    resources :stations, only: [:new, :create, :edit, :update, :destroy]
     resources :conditions, only: [:new, :create, :edit, :update]
     resources :orders, only: [:index]
     resources :trips

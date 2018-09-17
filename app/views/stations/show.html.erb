@@ -1,7 +1,7 @@
 <h1><%= @station.name %></h1>
 
 <% if current_admin? %>
-  <%= link_to 'Create New Station', new_admin_station_path, class:'btn btn-secondary' %>
+  <p><%= link_to 'Create New Station', new_admin_station_path, class:'btn btn-secondary' %></p>
 <% end %>
 
 <section class='show-main'>
@@ -9,7 +9,7 @@
   <div>City: <%= @station.city %></div>
   <div>Installation Date: <%= @station.installation_date.strftime("%m/%d/%Y") %></div>
 
-  <% if current_user %>
+  <% if current_user && @station.start_stations.any? && @station.end_stations.any? %>
     <div>Number of Rides Started Here: <%= @station.number_rides_started %></div>
     <div>Number of Rides Ended Here: <%= @station.number_rides_ended %></div>
 
@@ -22,7 +22,11 @@
   <p><%= link_to '<< Back to Stations Index', stations_path %></p>
 </section>
 
-<% if current_admin? %>
-  <%= button_to 'Edit', edit_admin_station_path(@station), method: :get, class:'btn btn-success show-edit-button' %>
-  <%= button_to 'Delete', admin_station_path(@station), method: :delete, data: {confirm: "Really want to delete this station?"}, class:'btn btn-danger' %>
-<% end %>
+<div class="center-buttons">
+  <div class="buttons">
+    <% if current_admin? %>
+      <%= button_to 'Edit', edit_admin_station_path(@station), method: :get, class:'btn btn-success show-edit-button' %>
+      <%= button_to 'Delete', admin_station_path(@station), method: :delete, data: {confirm: "Really want to delete this station?"}, class:'btn btn-danger' %>
+    <% end %>
+  </div>
+</div>

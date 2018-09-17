@@ -4,7 +4,7 @@ feature 'User authorization' do
   describe 'As a visitor' do
     describe 'when I visit any administrator pages' do
       it 'redirects to /login and gives me an error message' do
-      	visit admin_stations_path
+      	visit new_admin_station_path
 
         expect(page).to have_content("The page you were looking for doesn't exist.")
       end
@@ -15,7 +15,7 @@ feature 'User authorization' do
         user = create(:user)
         allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-        visit admin_stations_path
+        visit new_admin_station_path
 
         expect(page).to have_content("The page you were looking for doesn't exist.")
       end

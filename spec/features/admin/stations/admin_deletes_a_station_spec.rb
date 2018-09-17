@@ -10,13 +10,13 @@ describe 'As an admin' do
   end
   describe 'When I visist the admin station index page' do
     it 'allows me to delete a station' do
-      visit admin_stations_path
+      visit stations_path
 
       within("#station-#{@station1.id}") do
-        click_link 'Delete'
+        click_button 'Delete'
       end
 
-      expect(current_path).to eq(admin_stations_path)
+      expect(current_path).to eq(stations_path)
       expect(page).to have_content('Station deleted.')
       expect(page).to have_content(@station2.name)
       expect(page).to_not have_content(@station1.name)
