@@ -54,6 +54,7 @@ class Condition < ApplicationRecord
     end
     max_temp_values
   end
+
   def self.precip_breakdown
     ranges = {'half'=>{min: 0, max: 0.49},'one'=>{min: 0.5, max: 0.99},'one_half'=>{min: 1, max: 1.49},'two'=>{min: 1.5, max: 1.99},'two_half'=>{min: 2, max: 2.49},'three'=>{min: 2.5, max: 2.99},'three_half'=>{min: 3, max: 3.49}}
     precipitation_values = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc) }
@@ -64,6 +65,7 @@ class Condition < ApplicationRecord
     end
     precipitation_values
   end
+
   def self.wind_breakdown
     ranges = {'four'=>{min: 0, max: 3.99},'eight'=>{min: 4, max: 7.99},'twelve'=>{min: 8, max: 11.99},'sixteen'=>{min: 12, max: 15.99},'twenty'=>{min: 16, max: 19.99},'twenty_four'=>{min: 20, max: 24}}
     wind_speed_values = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc) }
@@ -74,6 +76,7 @@ class Condition < ApplicationRecord
     end
     wind_speed_values
   end
+  
   def self.visibility_breakdown
     ranges = {'four'=>{min: 0, max: 3.99},'eight'=>{min: 4, max: 7.99},'twelve'=>{min: 8, max: 11.99},'sixteen'=>{min: 12, max: 15.99},'twenty'=>{min: 16, max: 19.99},'twenty_four'=>{min: 20, max: 24}}
     visibility_values = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc) }
