@@ -3,7 +3,7 @@ require 'rails_helper'
 describe 'As an admin' do
   describe 'When I visit trips index' do
     it 'allows me to delete a trip' do
-      admin = create(:user, role: 1)
+      admin = create(:admin)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
       station1, station2 = create_list(:station, 2)
