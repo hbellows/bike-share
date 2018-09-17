@@ -1,0 +1,205 @@
+<h1>Conditions Dashboard</h1>
+
+<div class="">
+
+<section class="container-fluid">
+  <div class="row">
+    <div class="col-2"></div>
+    <table class="table table-borderless col-4">
+      <thead>
+        <caption>High Temperatures</caption>
+        <tr>
+          <th scope="col">Farenheit</th>
+          <th scope="col">Most Rides</th>
+          <th scope="col">Least Rides</th>
+          <th scope="col">Average Rides</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>40 - 50</td>
+          <td><%= @max_temperature['max_rides']['40s']%> rides</td>
+          <td><%= @max_temperature['min_rides']['40s']%> rides</td>
+          <td><%= @max_temperature['avg_rides']['40s'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>50 - 60</td>
+          <td><%= @max_temperature['max_rides']['50s']%> rides</td>
+          <td><%= @max_temperature['min_rides']['50s']%> rides</td>
+          <td><%= @max_temperature['avg_rides']['50s'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>60 - 70</td>
+          <td><%= @max_temperature['max_rides']['60s']%> rides</td>
+          <td><%= @max_temperature['min_rides']['60s']%> rides</td>
+          <td><%= @max_temperature['avg_rides']['60s'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>70 - 80</td>
+          <td><%= @max_temperature['max_rides']['70s']%> rides</td>
+          <td><%= @max_temperature['min_rides']['70s']%> rides</td>
+          <td><%= @max_temperature['avg_rides']['70s'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>80 - 90</td>
+          <td><%= @max_temperature['max_rides']['80s']%> rides</td>
+          <td><%= @max_temperature['min_rides']['80s']%> rides</td>
+          <td><%= @max_temperature['avg_rides']['80s'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>90 - 100</td>
+          <td><%= @max_temperature['max_rides']['90s']%> rides</td>
+          <td><%= @max_temperature['min_rides']['90s']%> rides</td>
+          <td><%= @max_temperature['avg_rides']['90s'].round(2)%> rides</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+
+    <div class="col-2"></div>
+    <table class="table table-borderless col-4">
+      <thead>
+        <caption>Precipitation</caption>
+
+        <tr>
+          <th scope="col">Inches</th>
+          <th scope="col">Most Rides</th>
+          <th scope="col">Least Rides</th>
+          <th scope="col">Average Rides</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0 - 0.5</td>
+          <td><%= @precipitation['max_rides']['half']%> rides</td>
+          <td><%= @precipitation['min_rides']['half']%> rides</td>
+          <td><%= @precipitation['avg_rides']['half'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>0.5 - 1</td>
+          <td><%= @precipitation['max_rides']['one']%> rides</td>
+          <td><%= @precipitation['min_rides']['one']%> rides</td>
+          <td><%= @precipitation['avg_rides']['one'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>1 - 1.5</td>
+          <td><%= @precipitation['max_rides']['one_half']%> rides</td>
+          <td><%= @precipitation['min_rides']['one_half']%> rides</td>
+          <td><%= @precipitation['avg_rides']['one_half'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>1.5 - 2</td>
+          <td><%= @precipitation['max_rides']['two']%> rides</td>
+          <td><%= @precipitation['min_rides']['two']%> rides</td>
+          <td><%= @precipitation['avg_rides']['two'].round(2)%> rides</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <div class="col-2"></div>
+    <table class="table table-borderless col-4">
+      <thead>
+        <caption>Mean Wind Speed</caption>
+        <tr>
+          <th scope="col">Miles</th>
+          <th scope="col">Most Rides</th>
+          <th scope="col">Least Rides</th>
+          <th scope="col">Average Rides</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0 - 4</td>
+          <td><%= @mean_wind_speed['max_rides']['four']%> rides</td>
+          <td><%= @mean_wind_speed['min_rides']['four']%> rides</td>
+          <td><%= @mean_wind_speed['avg_rides']['four'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>4 - 8</td>
+          <td><%= @mean_wind_speed['max_rides']['eight']%> rides</td>
+          <td><%= @mean_wind_speed['min_rides']['eight']%> rides</td>
+          <td><%= @mean_wind_speed['avg_rides']['eight'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>8 - 12</td>
+          <td><%= @mean_wind_speed['max_rides']['twelve']%> rides</td>
+          <td><%= @mean_wind_speed['min_rides']['twelve']%> rides</td>
+          <td><%= @mean_wind_speed['avg_rides']['twelve'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>12 - 16</td>
+          <td><%= @mean_wind_speed['max_rides']['sixteen']%> rides</td>
+          <td><%= @mean_wind_speed['min_rides']['sixteen']%> rides</td>
+          <td><%= @mean_wind_speed['avg_rides']['sixteen'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>16 - 20</td>
+          <td><%= @mean_wind_speed['max_rides']['twenty']%> rides</td>
+          <td><%= @mean_wind_speed['min_rides']['twenty']%> rides</td>
+          <td><%= @mean_wind_speed['avg_rides']['twenty'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>20 - 24</td>
+          <td><%= @mean_wind_speed['max_rides']['twenty_four']%> rides</td>
+          <td><%= @mean_wind_speed['min_rides']['twenty_four']%> rides</td>
+          <td><%= @mean_wind_speed['avg_rides']['twenty_four'].round(2)%> rides</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="col-2"></div>
+    <table class="table table-borderless col-4">
+      <thead>
+        <caption>Mean Visibility</caption>
+        <tr>
+          <th scope="col">Miles</th>
+          <th scope="col">Most Rides</th>
+          <th scope="col">Least Rides</th>
+          <th scope="col">Average Rides</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>0 - 4</td>
+          <td><%= @mean_visibility['max_rides']['four']%> rides</td>
+          <td><%= @mean_visibility['min_rides']['four']%> rides</td>
+          <td><%= @mean_visibility['avg_rides']['four'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>4 - 8</td>
+          <td><%= @mean_visibility['max_rides']['eight']%> rides</td>
+          <td><%= @mean_visibility['min_rides']['eight']%> rides</td>
+          <td><%= @mean_visibility['avg_rides']['eight'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>8 - 12</td>
+          <td><%= @mean_visibility['max_rides']['twelve']%> rides</td>
+          <td><%= @mean_visibility['min_rides']['twelve']%> rides</td>
+          <td><%= @mean_visibility['avg_rides']['twelve'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>12 - 16</td>
+          <td><%= @mean_visibility['max_rides']['sixteen']%> rides</td>
+          <td><%= @mean_visibility['min_rides']['sixteen']%> rides</td>
+          <td><%= @mean_visibility['avg_rides']['sixteen'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>16 - 20</td>
+          <td><%= @mean_visibility['max_rides']['twenty']%> rides</td>
+          <td><%= @mean_visibility['min_rides']['twenty']%> rides</td>
+          <td><%= @mean_visibility['avg_rides']['twenty'].round(2)%> rides</td>
+        </tr>
+        <tr>
+          <td>20 - 24</td>
+          <td><%= @mean_visibility['max_rides']['twenty_four']%> rides</td>
+          <td><%= @mean_visibility['min_rides']['twenty_four']%> rides</td>
+          <td><%= @mean_visibility['avg_rides']['twenty_four'].round(2)%> rides</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+</div>
