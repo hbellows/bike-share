@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'As an admin' do
-	xit 'allows me to visit a user show page' do
+	it 'allows me to visit a user show page' do
 		admin = create(:admin)
 		user  = create(:user)
 		allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)

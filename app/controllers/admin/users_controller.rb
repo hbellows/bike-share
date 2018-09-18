@@ -1,9 +1,4 @@
 class Admin::UsersController < Admin::BaseController
-
-  def index
-    @users = User.paginate(:page => params[:page], :per_page => 30)
-  end
-  
   def show
     @user = User.find(current_user.id)
     @status_count = Order.status_count

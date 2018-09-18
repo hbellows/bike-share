@@ -13,6 +13,14 @@
  */
 @import "bootstrap";
 
+.notice {
+  @extend .alert;
+  @extend .alert-primary;
+
+  margin-bottom: 0;
+  text-align: center;
+}
+
 nav {
   color: #E8F1F2;
   background-color: #192BC2;
