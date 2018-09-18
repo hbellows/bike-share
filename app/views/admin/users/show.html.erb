@@ -1,40 +1,80 @@
-<h3>Welcome Admin <%= @user.username %></h3>
+<h1>Welcome Admin <%= @user.username %></h1>
 
-<%= link_to 'Edit Profile', edit_admin_user_path(@user) %>
-<%= link_to "Accessories", admin_bike_shop_path %>
-<%= link_to "Conditions", conditions_path %>
-<%= link_to "Stations", stations_path %>
-<%= link_to "Trips", trips_path %>
+<p>
+  <%= link_to 'Edit Profile', edit_admin_user_path(@user), class: 'btn btn-primary' %>
+  <%= link_to "Admin Accessories", admin_bike_shop_path, class: 'btn btn-primary' %>
+</p>
+<p>
+  <%= link_to "Conditions", conditions_path, class: 'btn btn-primary' %>
+  <%= link_to "Stations", stations_path, class: 'btn btn-primary' %>
+  <%= link_to "Trips", trips_path, class: 'btn btn-primary' %>
+</p>
 
 
-<h4>Order Status</h4>
-<ul>
+<h2>Order Status</h2>
+<div class="row">
   <% @status_count.each do |status, count| %>
-    <li><%= status.capitalize %>: <%= count %></li>
+    <div class="col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5><%= status.capitalize %></h5>
+          <%= count %>
+        </div>
+      </div>
+    </div>
   <% end %>
-</ul>
+</div>
 
-<%= form_tag admin_dashboard_path, method: 'GET' do %>
-  <%= label_tag :filter_by_status, 'Filter by Status' %>
-  <%= select_tag :filter_by_status, options_for_select([['Ordered', 'ordered'],['Paid', 'paid'],['Completed', 'completed'],['Cancelled', 'cancelled']]) %>
+<br />
 
-  <%= submit_tag 'Filter' %>
-<% end %>
+<section class="index-bike-shop-admin">
+  <table class="table table-striped table-light" id="station-index-table">
+    <thead class="table table-striped table-light">
+      <tr>
+        <th class="table-entry">
+          Order
+        </th>
+        <th class="table-entry">
+          User
+        </th>
+        <th class="table-entry">
+          Status
+          <%= form_tag admin_dashboard_path, method: 'GET' do %>
+            <%= select_tag :filter_by_status, options_for_select([['Ordered', 'ordered'],['Paid', 'paid'],['Completed', 'completed'],['Cancelled', 'cancelled']]) %>
 
-<h4>All Orders</h4>
-<% @orders.each do |order| %>
-  <ul id="order-<%= order.id %>">
-    <li><%= link_to "Order ##{order.id}", order_path(order) %></li>
-    <li>User: <%= order.user.username %></li>
-    <li>Status: <%= order.status.capitalize %></li>
-    <% if order.status != 'cancelled' %>
-      <% if order.status == 'ordered' %>
-        <li><%= link_to 'Mark as Paid', order_path(order, status_update: 'paid'), method: :put %></li>
-        <li><%= link_to 'Cancel', order_path(order, status_update: 'cancelled'), method: :put %></li>
-      <% elsif order.status == 'paid' %>
-        <li><%= link_to 'Mark as Completed', order_path(order, status_update: 'completed'), method: :put %></li>
-        <li><%= link_to 'Cancel', order_path(order, status_update: 'cancelled'), method: :put %></li>
+            <%= submit_tag 'Filter', class: 'btn btn-primary' %>
+          <% end %>
+        </th>
+        <th class="table-entry" colspan=2 id="small-cell">
+          Options
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @orders.each do |order| %>
+        <tr id="order-<%= order.id %>">
+          <td class="table-entry">
+            <%= link_to "Order ##{order.id}", order_path(order) %>
+          </td>
+          <td class="table-entry">
+            <%= link_to order.user.username, user_path(order.user) %>
+          </td>
+          <td class="table-entry">
+            <%= order.status.capitalize %>
+          </td>
+          <td class="table-entry" colspan=2 id="small-cell">
+            <% if order.status != 'cancelled' %>
+              <% if order.status == 'ordered' %>
+                <%= link_to 'Mark as Paid', order_path(order, status_update: 'paid'), method: :put, class: 'btn btn-warning' %>
+                <%= link_to 'Cancel', order_path(order, status_update: 'cancelled'), method: :put, class: 'btn btn-danger' %>
+              <% elsif order.status == 'paid' %>
+                <%= link_to 'Mark as Completed', order_path(order, status_update: 'completed'), method: :put, class: 'btn btn-success' %>
+                <%= link_to 'Cancel', order_path(order, status_update: 'cancelled'), method: :put, class: 'btn btn-danger' %>
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
-    <% end %>
-  </ul>
-<% end %>
+    </tbody>
+  </table>
+</section>

@@ -1,19 +1,39 @@
 <h1>Admin Accessories Index</h1>
 
-<h2><%= link_to 'Add New Accessory', new_admin_accessory_path %></h2>
+<p><%= link_to 'Create New Accessory', new_admin_accessory_path, class:'btn btn-secondary' %></p>
 
-<% @accessories.each do |accessory| %>
-	<ul id="accessory-<%= accessory.id %>">
-		<li><%= image_tag(accessory.image) %></li>
-		<li><%= link_to accessory.name, accessory_path(accessory) %></li>
-		<li><%= accessory.description %></li>
-		<li><%= number_to_currency(accessory.price) %></li>
-		<li><%= boolean_to_text(accessory.retired?) %></li>
-		<li><%= link_to 'Edit', edit_admin_accessory_path(accessory) %>
-		<% if accessory.retired? %>
-			<li><%= link_to 'Reactivate', admin_accessory_path(accessory, index_retired?: false), method: :put %></li>
-		<% else %>
-			<li><%= link_to 'Retire', admin_accessory_path(accessory, index_retired?: true), method: :put %></li>
-		<% end %>
-	</ul>
-<% end %>
+<section class="index-main">
+	<table class="table table-borderless" id="station-index-table">
+		<thead>
+      <tr>
+        <th scope="col" id='table-entry'></th>
+        <th scope="col" id='table-entry'>Accessory</th>
+        <th scope="col" id='table-entry'>Description</th>
+        <th scope="col" id='table-entry'>Price</th>
+        <th scope="col" id='table-entry'>Status</th>
+      </tr>
+		</thead>
+		<tbody>
+			<% @accessories.each do |accessory| %>
+        <tr id="accessory-<%= accessory.id %>"<%= accessory.id %>>
+          <th id='table-entry'>
+            <%= image_tag(accessory.image, height: '60', width: '60')  %>
+          </th>
+          <th id='table-entry'><%= link_to accessory.name, accessory_path(accessory) %></th>
+          <td id='table-entry'><%= accessory.description %></td>
+          <td id='table-entry'><%= number_to_currency(accessory.price) %></td>
+          <td id='table-entry'>
+            <% if accessory.retired? %>
+              <%= button_to 'Reactivate', admin_accessory_path(accessory, index_retired?: false), method: :put, class: 'btn btn-primary' %>
+            <% else %>
+              <%= button_to 'Retire', admin_accessory_path(accessory, index_retired?: true), method: :put, class: 'btn btn-primary' %>
+            <% end %>
+          </td>
+          <td id="table-entry">
+            <%= link_to 'Edit', edit_admin_accessory_path(accessory), class: 'btn btn-primary' %>
+          </td>
+        </tr>
+			<% end %>
+		</tbody>
+	</table>
+</section> 
