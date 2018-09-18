@@ -88,8 +88,8 @@ feature 'User authorization' do
 
         visit edit_user_path(user_2)
 
-        expect(page).to have_content("Edit #{user_1.username}'s Account")
-        expect(page).to_not have_content("Edit #{user_2.username}'s Account")
+        expect(page).to have_content("Edit Account")
+        expect(page).to_not have_content("#{user_2.username} Updated")
       end
     end
     describe "as an admin user" do
@@ -139,25 +139,24 @@ feature 'User authorization' do
         click_on "Update User"
 
         expect(current_path).to eq(admin_dashboard_path)
+        expect(page).to have_content("#{admin.username} Updated")
+        expect(page).to have_content("differentnameadmin")
       end
       it 'can edit other users details' do
-        admin = create(:admin)
+        admin = create(:user, role: 1)
         user  = create(:user)
 
-        visit root_path
+        allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
-        click_on 'Login'
+        visit edit_admin_user_path(user)
+        expect(current_path).to eq(edit_admin_user_path(user))
 
-        expect(current_path).to eq(login_path)
+        fill_in :user_username, with: "New Username"
 
-        fill_in :username, with: admin.username
-        fill_in :password, with: admin.password
-
-        click_on "Log In"
-
-        visit edit_user_path(user)
-
-        expect(page).to have_content("Edit #{user.username}'s Account")
+        click_on "Update User"
+        
+        expect(current_path).to eq(admin_dashboard_path)
+        expect(page).to have_content("New Username Updated")
       end
     end
   end

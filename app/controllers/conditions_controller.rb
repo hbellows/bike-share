@@ -17,7 +17,8 @@ class ConditionsController < ApplicationController
   end
 
   def destroy
-    Condition.destroy(params[:id])
+    @condition = Condition.find(params[:id])
+    @condition.destroy(params[:id])
     flash[:notice] = 'Condition deleted.'
     redirect_to conditions_path
   end
