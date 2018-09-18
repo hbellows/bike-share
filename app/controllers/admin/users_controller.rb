@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  # before_action :require_user, only: [:show, :edit]
+  before_action :require_user, only: [:show, :edit]
 
   def index
     @users = User.paginate(:page => params[:page], :per_page => 30)
@@ -37,7 +37,7 @@ class Admin::UsersController < Admin::BaseController
     @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:notice] = "#{@user.username} Updated"
-      redirect_to admin_user_path(@user)
+      redirect_to admin_dashboard_path
     else
       render :edit
     end
@@ -52,6 +52,6 @@ class Admin::UsersController < Admin::BaseController
 
   private
     def user_params
-      params.require(:user).permit(:email, :username, :password, :role)
+      params.require(:user).permit(:full_name, :email, :username, :password, :role)
     end
 end
