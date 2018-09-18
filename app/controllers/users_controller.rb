@@ -4,7 +4,11 @@ class UsersController < ApplicationController
   def show
     @user = User.find(current_user.id)
     if current_admin?
-     redirect_to admin_dashboard_path
+      if params[:id]
+        @user = User.find(params[:id])
+      else
+        @user = User.find(current_user.id)
+      end
     end
   end
 
