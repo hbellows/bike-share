@@ -1,15 +1,43 @@
 <h1><%= "Order ##{@order.id}" %></h1>
-<h2>Order Status: <%= @order.status.capitalize %></h2>
-<h2>Order Submitted: <%= @order.created_at %></h2>
-<h2>Ordered by: <%= @order.user.full_name %></h2>
-<h2>Shipping Address:</h2>
-<p>
-  <%= @order.street_address %><br />
-  <%= "#{@order.city}, #{@order.state} #{@order.zip_code}" %>
-</p>
+<div class="card form-container container-fluid">
+  <div class="card-body">
 
-<table>
-  <thead>
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Order Status</h4>
+        <%= @order.status.capitalize %>
+      </div>
+      <div class="col-md-6">
+        <h4>Ordered by</h4>
+        <%= @order.user.full_name %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <h4>Order Submitted</h4>
+        <%= @order.created_at.to_date %>
+      </div>
+      <div class="col-md-6">
+        <h4>Order Updated</h4>
+        <%= @order.updated_at.to_date %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Shipping Address:</h2>
+        <%= @order.street_address %><br />
+        <%= "#{@order.city}, #{@order.state} #{@order.zip_code}" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br />
+
+<table class="table table-striped table-light" id="station-index-table" style="margin: auto;">
+  <thead class='table-light table-header'>
     <th>Accessory Name</th>
     <th>Quantity</th>
     <th>Subtotal</th>
@@ -29,7 +57,7 @@
       </tr>
     <% end %>
     <tr>
-      <td colspan="3">Order Total: <%= number_to_currency(@order.total) %></td>
+      <td colspan="3" class="text-right">Order Total: <%= number_to_currency(@order.total) %></td>
     </tr>
   </tbody>
 </table>

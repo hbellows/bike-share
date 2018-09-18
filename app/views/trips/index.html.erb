@@ -3,6 +3,11 @@
     <p><%= link_to 'Create New Trip', new_admin_trip_path, class:'btn btn-secondary' %></p>
   <% end %>
 
+  <p>
+
+<%= will_paginate @trips %>
+</p>
+
 <section class='index-main'>
   <table class='table table-striped table-light' id='trip-index-table'>
     <thead class='table-light table-header'>
@@ -42,5 +47,3 @@
     </tbody>
   </table>
 </section>
-
-<%= will_paginate @trips %>
