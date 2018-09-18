@@ -6,7 +6,6 @@ class Admin::ConditionsController < ApplicationController
 
   def create
     @condition = Condition.new(condition_params)
-    @condition.date = Date.strptime(condition_params[:date], '%m/%d/%Y')
     if @condition.save
       flash[:notice] = 'New condition added!'
       redirect_to condition_path(@condition)
@@ -23,7 +22,6 @@ class Admin::ConditionsController < ApplicationController
   def update
     @condition = Condition.find(params[:id])
     @condition.update(condition_params)
-    @condition.date = Date.strptime(condition_params[:date], '%m/%d/%Y')
     if @condition.save
       flash[:notice] = 'Condition updated!'
       redirect_to condition_path(@condition)

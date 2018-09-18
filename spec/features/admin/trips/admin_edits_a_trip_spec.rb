@@ -13,8 +13,8 @@ describe 'As an admin' do
       visit edit_admin_trip_path(@trip)
 
       fill_in :trip_duration, with: '120'
-      fill_in :trip_start_date, with: '09/13/2018'
-      fill_in :trip_end_date, with: '09/13/2018'
+      fill_in :trip_start_date, with: '2018/09/13'
+      fill_in :trip_end_date, with: '2018/09/13'
       select @station1.name, from: :trip_start_station_id
       select @station2.name, from: :trip_end_station_id
       fill_in :trip_bike_id, with: 100
@@ -37,8 +37,8 @@ describe 'As an admin' do
       visit edit_admin_trip_path(@trip)
 
       fill_in :trip_duration, with: ''
-      fill_in :trip_start_date, with: '09/13/2018'
-      fill_in :trip_end_date, with: '09/13/2018'
+      fill_in :trip_start_date, with: '2018/09/13'
+      fill_in :trip_end_date, with: '2018/09/13'
       select @station1.name, from: :trip_start_station_id
       select @station2.name, from: :trip_end_station_id
       fill_in :trip_bike_id, with: ''
