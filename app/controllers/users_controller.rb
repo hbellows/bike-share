@@ -5,8 +5,6 @@ class UsersController < ApplicationController
     @user = User.find(current_user.id)
     if current_admin?
      redirect_to admin_dashboard_path
-    # else 
-    #   redirect_to dashboard_path
     end
   end
 
@@ -25,11 +23,6 @@ class UsersController < ApplicationController
   end
 
   def edit
-    # if current_admin?
-    #   @user = User.find(params[:id])
-    # elsif current_user
-    #   @user = User.find(current_user.id)
-    # end
   end
 
   def update
