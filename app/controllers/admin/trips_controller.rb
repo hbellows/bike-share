@@ -11,8 +11,8 @@ class Admin::TripsController < Admin::BaseController
 
   def create
     @trip = Trip.new(trip_params)
-    @trip.start_date = Date.strptime(trip_params[:start_date], '%m/%d/%Y')
-    @trip.end_date = Date.strptime(trip_params[:end_date], '%m/%d/%Y')
+    # @trip.start_date = Date.strptime(trip_params[:start_date], '%m/%d/%Y')
+    # @trip.end_date = Date.strptime(trip_params[:end_date], '%m/%d/%Y')
     if @trip.save
       flash[:notice] = 'New Trip added!'
       redirect_to trip_path(@trip)
@@ -30,8 +30,8 @@ class Admin::TripsController < Admin::BaseController
   def update
     @trip = Trip.find(params[:id])
     @trip.update(trip_params)
-    @trip.start_date = Date.strptime(trip_params[:start_date], '%m/%d/%Y')
-    @trip.end_date = Date.strptime(trip_params[:end_date], '%m/%d/%Y')
+    # @trip.start_date = Date.strptime(trip_params[:start_date], '%m/%d/%Y')
+    # @trip.end_date = Date.strptime(trip_params[:end_date], '%m/%d/%Y')
     if @trip.save
       flash[:notice] = 'Trip updated!'
       redirect_to trip_path(@trip)
