@@ -21,6 +21,10 @@
   text-align: center;
 }
 
+#small-cell {
+  width: 1px;
+}
+
 nav {
   color: #E8F1F2;
   background-color: #192BC2;
@@ -69,6 +73,12 @@ nav p {
 .middle-section p {
   text-align: center;
 }
+
+.index-bike-shop-admin {
+  display: flex;
+  justify-content: center;
+}
+
 .index-main {
   display: flex;
   justify-content: center;
