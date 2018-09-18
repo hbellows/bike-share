@@ -3,30 +3,31 @@
 <% if current_admin? %>
   <p><%= link_to 'Create New Station', new_admin_station_path, class:'btn btn-secondary' %></p>
 <% end %>
-
 <section class='show-main'>
-  <div>Dock Count: <%= @station.dock_count %></div>
-  <div>City: <%= @station.city %></div>
-  <div>Installation Date: <%= @station.installation_date.strftime("%m/%d/%Y") %></div>
+  <div class="form-container">
+  <h5>Dock Count: <%= @station.dock_count %></h5>
+  <h5>City: <%= @station.city %></h5>
+  <h5>Installation Date: <%= @station.installation_date.strftime("%m/%d/%Y") %></h5>
 
   <% if current_user && @station.start_stations.any? && @station.end_stations.any? %>
-    <div>Number of Rides Started Here: <%= @station.number_rides_started %></div>
-    <div>Number of Rides Ended Here: <%= @station.number_rides_ended %></div>
+    <h5>Number of Rides Started Here: <%= @station.number_rides_started %></h5>
+    <h5>Number of Rides Ended Here: <%= @station.number_rides_ended %></h5>
 
-    <div>Most Frequent Destination Station: <%= @station.most_frequent_destination %></div>
-    <div>Most Frequent Origination Station: <%= @station.most_frequent_origination %></div>
-    <div>Date With Most Trips Started Here: <%= @station.date_for_most_trips_started %></div>
-    <div>Most Frequent Zipcode For Users Starting Here: <%= @station.top_starting_user_zipcode %></div>
-    <div>Bike ID Most Frequently Starting Here: <%= @station.top_starting_bike_id %></div>
+    <h5>Most Frequent Destination Station: <%= @station.most_frequent_destination %></h5>
+    <h5>Most Frequent Origination Station: <%= @station.most_frequent_origination %></h5>
+    <h5>Date With Most Trips Started Here: <%= @station.date_for_most_trips_started %></h5>
+    <h5>Most Frequent Zipcode For Users Starting Here: <%= @station.top_starting_user_zipcode %></h5>
+    <h5>Bike ID Most Frequently Starting Here: <%= @station.top_starting_bike_id %></h5>
   <% end %>
   <p><%= link_to '<< Back to Stations Index', stations_path %></p>
 </section>
+</div>
 
 <div class="center-buttons">
   <div class="buttons">
     <% if current_admin? %>
-      <%= button_to 'Edit', edit_admin_station_path(@station), method: :get, class:'btn btn-success show-edit-button' %>
-      <%= button_to 'Delete', admin_station_path(@station), method: :delete, data: {confirm: "Really want to delete this station?"}, class:'btn btn-danger' %>
+    <%= button_to 'Edit', edit_admin_station_path(@station), method: :get, class:'btn btn-success show-edit-button' %>
+    <%= button_to 'Delete', admin_station_path(@station), method: :delete, data: {confirm: "Really want to delete this station?"}, class:'btn btn-danger' %>
     <% end %>
   </div>
 </div>
