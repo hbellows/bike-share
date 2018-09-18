@@ -35,7 +35,7 @@ describe 'Admin Condition Index Page' do
     it 'allows an admin to create a new condition' do
       visit new_admin_condition_path
 
-      fill_in :condition_date, with: '09/13/2018'
+      fill_in :condition_date, with: '2018/09/13'
       fill_in :condition_max_temperature, with: 80
       fill_in :condition_mean_temperature, with: 60
       fill_in :condition_min_temperature, with: 50

@@ -25,7 +25,7 @@ describe 'Admin Condition Show Page' do
     it 'allows me to edit a condition' do
       visit edit_admin_condition_path(@condition)
 
-      fill_in :condition_date, with: '09/13/2018'
+      fill_in :condition_date, with: '2018/09/13'
       fill_in :condition_max_temperature, with: 80
       fill_in :condition_mean_temperature, with: 60
       fill_in :condition_min_temperature, with: 50
