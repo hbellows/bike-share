@@ -1,16 +1,17 @@
 <h1>Conditions on <%=@condition.date.strftime('%m/%d/%Y')%></h1>
 
 <section class='show-main'>
-  <div>Max Temperature: <%= @condition.max_temperature %> ºF</div>
-  <div>Mean Temperature: <%= @condition.mean_temperature %> ºF</div>
-  <div>Min Temperature: <%= @condition.min_temperature %> ºF</div>
-  <div>Mean Humidity: <%= @condition.mean_humidity %> %</div>
-  <div>Mean Visibility: <%= @condition.mean_visibility %> Miles</div>
-  <div>Mean Wind Speed: <%= @condition.mean_wind_speed %> mph</div>
-  <div>Precipitation: <%= @condition.precipitation %> "</div>
+  <div class="form-container">
+  <h5>Max Temperature: <%= @condition.max_temperature %> ºF</h5>
+  <h5>Mean Temperature: <%= @condition.mean_temperature %> ºF</h5>
+  <h5>Min Temperature: <%= @condition.min_temperature %> ºF</h5>
+  <h5>Mean Humidity: <%= @condition.mean_humidity %> %</h5>
+  <h5>Mean Visibility: <%= @condition.mean_visibility %> Miles</h5>
+  <h5>Mean Wind Speed: <%= @condition.mean_wind_speed %> mph</h5>
+  <h5>Precipitation: <%= @condition.precipitation %> "</h5>
   <%= link_to '<< Back to Conditions Index', conditions_path %>
 </section>
-
+</div>
 <div class="center-buttons">
   <div class="buttons">
     <% if current_admin? %>
