@@ -66,7 +66,6 @@ User.create!(
  role: 1
 )
 ```
-Why We Did This
 Business Analytics: Robust data collection, with data points ranging from daily, regional weather conditions, to trip minute by minute trip durations. Deep data analysis to help drive business growth.
 Track daily average rides:
 ```ruby
