@@ -7,29 +7,43 @@ This application uses Ruby on Rails and ActiveRecord to analyze data from a Bay 
 
 Also included is a bike shop where visitors are able to peruse bike accessories. Visitors are able to create an account in order to login and checkout their cart.
 
-System Dependencies
-Ruby Version > 2.4.0
-Rails 5.1.6
-Gems
-FactoryBot (test) https://github.com/thoughtbot/factory_bot
-Rails-RSpec for tests (test) https://github.com/rspec/rspec-rails
-Launchy (test) https://github.com/copiousfreetime/launchy
-Bootstrap (production) https://getbootstrap.com
-Shoulda-Matchers (test) https://github.com/thoughtbot/shoulda-matchers
-FriendlyID (production) https://github.com/norman/friendly_id
-Faker (test) https://github.com/stympy/faker
-BCrpyt (production) - (uncomment this line in the gemfile: gem 'bcrypt', '~> 3.1.7')
-Will_Paginate (production) https://github.com/mislav/will_paginate
-DatabaseCleaner (test) https://github.com/DatabaseCleaner/database_cleaner
-Pry (test) https://github.com/pry/pry
-Figaro (production/test) https://github.com/laserlemon/figaro
-PostgreSQL (all) https://www.postgresql.org/
-Capybara (test) https://github.com/teamcapybara/capybara
-SimpleCov (test) https://github.com/colszowka/simplecov
-Carrierwave (all) https://github.com/carrierwaveuploader/carrierwave
-JQuery Rails (all) https://github.com/rails/jquery-rails
-Testing
-Run rspec for the test suite
+System Dependencies ;
+ - Ruby Version > 2.4.0
+ - Rails 5.1.6
+
+Gems:
+ - FactoryBot (test) 
+ https://github.com/thoughtbot/factory_bot
+ - Rails-RSpec for tests (test) 
+https://github.com/rspec/rspec-rails
+ - Launchy (test) 
+https://github.com/copiousfreetime/launchy
+ - Bootstrap (production) 
+https://getbootstrap.com
+ - Shoulda-Matchers (test) https://github.com/thoughtbot/shoulda-matchers
+ - FriendlyID (production) 
+https://github.com/norman/friendly_id
+ - Faker (test) 
+ https://github.com/stympy/faker
+ - BCrpyt (production) - (uncomment this line in the gemfile: gem 'bcrypt', '~> 3.1.7')
+ - Will_Paginate (production) https://github.com/mislav/will_paginate
+ - DatabaseCleaner (test) https://github.com/DatabaseCleaner/database_cleaner
+ - Pry (test) 
+ https://github.com/pry/pry
+ - Figaro (production/test) 
+ https://github.com/laserlemon/figaro
+ - PostgreSQL (all) 
+ https://www.postgresql.org/
+ - Capybara (test) 
+ https://github.com/teamcapybara/capybara
+ - SimpleCov (test) 
+ https://github.com/colszowka/simplecov
+ - Carrierwave (all) https://github.com/carrierwaveuploader/carrierwave
+ - JQuery Rails (all) 
+ https://github.com/rails/jquery-rails
+
+Testing:
+Run `rspec` for the test suite
 SimpleCov data
 Initial Setup
 Clone this repository git clone https://github.com/mikecm1141/bike-share
