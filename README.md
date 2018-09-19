@@ -60,7 +60,7 @@ Also included is a bike shop where visitors are able to peruse bike accessories.
  - What and why we did the seeding
  - Default accounts for admin and user (like a demo) 
  - Default admin account appears in the seed file, and will seed to the database:
- ```
+ ```ruby
  # Create default admin
 User.create!(
   full_name: 'Admin Admin',
@@ -77,7 +77,7 @@ User.create!(
  - Business Analytics: Robust data collection, with data points ranging from daily, regional weather conditions, to trip minute by minute trip durations.  Deep data analysis to help drive business growth.
  
  Track daily average rides:
- ```
+ ```ruby
    def self.avg_rides_breakdown(min, max, attribute)
     trip_count = Trip.select("start_date, count(trips.id) as count").joins("join conditions ON conditions.date=trips.start_date").where("#{attribute} between ? and ?", min, max).group(:start_date).length
     trip_total = Trip.select("start_date, count(trips.id) as count").joins("join conditions ON conditions.date=trips.start_date").where("#{attribute} between ? and ?", min, max).group(:start_date).size.values.sum
@@ -89,7 +89,7 @@ User.create!(
   end
 ```
 Track rides by weather condition:
-```
+```ruby
   def self.precip_breakdown
     ranges = {'half'=>{min: 0, max: 0.49},'one'=>{min: 0.5, max: 0.99},'one_half'=>{min: 1, max: 1.49},'two'=>{min: 1.5, max: 1.99},'two_half'=>{min: 2, max: 2.49},'three'=>{min: 2.5, max: 2.99},'three_half'=>{min: 3, max: 3.49}}
     precipitation_values = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc) }
@@ -100,9 +100,10 @@ Track rides by weather condition:
     end
     precipitation_values
   end
-
+```
 
 ## Pull Request Template/Fork Repository
+The repositiory comes with a a pull request template.  If you'd like to demo the appliation, just fork a copy, take it for a ride, and leave us feedback in your pull request.
 
 ### Contact Information
 
