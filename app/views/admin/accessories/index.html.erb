@@ -15,14 +15,14 @@
 		</thead>
 		<tbody>
 			<% @accessories.each do |accessory| %>
-        <tr id="accessory-<%= accessory.id %>"<%= accessory.id %>>
-          <th id='table-entry'>
+        <tr id="accessory-<%= accessory.id %>">
+          <th class='table-entry'>
             <%= image_tag(accessory.image, height: '60', width: '60')  %>
           </th>
-          <th id='table-entry'><%= link_to accessory.name, accessory_path(accessory) %></th>
-          <td id='table-entry'><%= accessory.description %></td>
-          <td id='table-entry'><%= number_to_currency(accessory.price) %></td>
-          <td id='table-entry'>
+          <th class='table-entry'><%= link_to accessory.name, accessory_path(accessory) %></th>
+          <td class='table-entry'><%= accessory.description %></td>
+          <td class='table-entry'><%= number_to_currency(accessory.price) %></td>
+          <td class='table-entry'>
             <% if accessory.retired? %>
               <%= button_to 'Reactivate', admin_accessory_path(accessory, index_retired?: false), method: :put, class: 'btn btn-primary' %>
             <% else %>
