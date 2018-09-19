@@ -43,16 +43,18 @@ https://github.com/norman/friendly_id
  https://github.com/rails/jquery-rails
 
 Testing:
-Run `rspec` for the test suite
-SimpleCov data
-Initial Setup
-Clone this repository git clone https://github.com/mikecm1141/bike-share
-Bundle install/update
-Rake DB Drop Create Migrate Seed
-Database Initialization
-CSV files load random samples of data, with a cutoff at 5,000 lines to keep the app heroku deployable.
-Default accounts for admin and user (like a demo)
-Default admin account appears in the seed file, and will seed to the database:
+ - Run `rspec` for the test suite
+ - SimpleCov data
+
+Initial Setup:
+ - Clone this repository git clone https://github.com/mikecm1141/bike-share
+ - Bundle install/update
+ - Rake DB Drop Create Migrate Seed
+
+Database Initialization: 
+ - CSV files load random samples of data, with a cutoff at 5,000 lines to keep the app heroku deployable.
+ - Default accounts for admin and user (like a demo)
+ - Default admin account appears in the seed file, and will seed to the database:
 ```ruby
 # Create default admin
 User.create!(
