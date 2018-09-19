@@ -74,12 +74,33 @@ User.create!(
  
 
 ### Why We Did This
- - Business Analytics
- - To sell bike accessories
+ - Business Analytics: Robust data collection, with data points ranging from daily, regional weather conditions, to trip minute by minute trip durations.  Deep data analysis to help drive business growth.
+ 
+ Track daily average rides:
+ ```
+   def self.avg_rides_breakdown(min, max, attribute)
+    trip_count = Trip.select("start_date, count(trips.id) as count").joins("join conditions ON conditions.date=trips.start_date").where("#{attribute} between ? and ?", min, max).group(:start_date).length
+    trip_total = Trip.select("start_date, count(trips.id) as count").joins("join conditions ON conditions.date=trips.start_date").where("#{attribute} between ? and ?", min, max).group(:start_date).size.values.sum
+    if trip_total > 0 && trip_count > 0
+      trip_total / trip_count.to_f
+    else
+      0
+    end
+  end
+```
+Track rides by weather condition:
+```
+  def self.precip_breakdown
+    ranges = {'half'=>{min: 0, max: 0.49},'one'=>{min: 0.5, max: 0.99},'one_half'=>{min: 1, max: 1.49},'two'=>{min: 1.5, max: 1.99},'two_half'=>{min: 2, max: 2.49},'three'=>{min: 2.5, max: 2.99},'three_half'=>{min: 3, max: 3.49}}
+    precipitation_values = Hash.new { |hash, key| hash[key] = Hash.new(&hash.default_proc) }
+    ranges.each do |precip_range, min_max|
+      precipitation_values['max_rides'][precip_range] = Condition.max_rides_breakdown(min_max[:min], min_max[:max], 'precipitation')
+      precipitation_values['avg_rides'][precip_range] = Condition.avg_rides_breakdown(min_max[:min], min_max[:max], 'precipitation')
+      precipitation_values['min_rides'][precip_range] = Condition.min_rides_breakdown(min_max[:min], min_max[:max], 'precipitation')
+    end
+    precipitation_values
+  end
 
-### Screenshots
-
-### Navigating Pages
 
 ## Pull Request Template/Fork Repository
 
