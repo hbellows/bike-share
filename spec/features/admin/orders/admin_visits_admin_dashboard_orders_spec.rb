@@ -19,31 +19,31 @@ describe 'As an admin' do
 
       within("#order-#{@order1.id}") do
         expect(page).to have_content("Order ##{@order1.id}")
-        expect(page).to have_content("User: #{@order1.user.username}")
-        expect(page).to have_content("Status: #{@order1.status.capitalize}")
+        expect(page).to have_content(@order1.user.username)
+        expect(page).to have_content(@order1.status.capitalize)
       end
       within("#order-#{@order2.id}") do
         expect(page).to have_content("Order ##{@order2.id}")
-        expect(page).to have_content("User: #{@order2.user.username}")
-        expect(page).to have_content("Status: #{@order2.status.capitalize}")
+        expect(page).to have_content(@order2.user.username)
+        expect(page).to have_content(@order2.status.capitalize)
       end
       within("#order-#{@order3.id}") do
         expect(page).to have_content("Order ##{@order3.id}")
-        expect(page).to have_content("User: #{@order3.user.username}")
-        expect(page).to have_content("Status: #{@order3.status.capitalize}")
+        expect(page).to have_content(@order3.user.username)
+        expect(page).to have_content(@order3.status.capitalize)
       end
       within("#order-#{@order4.id}") do
         expect(page).to have_content("Order ##{@order4.id}")
-        expect(page).to have_content("User: #{@order4.user.username}")
-        expect(page).to have_content("Status: #{@order4.status.capitalize}")
+        expect(page).to have_content(@order4.user.username)
+        expect(page).to have_content(@order4.status.capitalize)
       end
     end
     it 'shows me the total number of orders for each status' do
       visit admin_dashboard_path
 
-      expect(page).to have_content("Ordered: 1")
-      expect(page).to have_content("Paid: 1")
-      expect(page).to have_content("Completed: 2")
+      expect(page).to have_content("Ordered\n1")
+      expect(page).to have_content("Paid\n1")
+      expect(page).to have_content("Completed\n2")
     end
     it 'links to each order show page' do
       visit admin_dashboard_path
@@ -57,7 +57,7 @@ describe 'As an admin' do
       click_on 'Filter'
 
       expect(current_path).to eq(admin_dashboard_path)
-      expect(page).to have_content("Status: #{@order1.status.capitalize}")
+      expect(page).to have_content("Status\n#{@order1.status.capitalize}")
       expect(page).to_not have_content("Status: Completed")
       expect(page).to_not have_content("Status: Cancelled")
       expect(page).to_not have_content("Status: Paid")
@@ -66,9 +66,9 @@ describe 'As an admin' do
       click_on 'Filter'
 
       expect(current_path).to eq(admin_dashboard_path)
-      expect(page).to have_content("Status: #{@order3.status.capitalize}")
-      expect(page).to_not have_content("Status: Paid")
-      expect(page).to_not have_content("Status: Cancelled")
+      expect(page).to have_content("Status\n#{@order3.status.capitalize}")
+      expect(page).to_not have_content("Status\nPaid")
+      expect(page).to_not have_content("Status\nCancelled")
     end
     it 'allows me to cancel orders that are paid or ordered' do
       visit admin_dashboard_path
@@ -78,7 +78,7 @@ describe 'As an admin' do
       end
       expect(current_path).to eq(admin_dashboard_path)
       within("#order-#{@order1.id}") do
-        expect(page).to have_content("Status: Cancelled")
+        expect(page).to have_content("Cancelled")
       end
 
       within("#order-#{@order2.id}") do
@@ -86,7 +86,7 @@ describe 'As an admin' do
       end
       expect(current_path).to eq(admin_dashboard_path)
       within("#order-#{@order2.id}") do
-        expect(page).to have_content("Status: Cancelled")
+        expect(page).to have_content("Cancelled")
       end
     end
     it 'allows me to mark as paid orders which are ordered' do
@@ -97,7 +97,7 @@ describe 'As an admin' do
       end
       expect(current_path).to eq(admin_dashboard_path)
       within("#order-#{@order1.id}") do
-        expect(page).to have_content("Status: Paid")
+        expect(page).to have_content("Paid")
       end
     end
     it 'allows me to mark as completed orders which are paid' do
@@ -108,7 +108,7 @@ describe 'As an admin' do
       end
       expect(current_path).to eq(admin_dashboard_path)
       within("#order-#{@order2.id}") do
-        expect(page).to have_content("Status: Completed")
+        expect(page).to have_content("Completed")
       end
     end
     it 'allows me to click an order and see that order\'s details' do
@@ -117,9 +117,9 @@ describe 'As an admin' do
       click_link "Order ##{@order1.id}"
 
       expect(page).to have_content("Order ##{@order1.id}")
-      expect(page).to have_content("Order Status: #{@order1.status.capitalize}")
-      expect(page).to have_content("Order Submitted: #{@order1.created_at}")
-      expect(page).to have_content("Ordered by: #{@order1.user.full_name}")
+      expect(page).to have_content("Order Status\n#{@order1.status.capitalize}")
+      expect(page).to have_content("Order Submitted\n#{@order1.created_at.to_date}")
+      expect(page).to have_content("Ordered by\n#{@order1.user.full_name}")
       expect(page).to have_content("Shipping Address:\n#{@order1.street_address}")
       expect(page).to have_content("#{@order1.city}, #{@order1.state} #{@order1.zip_code}")
       expect(page).to have_link(@order1.accessories.first.name, href: accessory_path(@order1.accessories.first))

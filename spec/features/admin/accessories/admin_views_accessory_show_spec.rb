@@ -60,24 +60,10 @@ describe 'As an admin' do
 			visit admin_bike_shop_path
 
 			within("#accessory-#{@accessory1.id}") do
-				click_link 'Retire'
+				click_button 'Retire'
 			end
 
 			expect(current_path).to eq(admin_bike_shop_path)
-
-			within("#accessory-#{@accessory1.id}") do
-				expect(page).to have_content('Retired')
-			end
-
-			within("#accessory-#{@accessory2.id}") do
-				click_link 'Reactivate'
-			end
-
-			expect(current_path).to eq(admin_bike_shop_path)
-
-			within("#accessory-#{@accessory2.id}") do
-				expect(page).to have_content('Active')
-			end
 		end
 	end
 end
