@@ -58,7 +58,20 @@ Also included is a bike shop where visitors are able to peruse bike accessories.
 
 ### Database Initialization
  - What and why we did the seeding
- - Default accounts for admin and user (like a demo)
+ - Default accounts for admin and user (like a demo) 
+ - Default admin account appears in the seed file, and will seed to the database:
+ ```
+ # Create default admin
+User.create!(
+  full_name: 'Admin Admin',
+  username: 'admin',
+  password: 'password',
+  password_confirmation: 'password',
+  email: 'admin@admin.com',
+  role: 1
+)
+```
+ 
 
 ### Why We Did This
  - Business Analytics
