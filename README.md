@@ -1,4 +1,11 @@
-[![Waffle.io - Columns and their card count](https://badge.waffle.io/mikecm1141/bike-share.svg?columns=all)](https://waffle.io/mikecm1141/bike-share)
+
+![GitHub stars](https://img.shields.io/github/stars/badges/shields.svg?style=social&label=Stars)
+
+[![Gem Version](https://badge.fury.io/rb/ruby.svg)](https://badge.fury.io/rb/ruby)
+[![Gem Version](https://badge.fury.io/rb/rails.svg)](https://badge.fury.io/rb/rails)
+[![Gem Version](https://badge.fury.io/rb/postgres.svg)](https://badge.fury.io/rb/postgres)
+
+(https://waffle.io/mikecm1141/bike-share)
 
 # Bike Share README
 
