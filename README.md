@@ -57,7 +57,7 @@ Also included is a bike shop where visitors are able to peruse bike accessories.
  - Rake DB Drop Create Migrate Seed
 
 ### Database Initialization
- - What and why we did the seeding
+ - CSV files load random samples of data, with a cutoff at 5,000 lines to keep the app heroku deployable.
  - Default accounts for admin and user (like a demo) 
  - Default admin account appears in the seed file, and will seed to the database:
  ```ruby
