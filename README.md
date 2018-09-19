@@ -14,6 +14,7 @@ Also included is a bike shop where visitors are able to peruse bike accessories.
  - Rails 5.1.6
  - Gems
    - FactoryBot (test)
+   https://github.com/thoughtbot/factory_bot
    - Rails-RSpec for tests (test)
    - Launchy (test)
    - Bootstrap (production)
